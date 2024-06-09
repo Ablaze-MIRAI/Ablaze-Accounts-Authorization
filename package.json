@@ -1,0 +1,22 @@
+{
+  "packageManager": "yarn@4.2.2",
+  "name": "ablaze-accounts-authorization",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "ft:dev": "yarn workspace @a3/frontend dev",
+    "bk:dev": "yarn workspace @a3/backend dev"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "@a3/common": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "eslint": "^8",
+    "typescript": "^5"
+  }
+}
