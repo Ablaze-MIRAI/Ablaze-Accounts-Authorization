@@ -14,8 +14,8 @@ export default function AuthorizationRootLayout({ children }: Readonly<{ childre
     <>
       <header className="fixed top-0 left-0 z-30 w-full h-[10svh] px-4 sm:px-16 flex justify-between items-center">
         <div className="h-1/2">
-          <a href="/">
-            <Image src={AblazeLogoBlack} width={165} height={38} alt="Ablaze Logo" className="h-full" priority={true}/>
+          <a href="/" title="Ablaze Accounts">
+            <Image src={AblazeLogoBlack} width={0} height={0} alt="Ablaze Logo" className="h-full w-auto" priority={true}/>
           </a>
         </div>
       </header>

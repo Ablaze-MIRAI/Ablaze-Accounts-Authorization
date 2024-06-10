@@ -11,3 +11,7 @@ export const EmailSignupSchema = z.object({
     message: "パスワードが一致しません"
   });
 });
+
+export const EmailSignupVerifySchema = z.object({
+  pin: z.string().min(6).max(6).regex(/[0-9]{6}/)
+});
