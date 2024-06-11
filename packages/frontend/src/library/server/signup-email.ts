@@ -15,5 +15,5 @@ export const RegisterAndEmailVerify = async (data: z.infer<typeof EmailSignupSch
 export const VerifyEmail = async (data: z.infer<typeof EmailSignupVerifySchema>): Promise<Result> =>{
   console.log("[Backend]", JSON.stringify(data))
   await Delay(1500);
-  return { success: false, code: 1001 }
+  return { success: true, code: 1001 }
 }

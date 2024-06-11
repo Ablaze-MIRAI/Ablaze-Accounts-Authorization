@@ -22,7 +22,6 @@ import { VerifyEmail } from "@/library/server/signup-email";
 // Schema
 import { EmailSignupVerifySchema } from "@a3/common/schemas/signup-email";
 
-
 export const SignupEmailVerifyForm = () =>{
   const router = useRouter();
   const { toast } = useToast();
@@ -56,7 +55,7 @@ export const SignupEmailVerifyForm = () =>{
           <FormItem>
             <FormLabel>認証コード</FormLabel>
             <FormControl>
-              <InputOTP maxLength={6} {...field}>
+              <InputOTP maxLength={6} autoFocus={true} {...field}>
                 <InputOTPGroup>
                   <InputOTPSlot index={0} />
                   <InputOTPSlot index={1} />
