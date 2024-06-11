@@ -1,4 +1,4 @@
-// UI
+// Utility
 import { SignContainer } from "@/components/layouts/SignContainer";
 import { SignupEmailVerifyForm } from "@/components/parts/SignupEmailVerifyForm";
 

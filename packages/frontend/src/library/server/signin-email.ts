@@ -1,7 +1,11 @@
+"use server";
+
+// Library
 import { z } from "zod";
+
+// Schema
 import { EmailSigninSchema } from "@a3/common/schemas/signin-email";
 import { Result } from "@/typings/server";
-
 
 const Delay = async (time: number): Promise<void> => await new Promise((r, _) => setTimeout(() => r(), time));
 
