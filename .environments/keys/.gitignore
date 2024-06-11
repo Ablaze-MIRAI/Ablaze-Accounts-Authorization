@@ -1,0 +1,6 @@
+*.key
+*.pem
+*.private.*
+
+# Allow development key
+!development.*
