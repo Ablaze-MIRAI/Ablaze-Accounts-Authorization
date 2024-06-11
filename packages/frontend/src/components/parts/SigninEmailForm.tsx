@@ -38,7 +38,7 @@ export const SigninEmailVerifyForm = () =>{
     data,
     async (data) => await EmailSigninVerify(data),
     () => setSending(true),
-    () => router.push("/signup/done"),
+    () => router.push("/signin/done"),
     (code) =>{
       toast({
         title: `エラー (${code})`,
@@ -60,7 +60,7 @@ export const SigninEmailVerifyForm = () =>{
             <FormMessage/>
           </FormItem>
         )}/>
-        <FormField control={form.control} name="email" render={({ field }) =>(
+        <FormField control={form.control} name="password" render={({ field }) =>(
           <FormItem>
             <FormLabel>パスワード</FormLabel>
             <FormControl>
