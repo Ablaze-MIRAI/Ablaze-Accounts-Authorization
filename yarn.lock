@@ -14,6 +14,7 @@ __metadata:
     "@paralleldrive/cuid2": "npm:^2.2.2"
     "@prisma/client": "npm:^5.15.0"
     "@prisma/studio": "npm:^0.501.0"
+    "@types/nodemailer": "npm:^6.4.15"
     bcrypt: "npm:^5.1.1"
     fastify: "npm:^4.27.0"
     fastify-plugin: "npm:^4.5.1"
@@ -921,12 +922,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20":
+"@types/node@npm:*, @types/node@npm:^20":
   version: 20.14.2
   resolution: "@types/node@npm:20.14.2"
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 10c0/2d86e5f2227aaa42212e82ea0affe72799111b888ff900916376450b02b09b963ca888b20d9c332d8d2b833ed4781987867a38eaa2e4863fa8439071468b0a6f
+  languageName: node
+  linkType: hard
+
+"@types/nodemailer@npm:^6.4.15":
+  version: 6.4.15
+  resolution: "@types/nodemailer@npm:6.4.15"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/553e613fe08fd663bff1fb3647a8ebbcc4ca297a6249296a43f3c92499158acad5955689be2096ff3fe72f145e80d749c1fc66d5549fe665d7ceb6d0946f2a26
   languageName: node
   linkType: hard
 

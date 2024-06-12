@@ -1,6 +1,6 @@
 import FastifyPlugin from "fastify-plugin";
-import { PrismaClient } from "@prisma/client";
 import { FastifyPluginAsync } from "fastify";
+import { PrismaClient } from "@prisma/client";
 
 declare module "fastify" {
   interface FastifyInstance {

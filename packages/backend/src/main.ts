@@ -3,6 +3,7 @@ import FastifySwagger from "@fastify/swagger";
 import FastifySwaggerUi from "@fastify/swagger-ui";
 import { ZodTypeProvider, validatorCompiler, serializerCompiler, jsonSchemaTransform } from "fastify-type-provider-zod";
 import { RootRouter } from "@/routes/router";
+import MailerPlugin from "./plugins/mailer";
 
 const app = Fastify({
   logger: true,
@@ -26,6 +27,8 @@ app.register(FastifySwagger, {
 app.register(FastifySwaggerUi, {
   routePrefix: "/docs"
 });
+
+app.register(MailerPlugin);
 
 // Router
 app.register(RootRouter);
