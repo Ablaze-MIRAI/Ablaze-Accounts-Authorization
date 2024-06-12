@@ -13,7 +13,7 @@ export default function SignupRoot(){
     <SignContainer title="アカウントを作成">
       <SignMethodLinksContainer>
         <SignMethodLinks type="signup"/>
-        <SignSeparate/>
+        <SignSeparate or="または"/>
         <Button variant="secondary" asChild>
           <Link href="/signin">ログインする</Link>
         </Button>
