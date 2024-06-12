@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_CONNECTION")
+}
+
+model User {
+  uid         String     @id @unique
+  createdAt   DateTime   @default(now())
+  screen_name String
+  avator      String?
+  permissions Permission @default(DEFAULT)
+
+  // Relationships
+  refresh_token RefreshToken[]
+  idp_email     IdpEmail?
+  idp_discord   IdpDiscord?
+}
+
+model RefreshToken {
+  id         String   @id @default(cuid())
+  token      String   @unique
+  expiration DateTime
+  updatedAt  DateTime @default(now()) @updatedAt
+  createdAt  DateTime @default(now())
+  ip         String
+  os         String
+  name       String
+
+  // Relationships
+  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid  String
+  srt SubRefreshToken[]
+}
+
+model SubRefreshToken {
+  id String @id @default(cuid())
+  token String @unique
+  expiration DateTime
+  updatedAt  DateTime @default(now()) @updatedAt
+  createdAt  DateTime @default(now())
+  name String
+
+  // Relationships
+  rt RefreshToken @relation(fields: [rtid], references: [id])
+  rtid String
+}
+
+model IdpEmail {
+  id       String @id @default(cuid())
+  email    String @unique
+  password String
+
+  // Relationships
+  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid  String @unique
+}
+
+model IdpGitHub {
+  id String @id @default(cuid())
+}
+
+model IdpDiscord {
+  id          String @id @default(cuid())
+  iid         String // Internal ID
+  sid         String // Screen ID
+  screen_name String // Screen Name
+
+  // Relationships
+  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid  String @unique
+}
+
+enum Permission {
+  SUPERUSER
+  MODERATOR
+  DEFAULT
+}

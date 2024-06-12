@@ -3,7 +3,9 @@
     "editorconfig.editorconfig",
     "dbaeumer.vscode-eslint",
     "ms-vscode.vscode-typescript-next",
+    "prisma.prisma",
+    "ms-vscode.powershell",
     "christian-kohler.npm-intellisense",
-    "bradlc.vscode-tailwindcss",
+    "bradlc.vscode-tailwindcss"
   ]
 }

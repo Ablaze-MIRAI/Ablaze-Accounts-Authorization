@@ -1,3 +1,7 @@
+# Environment Files
+.env.*
+!.env.example
+
 # Dependences
 node_modules
 .yarn/*
@@ -7,3 +11,24 @@ node_modules
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# IDE/Editor
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace

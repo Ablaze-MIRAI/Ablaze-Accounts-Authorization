@@ -1,4 +1,30 @@
 {
   "name": "@a3/backend",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "tsnd --respawn -r tsconfig-paths/register src/main.ts",
+    "build": "",
+    "schema:format": "prisma format",
+    "mg:dev": "prisma migrate dev --name init",
+    "mg:deploy": "prisma migrate deploy",
+    "studio": "prisma studio"
+  },
+  "dependencies": {
+    "@fastify/swagger": "^8.14.0",
+    "@fastify/swagger-ui": "^3.1.0",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@prisma/client": "^5.15.0",
+    "@prisma/studio": "^0.501.0",
+    "bcrypt": "^5.1.1",
+    "fastify": "^4.27.0",
+    "fastify-plugin": "^4.5.1",
+    "fastify-type-provider-zod": "^1.2.0",
+    "nodemailer": "^6.9.13",
+    "prisma": "^5.15.0",
+    "ulid": "^2.3.0"
+  },
+  "devDependencies": {
+    "tsc-alias": "^1.8.10",
+    "tsconfig-paths": "^4.2.0"
+  }
 }
