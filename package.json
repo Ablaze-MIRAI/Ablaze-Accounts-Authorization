@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "echo Please add to workspace prefix. `ft:` && exit 0",
-    "ft:dev": "env-cmd -f .environments/.env.development yarn workspace @a3/frontend dev",
+    "ft:dev": "yarn workspace @a3/frontend dev",
     "bk:dev": "yarn workspace @a3/backend dev"
   },
   "workspaces": [
