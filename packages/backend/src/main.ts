@@ -2,7 +2,7 @@ import Fastify from "fastify";
 import FastifySwagger from "@fastify/swagger";
 import FastifySwaggerUi from "@fastify/swagger-ui";
 import { ZodTypeProvider, validatorCompiler, serializerCompiler, jsonSchemaTransform } from "fastify-type-provider-zod";
-import { RootRouter } from "@/router";
+import { RootRouter } from "@/routes/router";
 
 const app = Fastify({
   logger: true,
