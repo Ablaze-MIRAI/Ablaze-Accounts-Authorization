@@ -1,5 +1,5 @@
 {
-  "packageManager": "yarn@4.2.2",
+  "packageManager": "yarn@4.3.0",
   "name": "ablaze-accounts-authorization",
   "version": "0.0.1",
   "license": "UNLICENSED",
