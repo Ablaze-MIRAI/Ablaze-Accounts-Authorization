@@ -1,9 +1,10 @@
 import Fastify from "fastify";
 import FastifySwagger from "@fastify/swagger";
 import FastifySwaggerUi from "@fastify/swagger-ui";
+import FastifySession from "@fastify/session";
 import { ZodTypeProvider, validatorCompiler, serializerCompiler, jsonSchemaTransform } from "fastify-type-provider-zod";
+import MailerPlugin from "@/plugins/mailer";
 import { RootRouter } from "@/routes/router";
-import MailerPlugin from "./plugins/mailer";
 
 const app = Fastify({
   logger: true,
@@ -26,6 +27,11 @@ app.register(FastifySwagger, {
 
 app.register(FastifySwaggerUi, {
   routePrefix: "/docs"
+});
+
+app.register(FastifySession, {
+  secret: "superverfysecuret-minatoaqua",
+  cookie: { secure: false }
 });
 
 app.register(MailerPlugin);
