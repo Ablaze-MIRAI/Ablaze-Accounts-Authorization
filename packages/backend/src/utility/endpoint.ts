@@ -1,4 +1,4 @@
-import { RouteShorthandOptions, RouteHandlerMethod, FastifySchema } from "fastify"
+import { RouteShorthandOptions, RouteHandlerMethod, FastifySchema } from "fastify";
 
 export const Endpoint = <
   Options = RouteShorthandOptions,

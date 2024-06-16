@@ -1,7 +1,7 @@
-declare module "fastify" {
+/*declare module "fastify" {
   interface FastifyInstance {
     session: {
       signupstarted?: boolean
     }
   }
-}
+}*/
