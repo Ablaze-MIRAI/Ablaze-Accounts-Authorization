@@ -13,9 +13,11 @@ __metadata:
     "@fastify/session": "npm:^10.9.0"
     "@fastify/swagger": "npm:^8.14.0"
     "@fastify/swagger-ui": "npm:^3.1.0"
+    "@fastify/type-provider-typebox": "npm:^4.0.0"
     "@paralleldrive/cuid2": "npm:^2.2.2"
     "@prisma/client": "npm:^5.15.0"
     "@prisma/studio": "npm:^0.501.0"
+    "@sinclair/typebox": "npm:^0.32.32"
     "@types/nodemailer": "npm:^6.4.15"
     bcrypt: "npm:^5.1.1"
     fastify: "npm:^4.27.0"
@@ -246,6 +248,15 @@ __metadata:
     rfdc: "npm:^1.3.0"
     yaml: "npm:^2.2.2"
   checksum: 10c0/d7b8cd1b8794fcb0dc015b52772cbee547d88e05cd9225c475b25af2d0d69abda3b2905d0cde593680fa1b1cac381f671b5f00fd10ae448e72ed5f1f096e034b
+  languageName: node
+  linkType: hard
+
+"@fastify/type-provider-typebox@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@fastify/type-provider-typebox@npm:4.0.0"
+  peerDependencies:
+    "@sinclair/typebox": ">=0.26 <=0.32"
+  checksum: 10c0/1134f9e8873c4057a2dc18fc85729e3ea3a33bcaaf91efd66bfca63ac2bf9715f33f3412643ecba0a5120e7861235580b13f4bc1a46dd12c5c6ecc4ed5574a46
   languageName: node
   linkType: hard
 
@@ -891,6 +902,13 @@ __metadata:
   version: 1.10.3
   resolution: "@rushstack/eslint-patch@npm:1.10.3"
   checksum: 10c0/ec75d23fba30fc5f3303109181ce81a686f7b5660b6e06d454cd7b74a635bd68d5b28300ddd6e2a53b6cb10a876246e952e12fa058af32b2fa29b73744f00521
+  languageName: node
+  linkType: hard
+
+"@sinclair/typebox@npm:^0.32.32":
+  version: 0.32.32
+  resolution: "@sinclair/typebox@npm:0.32.32"
+  checksum: 10c0/a8f5013570fd20381fe9d3f9c932bc4808564fe7e94d740265d8af8b62b81ba5100ae7b3db03de0cff5a07d0b76413388733e61ea988e6e7b336c13e0f6621b6
   languageName: node
   linkType: hard
 

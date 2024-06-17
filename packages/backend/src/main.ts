@@ -3,27 +3,24 @@ import FastifySwagger from "@fastify/swagger";
 import FastifySwaggerUi from "@fastify/swagger-ui";
 import FastifyCookie from "@fastify/cookie";
 import FastifySession from "@fastify/session";
-import { ZodTypeProvider, validatorCompiler, serializerCompiler, jsonSchemaTransform } from "fastify-type-provider-zod";
 import MailerPlugin from "@/plugins/mailer";
 import { RootRouter } from "@/routes/router";
+import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
+import { Static, Type } from "@sinclair/typebox";
 
 const app = Fastify({
   logger: true,
   bodyLimit: 1024*512
-}).withTypeProvider<ZodTypeProvider>();
+}).withTypeProvider<TypeBoxTypeProvider>();
 
-// Plugin
-app.setValidatorCompiler(validatorCompiler);
-app.setSerializerCompiler(serializerCompiler);
-
+// Plugins
 app.register(FastifySwagger, {
   swagger: {
     info: {
       title: "App Name",
       version: "1.0.0"
     }
-  },
-  transform: jsonSchemaTransform
+  }
 });
 
 app.register(FastifySwaggerUi, {
@@ -42,7 +39,10 @@ app.register(MailerPlugin);
 // Router
 app.register(RootRouter);
 
-app.get("/", async () => "Working!");
+const sch = Type.Object({ st: Type.String()});
+app.get("/a", { schema: { querystring: sch } }, async (request) =>{
+  request.query.st
+})
 
 // Startup Config
 app.listen({ port: 4000, host: "0.0.0.0"}, (error) =>{
