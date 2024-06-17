@@ -1,10 +1,11 @@
 import { EmailSignupRegister } from "@/schema/AuthEmailSignup";
-import { FastifyInstance } from "fastify";
-import { FastifyPluginAsync } from "fastify";
-import { FastifyRequest } from "fastify";
-import { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import { z } from "zod";
+import { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 
-export const EmailSignupRouter: FastifyPluginAsync = async (app) =>{
+export const EmailSignupRouter: FastifyPluginAsyncZod = async (app) =>{
+  app.post<{
+    body: z.infer<typeof EmailSignupRegister>
+  }>("/register", { schema: { body: EmailSignupRegister } }, async (request, response) =>{
 
+  });
 };
