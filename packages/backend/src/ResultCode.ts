@@ -1,0 +1,6 @@
+export default {
+  SUCCESS: 1001,
+  ERROR: 2001,
+  EMAIL_PIN_ERROR: 2011,
+  EMAIL_OR_PASS_ERROR: 2012
+}

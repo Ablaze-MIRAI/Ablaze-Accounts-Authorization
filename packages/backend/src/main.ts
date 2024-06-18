@@ -3,10 +3,11 @@ import FastifySwagger from "@fastify/swagger";
 import FastifySwaggerUi from "@fastify/swagger-ui";
 import { fastifyCookie as FastifyCookie } from "@fastify/cookie";
 import { fastifySession as FastifySession } from "@fastify/session";
-import MailerPlugin from "@/plugins/mailer";
-import { RootRouter } from "@/routes/router";
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 import PrismaPlugin from "@/plugins/prisma";
+import MailerPlugin from "@/plugins/mailer";
+import { RootRouter } from "@/routes/router";
+import { DaysAgo } from "@/utility/Props";
 
 const app = Fastify({
   logger: true,
@@ -29,24 +30,13 @@ app.register(FastifySwaggerUi, {
 
 app.register(FastifyCookie);
 
-declare module "fastify" {
-  interface Session {
-    signup_register: {
-      email: string,
-      password: string,
-      pin: number
-    },
-    signed: {
-      iid: string,
-      avator: string,
-      scname: string
-    }
-  }
-}
-
 app.register(FastifySession, {
   secret: "superveryveryveryverylongsecret-minatoaqua",
-  cookie: { secure: false }
+  cookie: {
+    httpOnly: true,
+    secure: false,
+    expires: DaysAgo(120)
+  }
 });
 
 app.register(PrismaPlugin);
