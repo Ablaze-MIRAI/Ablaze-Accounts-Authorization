@@ -2,6 +2,11 @@
 .env.*
 !.env.example
 
+# Build Artifact
+dist
+out
+output
+
 # Dependences
 node_modules
 .yarn/*
