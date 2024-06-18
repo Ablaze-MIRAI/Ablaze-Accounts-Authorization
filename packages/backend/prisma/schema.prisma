@@ -8,46 +8,53 @@ datasource db {
 }
 
 model User {
-  uid         String     @id @unique
+  iid         String     @id @default(cuid())
+  uid         String     @default(uuid())
   createdAt   DateTime   @default(now())
   screen_name String
   avator      String?
-  permissions Permission @default(DEFAULT)
+  account_type AccountType @default(GENERAL)
 
   // Relationships
-  refresh_token RefreshToken[]
+    //refresh_token RefreshToken[]
   idp_email     IdpEmail?
-  idp_discord   IdpDiscord?
+  //idp_discord   IdpDiscord?
 }
 
-model RefreshToken {
-  id         String   @id @default(cuid())
-  token      String   @unique
-  expiration DateTime
-  updatedAt  DateTime @default(now()) @updatedAt
-  createdAt  DateTime @default(now())
-  ip         String
-  os         String
-  name       String
+enum AccountType {
+  GENERAL
+  MODERATOR
+  SUPERUSER
+}
+
+//model RefreshToken {
+//  id         String   @id @default(cuid())
+//  token      String   @unique
+//  expiration DateTime
+//  updatedAt  DateTime @default(now()) @updatedAt
+//  createdAt  DateTime @default(now())
+//  ip         String
+//  os         String
+//  name       String
 
   // Relationships
-  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
-  uid  String
-  srt SubRefreshToken[]
-}
+//  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+//  uid  String
+//  srt SubRefreshToken[]
+//}
 
-model SubRefreshToken {
-  id String @id @default(cuid())
-  token String @unique
-  expiration DateTime
-  updatedAt  DateTime @default(now()) @updatedAt
-  createdAt  DateTime @default(now())
-  name String
+//model SubRefreshToken {
+//  id String @id @default(cuid())
+//  token String @unique
+//  expiration DateTime
+//  updatedAt  DateTime @default(now()) @updatedAt
+//  createdAt  DateTime @default(now())
+//  name String
 
   // Relationships
-  rt RefreshToken @relation(fields: [rtid], references: [id])
-  rtid String
-}
+//  rt RefreshToken @relation(fields: [rtid], references: [id])
+//  rtid String
+//}
 
 model IdpEmail {
   id       String @id @default(cuid())
@@ -55,27 +62,21 @@ model IdpEmail {
   password String
 
   // Relationships
-  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
-  uid  String @unique
+  user User   @relation(fields: [iid], references: [iid], onDelete: Cascade)
+  iid  String @unique
 }
 
 model IdpGitHub {
   id String @id @default(cuid())
 }
 
-model IdpDiscord {
-  id          String @id @default(cuid())
-  iid         String // Internal ID
-  sid         String // Screen ID
-  screen_name String // Screen Name
+//model IdpDiscord {
+//  id          String @id @default(cuid())
+//  diid         String // Discord Internal ID
+//  dsid         String // Discord Screen ID
+//  screen_name String // Screen Name
 
   // Relationships
-  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
-  uid  String @unique
-}
-
-enum Permission {
-  SUPERUSER
-  MODERATOR
-  DEFAULT
-}
+//  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+//  uid  String @unique
+//}

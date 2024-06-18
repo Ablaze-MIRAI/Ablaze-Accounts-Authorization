@@ -6,6 +6,7 @@
     "prisma.prisma",
     "ms-vscode.powershell",
     "christian-kohler.npm-intellisense",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "digitalbrainstem.javascript-ejs-support"
   ]
 }

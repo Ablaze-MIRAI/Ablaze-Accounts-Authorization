@@ -4,10 +4,11 @@
   "scripts": {
     "dev": "tsnd --respawn -r tsconfig-paths/register src/main.ts",
     "build": "",
-    "schema:format": "prisma format",
     "mg:dev": "prisma migrate dev --name init",
     "mg:deploy": "prisma migrate deploy",
-    "studio": "prisma studio"
+    "generate": "prisma generate",
+    "format": "prisma format",
+    "studio": "prisma studio --browser none"
   },
   "dependencies": {
     "@fastify/cookie": "^9.3.1",
@@ -20,6 +21,7 @@
     "@prisma/studio": "^0.501.0",
     "@sinclair/typebox": "^0.32.32",
     "bcrypt": "^5.1.1",
+    "ejs": "^3.1.10",
     "fastify": "^4.27.0",
     "fastify-plugin": "^4.5.1",
     "fastify-type-provider-zod": "^1.2.0",
@@ -28,6 +30,8 @@
     "ulid": "^2.3.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/ejs": "^3",
     "@types/nodemailer": "^6.4.15",
     "tsc": "^2.0.4",
     "tsc-alias": "^1.8.10",

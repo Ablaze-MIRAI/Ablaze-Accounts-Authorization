@@ -1,6 +1,11 @@
-import { z } from "zod"
+import { Type } from "@sinclair/typebox";
 
-export const EmailSignupRegister = z.object({
-  email: z.string().min(6).max(255).email(),
-  password: z.string().min(8).max(100)
+export const EmailSignupRegisterSchema = Type.Object({
+  email: Type.String({ format: "email", maxLength: 255, minLength: 6 }),
+  password: Type.String({ minLength: 8, maxLength: 100, default: "Root9999" }),
+  lang: Type.String({ minLength: 2, maxLength: 5, default: "en" })
 });
+
+export const EmailSignupVerifypinSchema = Type.Object({
+  pin: Type.Number({ minimum: 1, maximum: 999999 })
+})

@@ -1,12 +1,12 @@
 import Fastify from "fastify";
 import FastifySwagger from "@fastify/swagger";
 import FastifySwaggerUi from "@fastify/swagger-ui";
-import FastifyCookie from "@fastify/cookie";
-import FastifySession from "@fastify/session";
+import { fastifyCookie as FastifyCookie } from "@fastify/cookie";
+import { fastifySession as FastifySession } from "@fastify/session";
 import MailerPlugin from "@/plugins/mailer";
 import { RootRouter } from "@/routes/router";
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
-import { Static, Type } from "@sinclair/typebox";
+import PrismaPlugin from "@/plugins/prisma";
 
 const app = Fastify({
   logger: true,
@@ -29,20 +29,32 @@ app.register(FastifySwaggerUi, {
 
 app.register(FastifyCookie);
 
+declare module "fastify" {
+  interface Session {
+    signup_register: {
+      email: string,
+      password: string,
+      pin: number
+    },
+    signed: {
+      iid: string,
+      avator: string,
+      scname: string
+    }
+  }
+}
+
 app.register(FastifySession, {
   secret: "superveryveryveryverylongsecret-minatoaqua",
   cookie: { secure: false }
 });
 
+app.register(PrismaPlugin);
+
 app.register(MailerPlugin);
 
 // Router
 app.register(RootRouter);
-
-const sch = Type.Object({ st: Type.String()});
-app.get("/a", { schema: { querystring: sch } }, async (request) =>{
-  request.query.st
-})
 
 // Startup Config
 app.listen({ port: 4000, host: "0.0.0.0"}, (error) =>{
