@@ -17,7 +17,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp
 
 // Utility
 import { SubmitClientHandler } from "@/library/submitclienthandler";
-import { VerifyEmail } from "@/library/server/signup-email";
+import { VerifyEmail } from "@/library/repository/signup-email";
 
 // Schema
 import { EmailSignupVerifySchema } from "@a3/common/schemas/signup-email";

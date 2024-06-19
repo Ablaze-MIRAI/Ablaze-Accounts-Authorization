@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import FastifySwagger from "@fastify/swagger";
 import FastifySwaggerUi from "@fastify/swagger-ui";
+import { fastifyCors as FastifyCors } from "@fastify/cors";
 import { fastifyCookie as FastifyCookie } from "@fastify/cookie";
 import { fastifySession as FastifySession } from "@fastify/session";
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
@@ -15,6 +16,10 @@ const app = Fastify({
 }).withTypeProvider<TypeBoxTypeProvider>();
 
 // Plugins
+app.register(FastifyCors, {
+  origin: "*"
+});
+
 app.register(FastifySwagger, {
   swagger: {
     info: {

@@ -17,7 +17,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 
 // Utility
 import { SubmitClientHandler } from "@/library/submitclienthandler";
-import { RegisterAndEmailVerify } from "@/library/server/signup-email";
+import { RegisterAndEmailVerify } from "@/library/repository/signup-email";
 
 // Schema
 import { EmailSignupSchema } from "@a3/common/schemas/signup-email";
@@ -36,7 +36,7 @@ export const SignupEmailForm = () =>{
 
   const onSubmit = async (data: SchemaType) => SubmitClientHandler<SchemaType>(
     data,
-    async (data) =>  await RegisterAndEmailVerify(data),
+    async (data) =>  await RegisterAndEmailVerify(data, window.navigator.language),
     () => setSending(true),
     () => router.push("/signup/email/verify"),
     (code) =>{

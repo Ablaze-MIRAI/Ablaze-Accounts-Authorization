@@ -10,6 +10,7 @@ __metadata:
   resolution: "@a3/backend@workspace:packages/backend"
   dependencies:
     "@fastify/cookie": "npm:^9.3.1"
+    "@fastify/cors": "npm:^9.0.1"
     "@fastify/session": "npm:^10.9.0"
     "@fastify/swagger": "npm:^8.14.0"
     "@fastify/swagger-ui": "npm:^3.1.0"
@@ -163,6 +164,16 @@ __metadata:
     cookie-signature: "npm:^1.1.0"
     fastify-plugin: "npm:^4.0.0"
   checksum: 10c0/817acbda0cab3af30bca1ce7e25ad203cdcd0953c5ff5fb71ec54a0979812217ff4ec67b8cce48cd021168e3297abe48b6b30cb74a4a1b84dd70ea1fe2342211
+  languageName: node
+  linkType: hard
+
+"@fastify/cors@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "@fastify/cors@npm:9.0.1"
+  dependencies:
+    fastify-plugin: "npm:^4.0.0"
+    mnemonist: "npm:0.39.6"
+  checksum: 10c0/4db9d3d02edbca741c8ed053819bf3b235ecd70e07c640ed91ba0fc1ee2dc8abedbbffeb79ae1a38ccbf59832e414cad90a554ee44227d0811d5a2d062940611
   languageName: node
   linkType: hard
 
@@ -3964,6 +3975,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mnemonist@npm:0.39.6":
+  version: 0.39.6
+  resolution: "mnemonist@npm:0.39.6"
+  dependencies:
+    obliterator: "npm:^2.0.1"
+  checksum: 10c0/a538945ea547976136ee6e16f224c0a50983143619941f6c4d2c82159e36eb6f8ee93d69d3a1267038fc5b16f88e2d43390023de10dfb145fa15c5e2befa1cdf
+  languageName: node
+  linkType: hard
+
 "ms@npm:2.1.2":
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
@@ -4261,6 +4281,13 @@ __metadata:
     define-properties: "npm:^1.2.1"
     es-object-atoms: "npm:^1.0.0"
   checksum: 10c0/15809dc40fd6c5529501324fec5ff08570b7d70fb5ebbe8e2b3901afec35cf2b3dc484d1210c6c642cd3e7e0a5e18dd1d6850115337fef46bdae14ab0cb18ac3
+  languageName: node
+  linkType: hard
+
+"obliterator@npm:^2.0.1":
+  version: 2.0.4
+  resolution: "obliterator@npm:2.0.4"
+  checksum: 10c0/ff2c10d4de7d62cd1d588b4d18dfc42f246c9e3a259f60d5716f7f88e5b3a3f79856b3207db96ec9a836a01d0958a21c15afa62a3f4e73a1e0b75f2c2f6bab40
   languageName: node
   linkType: hard
 

@@ -17,7 +17,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 
 // Utility
 import { SubmitClientHandler } from "@/library/submitclienthandler";
-import { EmailSigninVerify } from "@/library/server/signin-email";
+import { EmailSigninVerify } from "@/library/repository/signin-email";
 
 // Schema
 import { EmailSigninSchema } from "@a3/common/schemas/signin-email";

@@ -13,6 +13,7 @@ export const SubmitClientHandler = async <T>(data: T, server: ServerFunction<T>,
     if(!result.success) return error(result.code);
     return success(result.code);
   }catch(e){
-    error(2001);
+    console.error(e);
+    error(2002);
   }
 }
