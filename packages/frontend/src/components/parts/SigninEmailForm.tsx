@@ -69,7 +69,7 @@ export const SigninEmailVerifyForm = () =>{
             <FormMessage/>
           </FormItem>
         )}/>
-        <Button type="submit" className="w-full" disabled={sending}>認証</Button>
+        <Button type="submit" className="w-full" disabled={sending}>ログインする</Button>
       </form>
     </Form>
   )

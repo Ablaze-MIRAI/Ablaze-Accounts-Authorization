@@ -78,7 +78,7 @@ export const SignupEmailForm = () =>{
               <FormMessage/>
             </FormItem>
           )}/>
-          <Button type="submit" className="w-full" disabled={sending}>登録</Button>
+          <Button type="submit" className="w-full" disabled={sending}>作成する</Button>
       </form>
     </Form>
   )
