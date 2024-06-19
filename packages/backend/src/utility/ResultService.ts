@@ -1,15 +1,15 @@
 import { Result } from "@/typings/result";
 
-export const ResultSuccess = (status: number): Result =>{
+export const ResultSuccess = (code: number): Result =>{
   return {
     success: true,
-    status: status
+    code: code
   }
 }
 
-export const ResultFaild = (status: number): Result =>{
+export const ResultFaild = (code: number): Result =>{
   return {
     success: false,
-    status: status
+    code: code
   }
 }

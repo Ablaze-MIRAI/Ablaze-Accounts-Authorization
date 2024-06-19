@@ -1,0 +1,10 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install Dependences and Generate Prisma Type",
+      "type": "shell",
+      "command": "yarn install && yarn bk:generate"
+    }
+  ]
+}

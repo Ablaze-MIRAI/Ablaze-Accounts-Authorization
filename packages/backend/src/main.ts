@@ -16,9 +16,7 @@ const app = Fastify({
 }).withTypeProvider<TypeBoxTypeProvider>();
 
 // Plugins
-app.register(FastifyCors, {
-  origin: "*"
-});
+//app.register(FastifyCors, {});
 
 app.register(FastifySwagger, {
   swagger: {
@@ -37,6 +35,7 @@ app.register(FastifyCookie);
 
 app.register(FastifySession, {
   secret: "superveryveryveryverylongsecret-minatoaqua",
+  cookieName: "backendsession",
   cookie: {
     httpOnly: true,
     secure: false,
@@ -49,7 +48,7 @@ app.register(PrismaPlugin);
 app.register(MailerPlugin);
 
 // Router
-app.register(RootRouter);
+app.register(RootRouter, { prefix: "/api" });
 
 // Startup Config
 app.listen({ port: 4000, host: "0.0.0.0"}, (error) =>{

@@ -40,11 +40,22 @@ export const SignupEmailVerifyForm = () =>{
     () => setSending(true),
     () => router.push("/signup/done"),
     (code) =>{
-      toast({
-        title: `エラー (${code})`,
-        description: `しばらくしてからお試しください`
-      });
-      router.push("/signup/");
+      switch(code){
+        case 2011:
+          toast({
+            title: `エラー (${code})`,
+            description: "認証に失敗しました"
+          });
+          setSending(false);
+          form.reset();
+          break;
+        default:
+          toast({
+            title: `エラー (${code})`,
+            description: `しばらくしてからお試しください`
+          });
+          router.push("/signup/");
+      }
     }
   )
 

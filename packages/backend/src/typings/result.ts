@@ -1,10 +1,10 @@
 export type Result = {
   success: boolean,
-  status: number,
+  code: number,
 };
 
 export type ResultWithData<T> = {
   success: boolean,
-  status: number,
+  code: number,
   data: T
 };

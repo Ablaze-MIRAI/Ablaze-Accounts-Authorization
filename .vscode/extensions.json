@@ -2,11 +2,12 @@
   "recommendations": [
     "editorconfig.editorconfig",
     "dbaeumer.vscode-eslint",
+    "fabiospampinato.vscode-terminals",
     "ms-vscode.vscode-typescript-next",
     "prisma.prisma",
     "ms-vscode.powershell",
     "christian-kohler.npm-intellisense",
     "bradlc.vscode-tailwindcss",
-    "digitalbrainstem.javascript-ejs-support"
+    "digitalbrainstem.javascript-ejs-support",
   ]
 }

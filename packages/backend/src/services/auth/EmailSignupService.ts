@@ -9,6 +9,7 @@ import * as AccountCreate from "@/utility/AccountCreateService";
 import { EmailSend } from "@/utility/EmailService";
 import { PinGenerate } from "@/utility/KeygenService";
 import { AcceptLanguage } from "@/utility/Props";
+import ResultCode from "@/ResultCode";
 
 export const Register = async (app: FastifyInstance, request: FastifyRequest): Promise<Result> =>{
   const { email, password, lang } = request.body as Static<typeof EmailSignupRegisterSchema>;
@@ -30,8 +31,9 @@ export const Register = async (app: FastifyInstance, request: FastifyRequest): P
 
 export const Verifypin = async (app: FastifyInstance, request: FastifyRequest, pin: number): Promise<Result> =>{
   const userinfo = request.session.get("signup_register");
-  if(!userinfo?.email || !userinfo.password || !userinfo.pin) return ResultFaild(2002);
-  if(userinfo.pin !== pin) return ResultFaild(2011);
+  if(!userinfo) return ResultFaild(ResultCode.SESSION_ERROR);
+  if(!userinfo?.email || !userinfo.password || !userinfo.pin) return ResultFaild(ResultCode.EMAIL_PIN_ERROR);
+  if(userinfo.pin !== pin) return ResultFaild(ResultCode.EMAIL_PIN_ERROR);
 
   await AccountCreate.ByEmail(app, {
     email: userinfo.email,
