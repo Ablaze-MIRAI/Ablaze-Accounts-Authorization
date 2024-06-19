@@ -8,6 +8,9 @@ const Delay = async (time: number): Promise<void> => await new Promise((r, _) =>
 export const RegisterAndEmailVerify = async (data: z.infer<typeof EmailSignupSchema>, lang: string): Promise<Result> =>{
   const result = await fetch(`${env.API_ENDPOINT}/auth/email/signup/register`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
       email: data.email,
       password: data.password,
