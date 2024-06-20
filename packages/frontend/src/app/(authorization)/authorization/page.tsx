@@ -1,12 +1,17 @@
-import { Button } from "@/components/ui/button"
+// UI
+import { Button } from "@/components/ui/button";
 
-export default function AuthorizationRoot(){
-  const appname = "Floorp ウェブブラウザー (Windows10)"
+// Utility
+import { getUserInfo } from "@/library/repository/getuserinfo";
 
+export default async function AuthorizationRoot(){
+  const user = await getUserInfo();
+  const appname = "Floorp ウェブブラウザー (Windows10)";
   return (
     <>
       <div className="space-y-6">
         <h1 className="text-2xl">{appname}</h1>
+        <p>ユーザー名: {user.name}</p>
         <ul className="space-y-1">
           <li className="flex items-center space-x-3">
             <i className="ri-alert-fill text-3xl text-yellow-400"></i>
