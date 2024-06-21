@@ -1,1 +1,3 @@
-export const PinGenerate = (): number => Math.round(Math.random()*1000000);
+import * as SecurePin from "secure-pin";
+
+export const PinGenerate = (): number => Number(SecurePin.generatePinSync(6));
