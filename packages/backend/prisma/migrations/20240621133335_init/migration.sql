@@ -7,7 +7,7 @@ CREATE TABLE "User" (
     "uid" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "screen_name" TEXT NOT NULL,
-    "avator" TEXT,
+    "avatar" TEXT NOT NULL,
     "account_type" "AccountType" NOT NULL DEFAULT 'GENERAL',
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("iid")

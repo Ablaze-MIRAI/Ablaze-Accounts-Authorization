@@ -16,6 +16,6 @@ export type SignupRegisterState = {
 export type SignedState = {
   iid: string,
   type: $Enums.AccountType,
-  avator: string,
+  avatar: string,
   name: string
 }

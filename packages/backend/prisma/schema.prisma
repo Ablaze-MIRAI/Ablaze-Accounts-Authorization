@@ -12,7 +12,7 @@ model User {
   uid         String     @default(uuid())
   createdAt   DateTime   @default(now())
   screen_name String
-  avator      String
+  avatar      String
   account_type AccountType @default(GENERAL)
 
   // Relationships

@@ -12,7 +12,7 @@ export const Verify = async (app: FastifyInstance, request: FastifyRequest, body
   AccountManageService.Signin(request, {
     iid: result.user.iid,
     type: result.user.account_type,
-    avator: result.user.avator,
+    avatar: result.user.avatar,
     name: result.user.screen_name
   });
 

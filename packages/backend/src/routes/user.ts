@@ -11,10 +11,10 @@ export const UserRouter: FastifyPluginAsyncTypebox = async (app) =>{
     const user = request.session.get("signed");
     if(!user) return ResultFaild(ResultCode.SESSION_ERROR);
 
-    const { name, avator } = user;
+    const { name, avatar } = user;
     return ResultSuccessWithData(ResultCode.SUCCESS, {
       name: name,
-      avator: avator
+      avatar: avatar
     });
   });
 };

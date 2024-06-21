@@ -13,7 +13,7 @@ export const ByEmail = async (app: FastifyInstance, { email, password }: Account
   return await app.prisma.user.create({
     data: {
       screen_name: screen_name,
-      avator: `https://source.boringavatars.com/beam/128/${screen_name}?square`,
+      avatar: `https://source.boringavatars.com/beam/128/${screen_name}?square`,
       idp_email: {
         create: {
           email: email,
