@@ -40,11 +40,21 @@ export const SigninEmailVerifyForm = () =>{
     () => setSending(true),
     () => router.push("/signin/done"),
     (code) =>{
-      toast({
-        title: `エラー (${code})`,
-        description: `しばらくしてからお試しください`
-      });
-      router.push("/signup/");
+      switch(code){
+        case 2012:
+          toast({
+            title: `ログインに失敗 (${code})`,
+            description: `Eメールまたはパスワードが間違っています`
+          });
+          setSending(false);
+          break;
+        default:
+          toast({
+            title: `エラー (${code})`,
+            description: `しばらくしてからお試しください`
+          });
+          router.push("/signin/");
+      }
     }
   )
 

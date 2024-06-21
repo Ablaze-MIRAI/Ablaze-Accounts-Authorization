@@ -1,3 +1,7 @@
+// React/Next
+import Link from "next/link";
+import Image from "next/image";
+
 // UI
 import { Button } from "@/components/ui/button";
 
@@ -6,12 +10,24 @@ import { getUserInfo } from "@/library/repository/getuserinfo";
 
 export default async function AuthorizationRoot(){
   const user = await getUserInfo();
+  console.log(user);
   const appname = "Floorp ウェブブラウザー (Windows10)";
   return (
     <>
       <div className="space-y-6">
-        <h1 className="text-2xl">{appname}</h1>
-        <p>ユーザー名: {user.name}</p>
+        <div className="space-y-3">
+          <h1 className="text-2xl">{appname}</h1>
+          <div>
+            <Link href="/account/">
+              <div className="border border-gray-400 rounded-full px-5 h-8 space-x-1 flex justify-center items-center hover:bg-gray-100">
+                <div className="block relative h-6 w-6">
+                  <Image className="rounded-full" src={user.avatar} alt="[avatar]" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill/>
+                </div>
+                <p>{user.name}でログイン中</p>
+              </div>
+            </Link>
+          </div>
+        </div>
         <ul className="space-y-1">
           <li className="flex items-center space-x-3">
             <i className="ri-alert-fill text-3xl text-yellow-400"></i>
