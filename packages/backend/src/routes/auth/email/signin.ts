@@ -4,10 +4,16 @@ import { ResultFaild } from "@/utility/ResultService";
 import * as Service from "@/services/auth/EmailSigninService";
 
 export const AuthEmailSigninRouter: FastifyPluginAsyncTypebox = async (app) =>{
+  app.addHook("onRoute", (options) =>{
+    const schema = options.schema;
+    if(!schema) return;
+    if(!schema.tags) schema.tags = [];
+    schema.tags = [...schema.tags, "Auth/Email"]
+  });
+
   app.post("/verify", {
     schema: {
-      body: EmailSigninVerifySchema,
-      tags: ["Auth/Email"]
+      body: EmailSigninVerifySchema
     }
   }, async (request, _response) =>{
     try{

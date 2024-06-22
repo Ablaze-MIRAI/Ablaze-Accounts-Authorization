@@ -12,6 +12,7 @@ export const VerifyByEmail = async (app: FastifyInstance, email: string, passwor
       password: true,
       user: {
         select: {
+          uid: true,
           iid: true,
           screen_name: true,
           avatar: true,

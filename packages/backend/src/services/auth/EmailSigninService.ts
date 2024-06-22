@@ -10,6 +10,7 @@ export const Verify = async (app: FastifyInstance, request: FastifyRequest, body
   if(!result) return ResultFaild(ResultCode.EMAIL_OR_PASS_ERROR);
 
   AccountManageService.Signin(request, {
+    uid: result.user.uid,
     iid: result.user.iid,
     type: result.user.account_type,
     avatar: result.user.avatar,

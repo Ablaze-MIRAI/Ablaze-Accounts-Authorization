@@ -14,7 +14,8 @@ export type SignupRegisterState = {
 }
 
 export type SignedState = {
-  iid: string,
+  uid: string,
+  iid: string, // Deprecated
   type: $Enums.AccountType,
   avatar: string,
   name: string

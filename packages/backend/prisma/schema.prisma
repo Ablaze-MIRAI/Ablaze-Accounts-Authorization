@@ -8,16 +8,17 @@ datasource db {
 }
 
 model User {
-  iid         String     @id @default(cuid())
-  uid         String     @default(uuid())
-  createdAt   DateTime   @default(now())
-  screen_name String
-  avatar      String
+  iid          String      @id @default(cuid())
+  uid          String      @unique @default(uuid())
+  createdAt    DateTime    @default(now())
+  screen_name  String
+  avatar       String
   account_type AccountType @default(GENERAL)
 
   // Relationships
-    //refresh_token RefreshToken[]
-  idp_email     IdpEmail?
+  oauth2_code OAuth2AuthorizationCode[]
+  refresh_token RefreshToken[]
+  idp_email   IdpEmail?
   //idp_discord   IdpDiscord?
 }
 
@@ -26,35 +27,6 @@ enum AccountType {
   MODERATOR
   SUPERUSER
 }
-
-//model RefreshToken {
-//  id         String   @id @default(cuid())
-//  token      String   @unique
-//  expiration DateTime
-//  updatedAt  DateTime @default(now()) @updatedAt
-//  createdAt  DateTime @default(now())
-//  ip         String
-//  os         String
-//  name       String
-
-  // Relationships
-//  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
-//  uid  String
-//  srt SubRefreshToken[]
-//}
-
-//model SubRefreshToken {
-//  id String @id @default(cuid())
-//  token String @unique
-//  expiration DateTime
-//  updatedAt  DateTime @default(now()) @updatedAt
-//  createdAt  DateTime @default(now())
-//  name String
-
-  // Relationships
-//  rt RefreshToken @relation(fields: [rtid], references: [id])
-//  rtid String
-//}
 
 model IdpEmail {
   id       String @id @default(cuid())
@@ -76,7 +48,46 @@ model IdpGitHub {
 //  dsid         String // Discord Screen ID
 //  screen_name String // Screen Name
 
-  // Relationships
+// Relationships
 //  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
 //  uid  String @unique
+//}
+
+model OAuth2AuthorizationCode {
+  id         String   @id @default(cuid())
+  code       String @unique
+  expiration DateTime
+  createdAt  DateTime @default(now())
+  client_id  String
+  scope      String
+
+  // Relationships
+  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid  String
+}
+
+model RefreshToken {
+  id         String   @id @default(cuid())
+  token      String   @unique
+  expiration DateTime
+  updatedAt  DateTime @default(now()) @updatedAt
+  createdAt  DateTime @default(now())
+  client_id String
+
+  // Relationships
+  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid  String
+}
+
+//model SubRefreshToken {
+//  id String @id @default(cuid())
+//  token String @unique
+//  expiration DateTime
+//  updatedAt  DateTime @default(now()) @updatedAt
+//  createdAt  DateTime @default(now())
+//  name String
+
+// Relationships
+//  rt RefreshToken @relation(fields: [rtid], references: [id])
+//  rtid String
 //}

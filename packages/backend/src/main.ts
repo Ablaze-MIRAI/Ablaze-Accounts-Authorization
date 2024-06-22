@@ -49,6 +49,7 @@ app.register(MailerPlugin);
 
 // Router
 app.register(RootRouter, { prefix: "/api" });
+app.register(async (app) => app.get("/", { schema: { tags: ["Root"] } }, async () => "Working!"));
 
 // Startup Config
 app.listen({ port: 4000, host: "0.0.0.0"}, (error) =>{

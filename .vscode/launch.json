@@ -6,6 +6,9 @@
       "request": "launch",
       "name": "Launch debug Backend",
       "cwd": "${workspaceFolder}/packages/backend",
+      "env": {
+        "DEVELOP_WORKSPACE_FOLDER": "${workspaceFolder}"
+      },
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/env-cmd",
       "runtimeArgs": [
         "-f", "${workspaceFolder}/.environments/.env.development",

@@ -5,10 +5,16 @@ import { ResultFaild } from "@/utility/ResultService";
 import { EmailSignupRegisterSchema, EmailSignupVerifypinSchema } from "@/schema/AuthEmailSignup";
 
 export const AuthEmailSignupRouter: FastifyPluginAsyncTypebox = async (app) =>{
+  app.addHook("onRoute", (options) =>{
+    const schema = options.schema;
+    if(!schema) return;
+    if(!schema.tags) schema.tags = [];
+    schema.tags = [...schema.tags, "Auth/Email"]
+  });
+
   app.post("/register", {
     schema: {
-      body: EmailSignupRegisterSchema,
-      tags: ["Auth/Email"]
+      body: EmailSignupRegisterSchema
     }
   }, async (request, _response): Promise<Result> =>{
     try{
@@ -21,8 +27,7 @@ export const AuthEmailSignupRouter: FastifyPluginAsyncTypebox = async (app) =>{
 
   app.post("/verifypin", {
     schema: {
-      body: EmailSignupVerifypinSchema,
-      tags: ["Auth/Email"]
+      body: EmailSignupVerifypinSchema
     }
   }, async (request, _response): Promise<Result> =>{
     try{
