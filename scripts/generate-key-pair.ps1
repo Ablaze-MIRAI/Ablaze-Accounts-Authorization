@@ -1,3 +1,3 @@
-cd .env/keys
-ssh-keygen -t rsa -b 2048 -m PEM -f rsa.pem.key
-openssl rsa -in rsa.pem.key -pubout -outform PEM -out rsa.pem.cer
+cd .environments/keys
+ssh-keygen -t rsa -b 2048 -m PEM -f private.rsa.pem
+openssl rsa -in private.rsa.pem -pubout -outform PEM -out public.rsa.pem
