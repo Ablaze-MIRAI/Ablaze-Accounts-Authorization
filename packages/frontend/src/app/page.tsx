@@ -1,5 +1,7 @@
+import Link from "next/link";
+
 export default function RootPage(){
   return (
-    <a href="/authorization">Authrization</a>
+    <Link href="/authorization">Auhorization</Link>
   )
 }

@@ -8,7 +8,8 @@ export const getUserInfo = async () =>{
     const response = await fetch("http://localhost:3000/api/user/info", {
       method: "GET",
       headers: {
-        Cookie: `backendsession=${backendsession.value};`
+        Cookie: `backendsession=${backendsession.value};`,
+        "Content-Type": "application/json"
       }
     });
     const result = await response.json();

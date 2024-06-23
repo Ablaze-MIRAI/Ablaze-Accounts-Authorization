@@ -15,7 +15,10 @@ const client_applications: ClientApplications = {
   "one.ablaze.myaccount": {
     name: "Ablaze Accounts Dashboard",
     type: "websso",
-    callback: ["https://myaccount.ablaze.one/oauth2/callback"]
+    callback: [
+      "https://myaccount.ablaze.one/oauth2/callback",
+      "https://oauthdebugger.com/debug"
+    ]
   }
 }
 
