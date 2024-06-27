@@ -59,12 +59,15 @@ __metadata:
     "@radix-ui/react-label": "npm:^2.0.2"
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@radix-ui/react-toast": "npm:^1.1.5"
+    "@types/lodash": "npm:^4"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
+    "@types/set-cookie-parser": "npm:^2"
     class-variance-authority: "npm:^0.7.0"
     clsx: "npm:^2.1.1"
     eslint-config-next: "npm:14.2.3"
     input-otp: "npm:^1.2.4"
+    lodash: "npm:^4.17.21"
     lucide-react: "npm:^0.390.0"
     next: "npm:14.2.3"
     postcss: "npm:^8"
@@ -72,6 +75,7 @@ __metadata:
     react-dom: "npm:^18"
     react-hook-form: "npm:^7.51.5"
     remixicon: "npm:^4.2.0"
+    set-cookie-parser: "npm:^2.6.0"
     swr: "npm:^2.2.5"
     tailwind-merge: "npm:^2.3.0"
     tailwindcss: "npm:^3.4.1"
@@ -1118,6 +1122,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4":
+  version: 4.17.5
+  resolution: "@types/lodash@npm:4.17.5"
+  checksum: 10c0/55924803ed853e72261512bd3eaf2c5b16558c3817feb0a3125ef757afe46e54b86f33d1960e40b7606c0ddab91a96f47966bf5e6006b7abfd8994c13b04b19b
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*, @types/node@npm:^20":
   version: 20.14.2
   resolution: "@types/node@npm:20.14.2"
@@ -1159,6 +1170,15 @@ __metadata:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10c0/fe455f805c5da13b89964c3d68060cebd43e73ec15001a68b34634604a78140e6fc202f3f61679b9d809dde6d7a7c2cb3ed51e0fd1462557911db09879b55114
+  languageName: node
+  linkType: hard
+
+"@types/set-cookie-parser@npm:^2":
+  version: 2.4.9
+  resolution: "@types/set-cookie-parser@npm:2.4.9"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/98db3e78a5181ecc7f855816bdc9c66cd7c0299766124b537b3dd777c8a76824d1d67e9fc6ecb7ec19230940f71ffb919360d8c5520554027e85e037163ff064
   languageName: node
   linkType: hard
 
@@ -3985,6 +4005,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
+  languageName: node
+  linkType: hard
+
 "loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
@@ -5283,7 +5310,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"set-cookie-parser@npm:^2.4.1":
+"set-cookie-parser@npm:^2.4.1, set-cookie-parser@npm:^2.6.0":
   version: 2.6.0
   resolution: "set-cookie-parser@npm:2.6.0"
   checksum: 10c0/739da029f0e56806a103fcd5501d9c475e19e77bd8274192d7ae5c374ae714a82bba9a7ac00b0330a18227c5644b08df9e442240527be578f5a6030f9bb2bb80

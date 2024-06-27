@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { EmailSigninSchema } from "@a3/common/schemas/signin-email";
-import { Result } from "@/typings/server";
+import { ResultServer } from "@/typings/server";
 
-export const EmailSigninVerify = async (data: z.infer<typeof EmailSigninSchema>): Promise<Result> =>{
+export const EmailSigninVerify = async (data: z.infer<typeof EmailSigninSchema>): Promise<ResultServer> =>{
   const result = await fetch(`/api/auth/email/signin/verify`, {
     method: "POST",
     headers: {
@@ -13,6 +13,6 @@ export const EmailSigninVerify = async (data: z.infer<typeof EmailSigninSchema>)
       password: data.password
     })
   });
-  const response = await result.json() as Result;
+  const response = await result.json() as ResultServer;
   return response
 };

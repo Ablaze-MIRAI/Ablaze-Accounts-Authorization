@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { EmailSignupSchema, EmailSignupVerifySchema } from "@a3/common/schemas/signup-email";
-import { Result } from "@/typings/server";
+import { ResultServer } from "@/typings/server";
 import env from "@/library/env";
 
-export const RegisterAndEmailVerify = async (data: z.infer<typeof EmailSignupSchema>, lang: string): Promise<Result> =>{
+export const RegisterAndEmailVerify = async (data: z.infer<typeof EmailSignupSchema>, lang: string): Promise<ResultServer> =>{
   const result = await fetch(`/api/auth/email/signup/register`, {
     method: "POST",
     headers: {
@@ -16,11 +16,11 @@ export const RegisterAndEmailVerify = async (data: z.infer<typeof EmailSignupSch
       lang: lang
     })
   });
-  const response = await result.json() as Result;
+  const response = await result.json() as ResultServer;
   return response;
 };
 
-export const VerifyEmail = async (data: z.infer<typeof EmailSignupVerifySchema>): Promise<Result> =>{
+export const VerifyEmail = async (data: z.infer<typeof EmailSignupVerifySchema>): Promise<ResultServer> =>{
   const result = await fetch(`/api/auth/email/signup/verifypin`, {
     method: "POST",
     headers: {
@@ -31,6 +31,6 @@ export const VerifyEmail = async (data: z.infer<typeof EmailSignupVerifySchema>)
       pin: data.pin
     })
   });
-  const response = await result.json() as Result;
+  const response = await result.json() as ResultServer;
   return response;
 }

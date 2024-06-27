@@ -1,4 +1,4 @@
-export type Result = {
+export type ResultServer = {
   success: boolean,
   code: number
 };
