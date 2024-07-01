@@ -1,6 +1,7 @@
 import { FastifyPluginAsyncTypebox } from "@fastify/type-provider-typebox";
-import { ResultFaild, ResultSuccessWithData } from "@/utility/ResultService";
+import { ResultFaild, ResultSuccess, ResultSuccessWithData } from "@/utility/ResultService";
 import ResultCode from "@/ResultCode";
+import { UserRefrain } from "@/schema/User";
 
 export const UserRouter: FastifyPluginAsyncTypebox = async (app) =>{
   app.addHook("onRoute", (options) =>{
@@ -19,5 +20,12 @@ export const UserRouter: FastifyPluginAsyncTypebox = async (app) =>{
       name: name,
       avatar: avatar
     });
+  });
+
+  app.get("/refrain", { schema: { body: UserRefrain } }, async (request, _response) =>{
+    const user = await app.redis.get(`refrainv1-${request.body.token}`);
+    if(!user) return ResultFaild(2301);
+    request.session.set("signed", JSON.parse(user));
+    return ResultSuccess(ResultCode.SUCCESS);
   });
 };

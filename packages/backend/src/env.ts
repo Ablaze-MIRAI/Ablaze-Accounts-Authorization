@@ -7,7 +7,7 @@ export default {
   ISDEVELOP: process.env.NODE_ENV === "development",
 
   // Redis Server
-  REDIS_SERVER_CONNECTION: "",
+  REDIS_SERVER_CONNECTION: "redis://default:AbWKAAIncDE3MmQxMzVmODY5Zjk0ZGZmOGY1YzZkMjA2NTgwNWZiMnAxNDY0NzQ@intent-joey-46474.upstash.io:6379",
 
   // SMTP Server
   SMTP_HOST: process.env.SMTP_HOST ?? "localhost",

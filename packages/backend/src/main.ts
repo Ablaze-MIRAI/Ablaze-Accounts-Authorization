@@ -1,12 +1,14 @@
 import Fastify from "fastify";
+import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 import FastifySwagger from "@fastify/swagger";
 import FastifySwaggerUi from "@fastify/swagger-ui";
 import { fastifyCors as FastifyCors } from "@fastify/cors";
 import { fastifyCookie as FastifyCookie } from "@fastify/cookie";
 import { fastifySession as FastifySession } from "@fastify/session";
-import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
+import { fastifyRedis as FastifyRedis } from "@fastify/redis";
 import PrismaPlugin from "@/plugins/prisma";
 import MailerPlugin from "@/plugins/mailer";
+import env from "@/env";
 import { RootRouter } from "@/routes/router";
 import { DaysAgo } from "@/utility/Props";
 
@@ -38,12 +40,15 @@ app.register(FastifySession, {
   cookieName: "backendsession",
   cookie: {
     httpOnly: true,
-    secure: false,
-    expires: DaysAgo(120)
+    secure: false
   }
 });
 
 app.register(PrismaPlugin);
+
+app.register(FastifyRedis, {
+  url: env.REDIS_SERVER_CONNECTION
+});
 
 app.register(MailerPlugin);
 
