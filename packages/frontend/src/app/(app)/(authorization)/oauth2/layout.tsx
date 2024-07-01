@@ -1,5 +1,3 @@
-"use server";
-
 // React/Next
 import { ReactNode } from "react";
 import { cookies } from "next/headers";
