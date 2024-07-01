@@ -1,5 +1,5 @@
 import { Type } from "@sinclair/typebox";
 
-export const UserRefrain = Type.Object({
+export const UserRevival = Type.Object({
   token: Type.String()
 });

@@ -16,16 +16,29 @@ model User {
   account_type AccountType @default(GENERAL)
 
   // Relationships
+  revival_token RevivalToken[]
   oauth2_code OAuth2AuthorizationCode[]
   refresh_token RefreshToken[]
   idp_email   IdpEmail?
   //idp_discord   IdpDiscord?
+  accept_app AcceptApp[]
 }
 
 enum AccountType {
   GENERAL
   MODERATOR
   SUPERUSER
+}
+
+model RevivalToken {
+  id String @id @default(cuid())
+  token String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  // Relationships
+  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid  String
 }
 
 model IdpEmail {
@@ -77,6 +90,16 @@ model RefreshToken {
   // Relationships
   user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
   uid  String
+}
+
+model AcceptApp {
+  id String @id @default(cuid())
+  client_id String
+  createdAt DateTime @default(now())
+
+  // Relationships
+  user User @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid String
 }
 
 //model SubRefreshToken {

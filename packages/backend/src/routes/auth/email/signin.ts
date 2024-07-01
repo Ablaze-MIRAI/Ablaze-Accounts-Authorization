@@ -15,9 +15,9 @@ export const AuthEmailSigninRouter: FastifyPluginAsyncTypebox = async (app) =>{
     schema: {
       body: EmailSigninVerifySchema
     }
-  }, async (request, _response) =>{
+  }, async (request, reply) =>{
     try{
-      return await Service.Verify(app, request, request.body)
+      return await Service.Verify(app, request, request.body, reply)
     }catch(e){
       console.log(e);
       return ResultFaild(2001);

@@ -1,7 +1,8 @@
 import { FastifyPluginAsyncTypebox } from "@fastify/type-provider-typebox";
 import { ResultFaild, ResultSuccess, ResultSuccessWithData } from "@/utility/ResultService";
 import ResultCode from "@/ResultCode";
-import { UserRefrain } from "@/schema/User";
+import { UserRevival } from "@/schema/User";
+import { SessionRevivalGenerate } from "@/utility/KeygenService";
 
 export const UserRouter: FastifyPluginAsyncTypebox = async (app) =>{
   app.addHook("onRoute", (options) =>{
@@ -22,10 +23,50 @@ export const UserRouter: FastifyPluginAsyncTypebox = async (app) =>{
     });
   });
 
-  app.get("/refrain", { schema: { body: UserRefrain } }, async (request, _response) =>{
-    const user = await app.redis.get(`refrainv1-${request.body.token}`);
-    if(!user) return ResultFaild(2301);
-    request.session.set("signed", JSON.parse(user));
+  // @TODO
+  app.post("/revival", { schema: { body: UserRevival } }, async (request, response) =>{
+    const newtoken = SessionRevivalGenerate();
+
+    const revival = await app.prisma.revivalToken.findUnique({
+      select: {
+        updatedAt: true,
+        user: {
+          select: {
+            uid: true,
+            iid: true,
+            account_type: true,
+            avatar: true,
+            screen_name: true
+          }
+        }
+      },
+      where: {
+        token: request.body.token
+      }
+    });
+    if(!revival || revival.updatedAt.getTime()+1000*60*60*24*120 < new Date().getTime()) return ResultFaild(ResultCode.REVIVAL_NOTFOUND);
+
+    await app.prisma.revivalToken.update({
+      data: {
+        token: newtoken
+      },
+      where: {
+        token: request.body.token
+      }
+    });
+
+    request.session.set("signed", {
+      iid: revival.user.iid,
+      uid: revival.user.uid,
+      name: revival.user.screen_name,
+      type: revival.user.account_type,
+      avatar: revival.user.avatar
+    });
+
+    response.setCookie("hukkatunojyumon", newtoken, {
+      httpOnly: true
+    });
+
     return ResultSuccess(ResultCode.SUCCESS);
   });
 };

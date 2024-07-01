@@ -23,7 +23,7 @@ export default function AuthorizationRootLayout({ children }: Readonly<{ childre
 
 const AuthorizationContainer = async ({ children }: Readonly<{ children: React.ReactNode }>) =>{
   const name = cookies().get("name");
-  console.log(name);
+  //console.log("[NAME]", name);
 
   return (
     <>

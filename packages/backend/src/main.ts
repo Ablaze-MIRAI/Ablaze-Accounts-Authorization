@@ -46,9 +46,9 @@ app.register(FastifySession, {
 
 app.register(PrismaPlugin);
 
-app.register(FastifyRedis, {
+/*app.register(FastifyRedis, {
   url: env.REDIS_SERVER_CONNECTION
-});
+});*/
 
 app.register(MailerPlugin);
 
