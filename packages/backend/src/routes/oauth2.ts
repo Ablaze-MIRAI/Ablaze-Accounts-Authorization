@@ -29,11 +29,11 @@ export const OAuth2Router: FastifyPluginAsyncTypebox = async (app) =>{
     },
     preHandler: [Guard.isSigned]
   }, async (request, _response) =>{
-    const { client_id, redirect_uri, state } = request.body;
+    const { client_id, redirect_uri, state, raw } = request.body;
 
     try{
       const { uid } = request.guard;
-      return await O2ES.OAuth2Accept(app, uid, client_id, redirect_uri, state);
+      return await O2ES.OAuth2Accept(app, uid, client_id, redirect_uri, state, raw);
     }catch(e){
       return ResultFaild(ResultCode.ERROR);
     }

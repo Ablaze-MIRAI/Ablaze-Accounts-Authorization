@@ -13,18 +13,27 @@ export const OAuth2Application = (client_id: string, redirect_uri: string): Resu
   if(!application) return ResultFaild(ResultCode.OAUTH2_INCORRECT_REQUEST);
 
   return ResultSuccessWithData(ResultCode.SUCCESS, {
-    name: application.name
+    name: application.name,
+    type: application.type,
+    origin: application.origin
   });
 }
 
-export const OAuth2Accept = async (app: FastifyInstance, uid: string, client_id: string, redirect_uri: string, state: string): Promise<Result> =>{
+export const OAuth2Accept = async (app: FastifyInstance, uid: string, client_id: string, redirect_uri: string, state: string, raw: boolean | undefined): Promise<Result> =>{
   const application = OAuth2Service.GetApplication(client_id, redirect_uri);
   if(!application) return ResultFaild(ResultCode.OAUTH2_INCORRECT_REQUEST);
 
   const code = KeygenService.OAuth2CodeGenerate();
   await OAuth2Service.CreateArCode(app, uid, client_id, code);
-  const uri = OAuth2Service.RedicretURIBuilder(redirect_uri, state, code);
 
+  if(raw){
+    return ResultSuccessWithData(ResultCode.SUCCESS, {
+      code: code,
+      state: state
+    });
+  }
+
+  const uri = OAuth2Service.RedicretURIBuilder(redirect_uri, state, code);
   return ResultSuccessWithData(ResultCode.SUCCESS, {
     redirect: uri
   });

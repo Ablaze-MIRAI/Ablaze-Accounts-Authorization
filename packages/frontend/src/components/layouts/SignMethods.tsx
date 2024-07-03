@@ -17,14 +17,14 @@ export const SignMethodLinksContainer = ({ children }: { children: React.ReactNo
   return <div className="mt-5 w-full flex flex-col space-y-2">{children}</div>;
 }
 
-export const SignMethodLinks = ({ type, callback }: { type: "signup" | "signin", callback: string | undefined }) =>{
+export const SignMethodLinks = ({ type }: { type: "signup" | "signin" }) =>{
   return (
     <>
-      <MethodLink href={`/${type}/email${callback?`?callback=${callback}`:""}`}><i className="ri-mail-fill text-xl mr-1"></i>Eメール</MethodLink>
-      <MethodLink href={`/${type}/github${callback?`?callback=${callback}`:""}`}><i className="ri-github-fill text-xl mr-1"></i>GitHub</MethodLink>
-      <MethodLink href={`/${type}/google${callback?`?callback=${callback}`:""}`}><i className="ri-google-fill text-xl mr-1"></i>Google</MethodLink>
-      <MethodLink href={`/${type}/twitter${callback?`?callback=${callback}`:""}`}><i className="ri-twitter-fill text-xl mr-1"></i>Twitter</MethodLink>
-      <MethodLink href={`/${type}/discord${callback?`?callback=${callback}`:""}`}><i className="ri-discord-fill text-xl mr-1"></i>discord</MethodLink>
+      <MethodLink href={`/${type}/email`}><i className="ri-mail-fill text-xl mr-1"></i>Eメール</MethodLink>
+      <MethodLink href={`/${type}/github`}><i className="ri-github-fill text-xl mr-1"></i>GitHub</MethodLink>
+      <MethodLink href={`/${type}/google`}><i className="ri-google-fill text-xl mr-1"></i>Google</MethodLink>
+      <MethodLink href={`/${type}/twitter`}><i className="ri-twitter-fill text-xl mr-1"></i>Twitter</MethodLink>
+      <MethodLink href={`/${type}/discord`}><i className="ri-discord-fill text-xl mr-1"></i>discord</MethodLink>
     </>
   )
 }

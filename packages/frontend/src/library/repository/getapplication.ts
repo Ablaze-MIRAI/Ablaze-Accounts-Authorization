@@ -6,22 +6,20 @@ import { FetchWithCookie, NextAdapter } from "../fetch-with-cookie";
 import { ResultFailure, ResultSuccess } from "../result";
 import ResultCode from "../ResultCode";
 
-export const getApplication = async (client_id: string, redirect_uri: string): Promise<Result<{ name: string }>> =>{
-  "use server";
-  try{
-    const response = await FetchWithCookie("http://localhost:3000/api/oauth2/verifyapplication", {
-      cookieAdapter: NextAdapter(cookies()),
-      method: "POST",
-      body: JSON.stringify({
-        client_id: client_id,
-        redirect_uri: redirect_uri
-      })
-    });
-    const data = await response.json();
+export const getApplication = async (client_id: string, redirect_uri: string) =>{
+  const cookie = cookies().getAll();
 
-    return ResultSuccess(ResultCode.SUCCESS, { name: data.name });
-  }catch(e){
-    console.error(e);
-    return ResultFailure(ResultCode.HTTPFAIL)
-  }
+  const response = await fetch("http://localhost:3000/api/oauth2/verifyapplication", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Cookie": cookie.map(v => `${v.name}=${v.value}`).join(";")
+    },
+    body: JSON.stringify({
+      client_id: client_id,
+      redirect_uri: redirect_uri
+    })
+  }).then(response => response.json());
+
+  return response;
 }

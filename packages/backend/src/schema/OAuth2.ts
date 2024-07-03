@@ -10,7 +10,8 @@ export const OAuth2AcceptSchema = Type.Object({
   client_id: Type.String(),
   redirect_uri: Type.String(),
   scope: Type.Const("user"),
-  state: Type.String()
+  state: Type.String(),
+  raw: Type.Optional(Type.Boolean())
 });
 
 export const OAuth2TokenSchema = Type.Object({

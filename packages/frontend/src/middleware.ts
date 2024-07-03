@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { NextResponse, type NextRequest } from "next/server";
 import cookieParser from "set-cookie-parser";
 
@@ -6,6 +5,7 @@ export const middleware = async (request: NextRequest) =>{
   const response = NextResponse.next();
 
   response.headers.set("middleware-request-url", request.nextUrl.href);
+  response.headers.set("middleware-request-search", request.nextUrl.search);
 
   const backendsession = request.cookies.get("backendsession")?.value;
   if(backendsession) return response;

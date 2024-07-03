@@ -22,7 +22,7 @@ import { EmailSigninVerify } from "@/library/repository/signin-email";
 // Schema
 import { EmailSigninSchema } from "@a3/common/schemas/signin-email";
 
-export const SigninEmailVerifyForm = ({ callback }: { callback: string | undefined }) =>{
+export const SigninEmailVerifyForm = () =>{
   const router = useRouter();
   const { toast } = useToast();
   const [ sending, setSending ] = useState(false);
@@ -38,7 +38,7 @@ export const SigninEmailVerifyForm = ({ callback }: { callback: string | undefin
     data,
     async (data) => await EmailSigninVerify(data),
     () => setSending(true),
-    () => router.push(`/signin/done${callback?`?callback=${callback}`:""}`),
+    () => router.push(`/signin/done`),
     (code) =>{
       switch(code){
         case 2012:
@@ -47,6 +47,12 @@ export const SigninEmailVerifyForm = ({ callback }: { callback: string | undefin
             description: `Eメールまたはパスワードが間違っています`
           });
           setSending(false);
+          break;
+        case 2013:
+          toast({
+            title: `既にログイン済み (${code})`,
+          });
+          router.refresh();
           break;
         default:
           toast({

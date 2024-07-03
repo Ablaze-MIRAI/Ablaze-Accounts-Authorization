@@ -5,17 +5,10 @@ import Image from "next/image";
 
 // Utility
 import { AccountAuthorizeNavs } from "@/components/parts/authorization/AccountNavs";
+import { getUser } from "@/library/getuser";
 
 export default async function AccountRoot(){
-  const cookie = cookies().getAll();
-  const response = await fetch("http://localhost:3000/api/user/info", {
-    headers: {
-      "Content-Type": "application/json",
-      "Cookie": cookie.map(v => `${v.name}=${v.value}`).join(";")
-    }
-  }).then(response => response.json());
-
-  const user = response.data;
+  const user = (await getUser()).data;
 
   return (
     <div className="space-y-6">
