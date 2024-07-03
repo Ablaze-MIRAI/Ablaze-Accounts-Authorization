@@ -1,13 +1,21 @@
 // React/Next
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import Image from "next/image";
 
 // Utility
-import { getUserInfo } from "@/library/repository/getuserinfo";
-import AccountNavs from "@/components/parts/AccountNavs";
-
+import { AccountAuthorizeNavs } from "@/components/parts/authorization/AccountNavs";
 
 export default async function AccountRoot(){
-  const user = await getUserInfo();
+  const cookie = cookies().getAll();
+  const response = await fetch("http://localhost:3000/api/user/info", {
+    headers: {
+      "Content-Type": "application/json",
+      "Cookie": cookie.map(v => `${v.name}=${v.value}`).join(";")
+    }
+  }).then(response => response.json());
+
+  const user = response.data;
 
   return (
     <div className="space-y-6">
@@ -23,7 +31,7 @@ export default async function AccountRoot(){
         </div>
         <h1 className="text-3xl font-bold">{user.name}</h1>
       </div>
-      <AccountNavs/>
+      <AccountAuthorizeNavs/>
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { ResultFaild, ResultSuccess, ResultSuccessWithData } from "@/utility/Res
 import ResultCode from "@/ResultCode";
 import { UserRevival } from "@/schema/User";
 import { SessionRevivalGenerate } from "@/utility/KeygenService";
+import { DaysAgo } from "@/utility/Props";
 
 export const UserRouter: FastifyPluginAsyncTypebox = async (app) =>{
   app.addHook("onRoute", (options) =>{
@@ -64,7 +65,9 @@ export const UserRouter: FastifyPluginAsyncTypebox = async (app) =>{
     });
 
     response.setCookie("hukkatunojyumon", newtoken, {
-      httpOnly: true
+      httpOnly: true,
+      path: "/",
+      expires: DaysAgo(120)
     });
 
     return ResultSuccess(ResultCode.SUCCESS);

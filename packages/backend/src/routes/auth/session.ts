@@ -11,9 +11,20 @@ export const AuthSessionRouter: FastifyPluginAsyncTypebox = async (app) =>{
     schema.tags = [...schema.tags, "Auth/Session"]
   });
 
-  app.delete("/signout", { schema: {} }, async (request, _response): Promise<Result> =>{
+  app.delete("/signout", { schema: {} }, async (request, reply): Promise<Result> =>{
     try{
+      const revivalid = request.cookies.hukkatunojyumon;
+      await app.prisma.revivalToken.delete({
+        where: {
+          token: revivalid
+        }
+      });
+
+      reply.setCookie("hukkatunojyumon", "", {
+        maxAge: -1
+      });
       request.session.destroy();
+
       return ResultSuccess(ResultCode.SUCCESS);
     }catch(e){
       return ResultFaild(ResultCode.ERROR);
