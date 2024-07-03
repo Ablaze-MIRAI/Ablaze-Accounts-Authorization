@@ -22,7 +22,7 @@ import { EmailSigninVerify } from "@/library/repository/signin-email";
 // Schema
 import { EmailSigninSchema } from "@a3/common/schemas/signin-email";
 
-export const SigninEmailVerifyForm = () =>{
+export const SigninEmailVerifyForm = ({ callback }: { callback: string | undefined }) =>{
   const router = useRouter();
   const { toast } = useToast();
   const [ sending, setSending ] = useState(false);
@@ -38,7 +38,7 @@ export const SigninEmailVerifyForm = () =>{
     data,
     async (data) => await EmailSigninVerify(data),
     () => setSending(true),
-    () => router.push("/signin/done"),
+    () => router.push(`/signin/done${callback?`?callback=${callback}`:""}`),
     (code) =>{
       switch(code){
         case 2012:
