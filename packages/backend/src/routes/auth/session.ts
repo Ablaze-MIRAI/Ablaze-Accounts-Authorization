@@ -20,12 +20,14 @@ export const AuthSessionRouter: FastifyPluginAsyncTypebox = async (app) =>{
         }
       });
 
-      reply.setCookie("hukkatunojyumon", "", {
-        maxAge: -1
-      });
       request.session.destroy();
+      reply.setCookie("hukkatunojyumon", "none", {
+        expires: new Date(),
+        path: "/",
+        httpOnly: true
+      });
 
-      return ResultSuccess(ResultCode.SUCCESS);
+      return reply.send(ResultSuccess(ResultCode.SUCCESS));
     }catch(e){
       return ResultFaild(ResultCode.ERROR);
     }

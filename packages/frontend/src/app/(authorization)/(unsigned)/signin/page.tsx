@@ -8,14 +8,19 @@ import { Button } from "@/components/ui/button";
 import { SignContainer } from "@/components/layouts/SignContainer";
 import { SignMethodLinksContainer, SignMethodLinks, SignSeparate } from "@/components/layouts/SignMethods";
 
-export default function SigninRoot(){
+// Typings
+import { PageProps } from "@/typings/page";
+
+export default function SigninRoot({ searchParams }: PageProps){
+  const callback = searchParams.callback as string | undefined;
+
   return (
     <SignContainer title="アカウントにログイン">
       <SignMethodLinksContainer>
-        <SignMethodLinks type="signin"/>
+        <SignMethodLinks type="signin" callback={callback}/>
         <SignSeparate or="または"/>
         <Button variant="secondary" asChild>
-          <Link href="/signup">登録する</Link>
+          <Link href={`/signup${callback?`?callback=${callback}`:""}`}>登録する</Link>
         </Button>
       </SignMethodLinksContainer>
     </SignContainer>
