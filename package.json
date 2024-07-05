@@ -12,7 +12,8 @@
     "bk:mgdeploy": "env-cmd -f .environments/.env.production yarn workspace @a3/backend mg:deploy",
     "bk:generate": "yarn workspace @a3/backend generate",
     "bk:format": "yarn workspace @a3/backend format",
-    "bk:studio": "env-cmd -f .environments/.env.development yarn workspace @a3/backend studio"
+    "bk:studio": "env-cmd -f .environments/.env.development yarn workspace @a3/backend studio",
+    "dg": "yarn workspace @a3/debug dev"
   },
   "workspaces": [
     "packages/*"
