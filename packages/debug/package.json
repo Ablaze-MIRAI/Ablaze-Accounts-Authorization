@@ -1,0 +1,9 @@
+{
+  "name": "@a3/debug",
+  "scripts": {
+    "dev": "http-server src -p 7000"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

@@ -7,7 +7,7 @@ export const WebMessageResponse = ({ query, origin }: any) =>{
 
   useEffect(() =>{
     (async () =>{
-      console.log("Processing...");
+      console.log("[A3S] Processing...");
 
       const response = await fetch("/api/oauth2/accept", {
         method: "POST",
@@ -25,15 +25,15 @@ export const WebMessageResponse = ({ query, origin }: any) =>{
       });
       const result = await response.json();
 
-      console.log(result);
+      console.log("[A3S]", result);
       if(!result.success) return setStatus("ERROR");
 
-      console.log(result.data);
+      console.log("[A3S]", result.data);
       try{
         window.parent.postMessage(JSON.stringify(result.data), origin);
         return setStatus("SUCCESS");
       }catch(e){
-        console.error(e);
+        console.error("[A3S]", e);
         return setStatus("POST ERROR");
       }
     })();

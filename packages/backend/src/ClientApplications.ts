@@ -22,7 +22,7 @@ const client_applications: ClientApplications = {
   },
   "one.ablaze.myaccount": {
     name: "Ablaze Accounts Dashboard",
-    origin: "myaccount.ablaze.one",
+    origin: "http://localhost:7000/",
     type: "websso",
     callback: [
       "https://myaccount.ablaze.one/oauth2/callback",

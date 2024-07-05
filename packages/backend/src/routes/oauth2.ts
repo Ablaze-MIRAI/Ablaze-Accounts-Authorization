@@ -43,9 +43,8 @@ export const OAuth2Router: FastifyPluginAsyncTypebox = async (app) =>{
     schema: {
       body: OAuth2TokenSchema
     }
-  }, async (request, _response) =>{
+  }, async (request, reply) =>{
     const { code, client_id } = request.body;
-
     try{
       return await O2ES.OAuth2Token(app, code, client_id);
     }catch(e){

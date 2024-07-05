@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSO Debugger</title>
+</head>
+<body>
+  <h1>SSO Debugger</h1>
+  <iframe src="http://localhost:3000/oauth2/authorize?client_id=one.ablaze.myaccount&redirect_uri=https%3A%2F%2Foauthdebugger.com%2Fdebug&scope=user&response_type=code&response_mode=web_message&state=hreau5xzz3t&nonce=zoxh5whfuu" id="sso"></iframe>
+  <script>
+    let first = true;
+    const iframe = document.createElement("sso");
+    window.addEventListener("message", async (e) =>{
+      console.log("[RECEIVE]", e);
+      if(e.origin !== "http://localhost:3000") return;
+      if(!first) return;
+      first = false;
+
+      const response = await fetch("http://localhost:3000/api/oauth2/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          grant_type: "authorization_code",
+          client_id: "one.ablaze.myaccount",
+          code: JSON.parse(e.data).code
+        })
+      });
+
+      const result = await response.json();
+
+      console.log("[RECEIVE]", result);
+    }, false);
+  </script>
+</body>
+</html>

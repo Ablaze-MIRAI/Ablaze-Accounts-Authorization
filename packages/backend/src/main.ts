@@ -18,7 +18,9 @@ const app = Fastify({
 }).withTypeProvider<TypeBoxTypeProvider>();
 
 // Plugins
-//app.register(FastifyCors, {});
+app.register(FastifyCors, {
+  origin: "*"
+});
 
 app.register(FastifySwagger, {
   swagger: {
