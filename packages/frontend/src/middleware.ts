@@ -42,6 +42,8 @@ export const middleware = async (request: NextRequest) =>{
     });
   });
 
+  response.headers.set("middleware-session-revived", "1");
+
   return response;
 }
 

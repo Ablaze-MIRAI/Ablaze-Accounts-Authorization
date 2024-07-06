@@ -26,6 +26,8 @@ export const UserRouter: FastifyPluginAsyncTypebox = async (app) =>{
 
   // @TODO
   app.post("/revival", { schema: { body: UserRevival } }, async (request, response) =>{
+    if(request.session.signed) return ResultFaild(ResultCode.REVIVAL_ALREADY_SIGNED);
+
     const newtoken = SessionRevivalGenerate();
 
     const revival = await app.prisma.revivalToken.findUnique({

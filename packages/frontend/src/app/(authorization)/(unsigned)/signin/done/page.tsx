@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Loader } from "@/components/parts/prop/Loader";
 
 export default function SigninDone(){
   useEffect(() =>{
@@ -14,8 +15,8 @@ export default function SigninDone(){
 
   return (
     <div className="space-y-3">
-      <h1 className="text-xl">リダイレクトしています</h1>
-      <Button asChild>
+      <h1 className="text-xl"><Loader view={true}/> リダイレクトしています</h1>
+      <Button variant="outline" asChild>
         <Link href="/account">再ロード</Link>
       </Button>
     </div>

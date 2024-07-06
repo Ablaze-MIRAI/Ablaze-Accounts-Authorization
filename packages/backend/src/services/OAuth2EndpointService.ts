@@ -8,20 +8,23 @@ import { DaysAgo } from "@/utility/Props";
 import env from "@/env";
 
 
-export const OAuth2Application = (client_id: string, redirect_uri: string): Result =>{
-  const application = OAuth2Service.GetApplication(client_id, redirect_uri);
+export const OAuth2Application = async (app: FastifyInstance, uid: string, client_id: string, redirect_uri: string): Promise<Result> =>{
+  const application = await OAuth2Service.GetApplication(app, uid, client_id, redirect_uri);
   if(!application) return ResultFaild(ResultCode.OAUTH2_INCORRECT_REQUEST);
 
   return ResultSuccessWithData(ResultCode.SUCCESS, {
     name: application.name,
     type: application.type,
-    origin: application.origin
+    origin: application.origin,
+    status: application.status
   });
 }
 
 export const OAuth2Accept = async (app: FastifyInstance, uid: string, client_id: string, redirect_uri: string, state: string, raw: boolean | undefined): Promise<Result> =>{
-  const application = OAuth2Service.GetApplication(client_id, redirect_uri);
+  const application = await OAuth2Service.GetApplication(app, uid, client_id, redirect_uri);
   if(!application) return ResultFaild(ResultCode.OAUTH2_INCORRECT_REQUEST);
+
+  OAuth2Service.SetAppAccept(app, uid, client_id);
 
   const code = KeygenService.OAuth2CodeGenerate();
   await OAuth2Service.CreateArCode(app, uid, client_id, code);

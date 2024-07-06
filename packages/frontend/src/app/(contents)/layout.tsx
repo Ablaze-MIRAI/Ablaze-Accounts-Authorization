@@ -1,5 +1,7 @@
 // React/Next
 import React from "react";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -13,6 +15,12 @@ import { getUser } from "@/library/getuser";
 import AblazeLogoBlack from "@/images/logo/black.svg";
 
 export default async function ContentLayout({ children }: Readonly<{ children: React.ReactNode }>){
+  if(headers().get("middleware-session-revived") === "1"){
+    const requesturl = headers().get("middleware-request-url");
+    if(!requesturl) throw Error("Error Middleware");
+    redirect(requesturl);
+  };
+
   const user = await getUser();
 
   return (

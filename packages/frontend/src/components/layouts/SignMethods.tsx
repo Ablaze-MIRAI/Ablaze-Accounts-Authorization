@@ -21,10 +21,10 @@ export const SignMethodLinks = ({ type }: { type: "signup" | "signin" }) =>{
   return (
     <>
       <MethodLink href={`/${type}/email`}><i className="ri-mail-fill text-xl mr-1"></i>Eメール</MethodLink>
-      <MethodLink href={`/${type}/github`}><i className="ri-github-fill text-xl mr-1"></i>GitHub</MethodLink>
+      {/*<MethodLink href={`/${type}/github`}><i className="ri-github-fill text-xl mr-1"></i>GitHub</MethodLink>
       <MethodLink href={`/${type}/google`}><i className="ri-google-fill text-xl mr-1"></i>Google</MethodLink>
       <MethodLink href={`/${type}/twitter`}><i className="ri-twitter-fill text-xl mr-1"></i>Twitter</MethodLink>
-      <MethodLink href={`/${type}/discord`}><i className="ri-discord-fill text-xl mr-1"></i>discord</MethodLink>
+      <MethodLink href={`/${type}/discord`}><i className="ri-discord-fill text-xl mr-1"></i>discord</MethodLink>*/}
     </>
   )
 }

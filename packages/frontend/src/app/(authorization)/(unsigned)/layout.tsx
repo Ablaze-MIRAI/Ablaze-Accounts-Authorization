@@ -1,6 +1,6 @@
 // React/Next
 import React, { Suspense } from "react";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default function AuthorizationRootLayout({ children }: Readonly<{ children: React.ReactNode }>){
@@ -14,9 +14,9 @@ export default function AuthorizationRootLayout({ children }: Readonly<{ childre
 }
 
 const AuthorizationContainer = async ({ children }: Readonly<{ children: React.ReactNode }>) =>{
-  const cookie = cookies().getAll();
+  if(headers().get("middleware-session-revived") === "1") redirect("/account");
 
-  if(!cookie.find(v => v.name === "backendsession") && cookie.find(v => v.name === "hukkatunojyumon")) return redirect(`/account`);
+  const cookie = cookies().getAll();
 
   const response = await fetch("http://localhost:3000/api/user/info", {
     headers: {

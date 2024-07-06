@@ -21,6 +21,7 @@ import { VerifyEmail } from "@/library/repository/signup-email";
 
 // Schema
 import { EmailSignupVerifySchema } from "@a3/common/schemas/signup-email";
+import { Loader } from "./prop/Loader";
 
 export const SignupEmailVerifyForm = () =>{
   const router = useRouter();
@@ -84,7 +85,7 @@ export const SignupEmailVerifyForm = () =>{
             <FormMessage/>
           </FormItem>
         )}/>
-        <Button type="submit" className="w-full" disabled={sending}>認証する</Button>
+        <Button type="submit" className="w-full" disabled={sending}><Loader view={sending}/> 認証する</Button>
       </form>
     </Form>
   )

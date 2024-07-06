@@ -18,6 +18,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 // Utility
 import { SubmitClientHandler } from "@/library/submitclienthandler";
 import { EmailSigninVerify } from "@/library/repository/signin-email";
+import { Loader } from "./prop/Loader";
 
 // Schema
 import { EmailSigninSchema } from "@a3/common/schemas/signin-email";
@@ -85,7 +86,7 @@ export const SigninEmailVerifyForm = () =>{
             <FormMessage/>
           </FormItem>
         )}/>
-        <Button type="submit" className="w-full" disabled={sending}>ログインする</Button>
+        <Button type="submit" className="w-full" disabled={sending}><Loader view={sending}/> ログインする</Button>
       </form>
     </Form>
   )

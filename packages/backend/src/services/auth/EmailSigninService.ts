@@ -8,7 +8,7 @@ import { issueRevivalToken } from "@/utility/SessionService";
 import { DaysAgo } from "@/utility/Props";
 
 export const Verify = async (app: FastifyInstance, request: FastifyRequest, body: Static<typeof EmailSigninVerifySchema>, reply: FastifyReply) =>{
-  if(request.session.get("signed")?.uid) return ResultFaild(ResultCode.EMAIL_ALREDY_SIGNED);
+  if(request.session.get("signed")?.uid) return ResultFaild(ResultCode.EMAIL_ALREADY_SIGNED);
 
   const result = await AccountManageService.VerifyByEmail(app, body.email, body.password);
   if(!result) return ResultFaild(ResultCode.EMAIL_OR_PASS_ERROR);

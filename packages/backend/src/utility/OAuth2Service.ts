@@ -5,11 +5,40 @@ import * as KeygenService from "@/utility/KeygenService";
 import { MinAgo } from "@/utility/Props";
 import env from "@/env";
 
-export const GetApplication = (clientid: string, redirect_uri: string) =>{
+export const GetApplication = async (app: FastifyInstance, uid: string, clientid: string, redirect_uri: string) =>{
   const application = ClientApplications[clientid];
   if(!application) return false;
   if(!application.callback.includes(redirect_uri)) return false;
-  return application;
+
+  const accept_status = await app.prisma.acceptApp.findFirst({
+    where: {
+      uid: uid,
+      client_id: clientid
+    }
+  });
+
+  return {
+    status: accept_status?true:false,
+    ...application
+  };
+}
+
+export const SetAppAccept = async (app: FastifyInstance, uid: string, client_id: string) =>{
+  const result = await app.prisma.acceptApp.findFirst({
+    where: {
+      uid: uid,
+      client_id: client_id
+    }
+  });
+
+  if(result) return;
+
+  return await app.prisma.acceptApp.create({
+    data: {
+      client_id: client_id,
+      uid: uid
+    }
+  });
 }
 
 export const CreateArCode = async (app: FastifyInstance, uid: string, clientid: string, code: string) =>{

@@ -17,11 +17,13 @@ export default function AuthorizationRootLayout({ children }: Readonly<{ childre
 }
 
 const AuthorizationContainer = async ({ children }: Readonly<{ children: React.ReactNode }>) =>{
-  const requesturl = headers().get("middleware-request-url");
-  console.log(requesturl);
-  const cookie = cookies().getAll();
+  if(headers().get("middleware-session-revived") === "1"){
+    const requesturl = headers().get("middleware-request-url");
+    if(!requesturl) throw Error("Error Middleware");
+    redirect(requesturl);
+  };
 
-  if(!cookie.find(v => v.name === "backendsession") && cookie.find(v => v.name === "hukkatunojyumon")) return redirect(`/pending?callback=${requesturl}`);
+  const cookie = cookies().getAll();
 
   const response = await fetch("http://localhost:3000/api/user/info", {
     headers: {

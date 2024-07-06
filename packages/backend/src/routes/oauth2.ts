@@ -17,10 +17,11 @@ export const OAuth2Router: FastifyPluginAsyncTypebox = async (app) =>{
   app.post("/verifyapplication", {
     schema: {
       body: OAuth2ApplicationSchema
-    }
+    },
+    preHandler: [Guard.isSigned]
   }, async (request, _response) =>{
     const { client_id, redirect_uri } = request.body;
-    return O2ES.OAuth2Application(client_id, redirect_uri);
+    return O2ES.OAuth2Application(app, request.guard.uid, client_id, redirect_uri);
   });
 
   app.post("/accept", {
