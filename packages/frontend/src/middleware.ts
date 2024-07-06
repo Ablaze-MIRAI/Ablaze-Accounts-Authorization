@@ -47,9 +47,6 @@ export const middleware = async (request: NextRequest) =>{
 
 export const config = {
   matcher: [
-    "/signin/:path*",
-    "/signup/:path*",
-    "/account/:path*",
-    "/oauth2/:path*"
+    "/:path*"
   ]
 }

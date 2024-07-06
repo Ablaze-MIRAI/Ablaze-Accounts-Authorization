@@ -1,11 +1,57 @@
+// React/Next
 import Link from "next/link";
 
-export default function RootPage(){
+// UI
+import { Button } from "@/components/ui/button";
+
+// Library
+import { getUser } from "@/library/getuser";
+
+export default async function ContentRootPage(){
+  const user = await getUser();
+
   return (
     <>
-    <a href="/account">Account</a><br/>
-    <a href="/signin?callback=P2NsaWVudF9pZD1hcHAuZmxvb3JwLm5hdGl2ZSZyZWRpcmVjdF91cmk9aHR0cHMlM0ElMkYlMkZvYXV0aGRlYnVnZ2VyLmNvbSUyRmRlYnVnJnNjb3BlPXVzZXImcmVzcG9uc2VfdHlwZT1jb2RlJnJlc3BvbnNlX21vZGU9cXVlcnkmc3RhdGU9aHJlYXU1eHp6M3Qmbm9uY2U9em94aDV3aGZ1dQ==">Signin With Callback</a><br/>
-    <a href="http://localhost:3000/oauth2/authorize?client_id=app.floorp.native&redirect_uri=https%3A%2F%2Foauthdebugger.com%2Fdebug&scope=user&response_type=code&response_mode=query&state=hreau5xzz3t&nonce=zoxh5whfuu">OAuth2 Debug</a>
+      <section className="h-[100svh] flex justify-center items-center sm:justify-around flex-col sm:flex-row">
+        <div className="flex flex-col items-center sm:block">
+          <h1 className="font-bold text-slate-800 text-5xl sm:text-6xl leading-relaxed sm:leading-relaxed">
+            すべての<br/>
+            <span className="text-[#FFA800] font-extrabold">Ablazeアプリ</span>を<br/>
+            これ<span className="text-[#DB00FF] font-extrabold">ひとつ</span>で
+          </h1>
+          <div className="w-full max-sm:px-5 mt-8">
+            {user.success?(
+              <>
+                <Button variant="secondary" className="w-full h-12 max-sm:hidden">
+                  <Link href="/myaccount" className="font-bold text-md">アカウントダッシュボードを開く</Link>
+                </Button>
+                <Button variant="default" className="w-full h-12 sm:hidden">
+                  <Link href="/myaccount" className="font-bold text-md ">アカウントダッシュボードを開く</Link>
+                </Button>
+              </>
+            ):(
+              <>
+                <Button variant="secondary" className="w-full h-12 max-sm:hidden">
+                  <Link href="/signup" className="font-bold text-md">Ablaze Accountsを作成する</Link>
+                </Button>
+                <Button variant="default" className="w-full h-12 sm:hidden">
+                  <Link href="/signup" className="font-bold text-md">Ablaze Accountsを作成する</Link>
+                </Button>
+              </>
+            )}
+          </div>
+        </div>
+        <div>{/* Introduce content */}</div>
+      </section>
+      <section className="min-h-[50svh] mt-24">
+        <div className="w-2/3 mx-auto">
+          <h1 className="text-2xl font-bold text-center mb-5">Ablaze Accountsとは</h1>
+          <p className="text-center">
+            Ablaze AccountsはAblazeアプリで共通使用できるアカウントサービスです。<br/>
+            サービスの利用やデータの連携・同期を簡単に行うことができます。
+          </p>
+        </div>
+      </section>
     </>
   )
 }
