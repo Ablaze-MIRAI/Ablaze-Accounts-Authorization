@@ -23,12 +23,12 @@ const client_applications: ClientApplications = {
       "https://oauthdebugger.com/debug"
     ]
   },
-  "net.unimory.a2": {
-    name: "Unimory",
-    origin: "https://unimory.net",
+  "dev.mirairo.a3exp": {
+    name: "Mirairo A3 Example",
+    origin: "https://a3exp.mirairo.dev",
     type: "webcheck",
     callback: [
-      "https://unimory.net/",
+      "https://a3exp.mirairo.dev",
       "https://oauthdebugger.com/debug"
     ]
   }
