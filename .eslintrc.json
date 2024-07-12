@@ -1,3 +1,20 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "no-unused-vars": ["warn", {
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_",
+      "caughtErrorsIgnorePattern": "^_",
+      "destructuredArrayIgnorePattern": "^_"
+    }],
+    "no-var": "error",
+    "no-undef": "warn",
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["warn", "double", {"avoidEscape": true, "allowTemplateLiterals": true }],
+    "semi": ["warn", "always"],
+    "@typescript-eslint/no-explicit-any": "error"
+  }
 }

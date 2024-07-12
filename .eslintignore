@@ -1,0 +1,6 @@
+.eslintrc.js
+.yarn
+node_modules
+dist
+src/.next/
+src/components/ui/
