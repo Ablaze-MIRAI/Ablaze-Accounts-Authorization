@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "ms-vscode.vscode-typescript-next",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.npm-intellisense",
+    "prisma.prisma",
+    "mhutchie.git-graph",
+    "gruntfuggly.todo-tree"
+  ]
+}

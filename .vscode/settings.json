@@ -1,3 +1,16 @@
 {
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "todo-tree.general.tagGroups": {
+    "TODO": ["ToDo"]
+  },
+//  "todo-tree.general.tags": [
+//    "BUG",
+//    "HACK",
+//    "FIXME",
+//    "TODO",
+//    "XXX",
+//    "[ ]",
+//    "[x]",
+//    "ToDo"
+//  ]
 }
