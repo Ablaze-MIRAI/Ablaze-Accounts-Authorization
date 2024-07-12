@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://code-raisan:QurgP1oc6Vve@ep-snowy-truth-a1potj0x.ap-southeast-1.aws.neon.tech/ablazeaccounts?sslmode=require"
+}
+
+model User {
+  uid          String      @id @default(uuid())
+  createdAt    DateTime    @default(now())
+  screen_name  String
+  avatar       String
+  account_type AccountType @default(GENERAL)
+
+  // Relationships
+  restore_token RestoreToken[]
+  //oauth2_code OAuth2AuthorizationCode[]
+ // refresh_token RefreshToken[]
+  idp_email   IdpEmail?
+  //idp_discord   IdpDiscord?
+  //accept_app AcceptApp[]
+}
+
+enum AccountType {
+  GENERAL
+  MODERATOR
+  SUPERUSER
+}
+
+model RestoreToken {
+  id String @id @default(cuid())
+  token String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  // Relationships
+  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid  String
+}
+
+model IdpEmail {
+  id       String @id @default(cuid())
+  email    String @unique
+  password String
+
+  // Relationships
+  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid  String @unique
+}
+
+//model IdpGitHub {
+//  id String @id @default(cuid())
+//}
+
+//model IdpDiscord {
+//  id          String @id @default(cuid())
+//  diid         String // Discord Internal ID
+//  dsid         String // Discord Screen ID
+//  screen_name String // Screen Name
+
+// Relationships
+//  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+//  uid  String @unique
+//}
+
+//model OAuth2AuthorizationCode {
+//  id         String   @id @default(cuid())
+//  code       String @unique
+//  expiration DateTime
+//  createdAt  DateTime @default(now())
+//  client_id  String
+//  scope      String
+
+  // Relationships
+//  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+//  uid  String
+//}
+
+//model RefreshToken {
+//  id         String   @id @default(cuid())
+//  token      String   @unique
+//  expiration DateTime
+//  updatedAt  DateTime @default(now()) @updatedAt
+//  createdAt  DateTime @default(now())
+//  client_id String
+
+  // Relationships
+//  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+//  uid  String
+//}
+
+//model AcceptApp {
+//  id String @id @default(cuid())
+//  client_id String
+//  createdAt DateTime @default(now())
+
+  // Relationships
+//  user User @relation(fields: [uid], references: [uid], onDelete: Cascade)
+//  uid String
+//}
+
+//model SubRefreshToken {
+//  id String @id @default(cuid())
+//  token String @unique
+//  expiration DateTime
+//  updatedAt  DateTime @default(now()) @updatedAt
+//  createdAt  DateTime @default(now())
+//  name String
+
+// Relationships
+//  rt RefreshToken @relation(fields: [rtid], references: [id])
+//  rtid String
+//}
