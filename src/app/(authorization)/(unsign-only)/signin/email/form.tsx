@@ -47,7 +47,7 @@ export const SigninEmailForm = () =>{
         });
       }
 
-      if(result === "ok") return router.push(continue_uri?continue_uri:"/dashboard");
+      return router.push(continue_uri?continue_uri:"/dashboard");
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch(e: any){

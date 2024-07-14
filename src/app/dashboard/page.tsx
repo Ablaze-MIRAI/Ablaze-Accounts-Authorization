@@ -1,5 +1,5 @@
-export default function DashboardPage(){
-  return (
-    <h1 className="text-2xl">リダイレクトしています...</h1>
-  );
+import { redirect } from "next/navigation";
+
+export default async function DashboardPage(){
+  redirect("https://myaccount.ablaze.one");
 }

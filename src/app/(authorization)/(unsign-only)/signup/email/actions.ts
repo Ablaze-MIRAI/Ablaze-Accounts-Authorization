@@ -73,7 +73,7 @@ export const onVerifyAction = async (pin: string): Promise<VerifyActionResultTyp
   SendEmail({
     to: session.email,
     subject: "Ablaze Accountsへようこそ",
-    html: `<p>Ablaze Accountsへの登録が完了しましたのでお知らせいたします<br/><a href="https://accounts.ablaze.one/">https://accounts.ablaze.one/</p>`,
+    html: `<h2>Ablaze Accountsへの登録が完了しましたのでお知らせいたします<br/><a href="https://accounts.ablaze.one/">https://accounts.ablaze.one/</h2>`,
     priority: "normal"
   });
 

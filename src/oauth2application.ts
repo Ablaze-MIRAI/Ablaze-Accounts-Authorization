@@ -9,19 +9,19 @@ const applications: ApplicationsType = {
     scope: "user",
     callback: ["https://oauthdebugger.com/debug"]
   },
-  "arpa.localhost.p6000": {
+  "arpa.localhost.p7000": {
     name: "Local SSO Debugger",
     type: "ablaze",
     client: "PUBLIC",
     scope: "user",
-    callback: ["https://localhost:6000/"]
+    callback: ["http://localhost:7000/"]
   },
   "one.ablaze.myaccount": {
     name: "Ablaze Accounts Dashboard",
     type: "ablaze",
     client: "PUBLIC",
     scope: "user",
-    callback: ["https://myaccount.ablaze.one/oauth2/callback"]
+    callback: ["https://myaccount.ablaze.one/oauth2/callback", "http://localhost:6000/"]
   }
 };
 
