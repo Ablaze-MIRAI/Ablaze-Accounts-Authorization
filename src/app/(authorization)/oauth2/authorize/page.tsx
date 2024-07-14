@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { getSession } from "@/library/session";
 import { createOAuth2Code, getUserAcceptStatus } from "@/data/oauth2";
 import { validateOAuth2Application, validateOAuth2Query } from "@/library/utils";
@@ -8,6 +9,7 @@ import { BadRequest } from "./badrequest";
 import { WebMessageResponse } from "./webmessage";
 import { OAuthDescription } from "./description";
 import { OAuthNavigation } from "./navigation";
+import { SignoutAction } from "./actions";
 import type { $Enums } from "@prisma/client";
 import type { UserSession } from "@/typings/session";
 import type { OAuth2Query } from "@/typings/oauth2";
@@ -27,22 +29,47 @@ export default async function OAuth2AuthorizePage({ searchParams }: { searchPara
   if(query.prompt !== "require" || application.type === "native"){
     const appaccept = await getUserAcceptStatus(user.uid, query.client_id);
     if(!!appaccept) return await doAcceptImplicit(user, query, application.client);
-  };
+  }
 
+  if(query.response_mode === "web_message") return (<BadRequest/>);
+
+  // ToDo: ログアウトにローディングをつける
   return (
     <>
       <div className="space-y-6">
         <div className="space-y-3">
           <h1 className="text-2xl">{application.name}</h1>
           <div>
-            <Link href="/oauth2/account/">
-              <div className="border border-gray-400 rounded-full px-5 h-8 space-x-1 flex justify-center items-center hover:bg-gray-100">
-                <div className="block relative h-6 w-6">
-                  <Image className="rounded-full" src={user.avatar} alt="[avatar]" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill/>
+            <Drawer>
+              <DrawerTrigger className="w-full">
+                <div className="border border-gray-400 rounded-full px-5 h-8 space-x-1 flex justify-center items-center hover:bg-gray-100">
+                  <div className="block relative h-6 w-6">
+                    <Image className="rounded-full" src={user.avatar} alt="[avatar]" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill/>
+                  </div>
+                  <p>{user.name}</p>
                 </div>
-                <p>{user.name}</p>
-              </div>
-            </Link>
+              </DrawerTrigger>
+              <DrawerContent>
+                <div className="mx-auto w-full max-w-sm">
+                  <DrawerHeader>
+                    <DrawerTitle>{user.name}でログイン中</DrawerTitle>
+                  </DrawerHeader>
+                  <div className="space-y-6">
+                    <div className="flex flex-col items-center space-y-3">
+                      <div className="block relative h-24 w-24">
+                        <Image className="rounded-full" src={user.avatar} alt="[avatar]"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill priority/>
+                      </div>
+                    </div>
+                  </div>
+                  <DrawerFooter>
+                    <form action={SignoutAction}>
+                      <Button variant="destructive" className="w-full">ログアウトする</Button>
+                    </form>
+                  </DrawerFooter>
+                </div>
+              </DrawerContent>
+            </Drawer>
           </div>
         </div>
         <OAuthDescription application={application}/>

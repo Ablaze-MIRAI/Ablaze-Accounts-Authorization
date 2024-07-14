@@ -11,23 +11,25 @@ export const IssueToken = async (form: FormData) =>{
   const code = form.get("code") as string | null;
   if(!client_id || !redirect_uri || !code) return NextResponse.json({ error: "invalid_request" }, { status: 400 });
 
+  const origin = new URL(redirect_uri).origin;
+
   const application = OAuth2Application[client_id];
-  if(!application) return NextResponse.json({ error: "invalid_request" }, { status: 400 });
+  if(!application) return NextResponse.json({ error: "invalid_request" }, { status: 400, headers: { "Access-Control-Allow-Origin": origin } });
 
   const codeinfo = await getOAuth2Code(code);
-  if(!codeinfo) return NextResponse.json({ error: "invalid_grant" }, { status: 400 });
+  if(!codeinfo) return NextResponse.json({ error: "invalid_grant" }, { status: 400, headers: { "Access-Control-Allow-Origin": origin } });
 
   if(application.client === "CONFIDENTIAL"){
     const client_secret = form.get("client_secret");
-    if(!client_secret) return NextResponse.json({ error: "invalid_request" }, { status: 400 });
-    if(application.client_secret !== client_secret) return NextResponse.json({ error: "invalid_grant" }, { status: 400 });
+    if(!client_secret) return NextResponse.json({ error: "invalid_request" }, { status: 400, headers: { "Access-Control-Allow-Origin": origin } });
+    if(application.client_secret !== client_secret) return NextResponse.json({ error: "invalid_grant" }, { status: 400, headers: { "Access-Control-Allow-Origin": origin } });
   }
 
   const refresh_token = generateOAuth2Refresh();
   await createOAuth2Refresh(refresh_token, codeinfo);
 
   const user = await getUserUid(codeinfo.uid);
-  if(!user) return NextResponse.json({ error: "invalid_request" }, { status: 400 });
+  if(!user) return NextResponse.json({ error: "invalid_request" }, { status: 400, headers: { "Access-Control-Allow-Origin": origin } });
 
   const jws_token = signToken({
     name: user.screen_name,
@@ -42,5 +44,5 @@ export const IssueToken = async (form: FormData) =>{
     refresh_token: refresh_token,
     refresh_expires_in: environment.OIDC_REFRESH_EXPIRES,
     scope: codeinfo.scope
-  });
+  }, { headers: { "Access-Control-Allow-Origin": origin } });
 };

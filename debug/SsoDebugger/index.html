@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSO Debugger</title>
+</head>
+<body>
+  <h1>SSO Debugger</h1>
+  <iframe id="sso" src="http://localhost:3000/oauth2/authorize?client_id=arpa.localhost.p7000&redirect_uri=http%3A%2F%2Flocalhost%3A7000%2F&scope=user&response_type=code&response_mode=web_message&state=3q86rtpjnoq&nonce=dpwbejh76gd" frameborder="0"></iframe>
+  <textarea id="result" rows="30" cols="60">result</textarea>
+  <script>
+    const iframe = document.getElementById("sso");
+    const result = document.getElementById("result");
+
+    window.addEventListener("message", async (event) =>{
+      if(!event.isTrusted) return;
+      if(event.data.target !== "oauth2client") return;
+      console.log("[CLIENT] Receive");
+      console.log("[CLIENT]", event);
+
+      const formData = new FormData();
+      formData.append("grant_type", "authorization_code")
+      formData.append("client_id", "arpa.localhost.p7000")
+      formData.append("redirect_uri", "http://localhost:7000/")
+      formData.append("code", event.data.code);
+
+      console.log("[CLIENT] AccessToken requesting...");
+      fetch("http://localhost:3000/api/token", {
+        method: "POST",
+        body: formData
+      })
+      .then(r => r.json())
+      .then(response =>{
+        console.log("[CLIENT]", response);
+        result.value = JSON.stringify(response);
+      })
+      .catch(e =>{
+        console.error(e);
+        alert(e);
+      });
+    });
+  </script>
+</body>
+</html>
