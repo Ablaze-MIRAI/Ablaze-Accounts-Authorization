@@ -4,7 +4,7 @@ import environment from "@/environment";
 import { readFileSync } from "fs";
 
 const PrivateKey = readFileSync(environment.OIDC_JWS_PRIVATE_KEY_PATH);
-const PublicKey = readFileSync(environment.OIDC_JWS_PUBLIC_KEY_PATH);
+const _PublicKey = readFileSync(environment.OIDC_JWS_PUBLIC_KEY_PATH);
 
 export type UserJWTPayload = {
   name: string,
