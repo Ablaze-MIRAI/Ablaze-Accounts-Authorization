@@ -1,0 +1,15 @@
+POST http://localhost:3000/api/token HTTP/1.1
+content-type: application/x-www-form-urlencoded
+
+grant_type=authorization_code
+&client_id=com.oauthdebugger
+&client_secret=super-long-secret-value
+&redirect_uri=https://oauthdebugger.com/debug&
+&code=xxxxxxxxxxxx
+
+###
+POST http://localhost:3000/api/token HTTP/1.1
+content-type: application/x-www-form-urlencoded
+
+grant_type=refresh_token
+&refresh_token=
