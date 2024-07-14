@@ -18,6 +18,7 @@ RUN yarn build
 FROM node:20.14.0-alpine3.19 AS runner
 
 ENV NODE_ENV=production
+ENV PORT 3000
 RUN corepack enable
 WORKDIR /app
 
@@ -37,4 +38,4 @@ COPY --from=builder /build/public ./public
 
 RUN yarn mg:deploy
 
-CMD ["yarn", "start"]
+CMD ["HOSTNAME=0.0.0.0", "PORT=3000", "yarn", "start"]
