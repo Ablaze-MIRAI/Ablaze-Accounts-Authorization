@@ -13,6 +13,7 @@
 /.next/
 /src/.next/
 /out/
+/dist/
 
 # production
 /build

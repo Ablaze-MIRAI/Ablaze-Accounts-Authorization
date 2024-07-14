@@ -1,0 +1,9 @@
+node_modules
+debug
+.vscode
+.git
+.gitignore
+.gitattributes
+.next
+README.md
+.editorconfig
