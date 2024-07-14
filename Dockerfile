@@ -22,8 +22,9 @@ ENV PORT 3000
 RUN corepack enable
 WORKDIR /app
 
-COPY scripts ./
-COPY prisma ./
+COPY ./scripts ./
+COPY ./prisma ./
+COPY ./.environments ./
 
 COPY .nvmrc ./
 COPY package.json ./
