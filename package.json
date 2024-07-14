@@ -4,14 +4,15 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "env-cmd -f .environments/.env.development next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "mg:dev": "prisma db push",
     "mg:apply": "prisma migrate dev --name init",
     "mg:deploy": "prisma migrate deploy",
-    "studio": "prisma studio --browser none"
+    "studio": "prisma studio --browser none",
+    "debug:sso": "http-server ./debug/SsoDebugger -p 7000"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -38,6 +39,7 @@
     "set-cookie-parser": "^2.6.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "vaul": "^0.9.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -49,8 +51,10 @@
     "@types/react-dom": "^18",
     "@types/set-cookie-parser": "^2",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
+    "http-server": "^14.1.1",
     "postcss": "^8",
     "prisma": "^5.16.2",
     "shadcn-ui": "^0.8.0",

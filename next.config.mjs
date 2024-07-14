@@ -10,6 +10,9 @@ const nextConfig = {
         pathname: "**",
       }
     ]
+  },
+  env: {
+    TZ: "UTC"
   }
 };
 
