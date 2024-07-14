@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
 import { SignoutAction } from "./actions";
 
+// ToDo: ログアウトにローディングをつける
 export const DialogNavigation = () =>{
-  "use client";
-
   const onclick = async () => await SignoutAction();
 
   return (

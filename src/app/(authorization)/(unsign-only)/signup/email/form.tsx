@@ -2,7 +2,7 @@
 
 // React/Next
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 // Library
@@ -18,12 +18,15 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Loader } from "@/components/props/Loader";
 
+import { withContinue, withContinueQuery } from "@/library/utils";
 import { onSubmitAction, onVerifyAction } from "./actions";
 import { EmailSignupSchema, EmailSignupVerifySchema } from "./schema";
 
 export const SignupEmailForm = ({ setSignupState }: { setSignupState: Function }) =>{
+  const query = useSearchParams();
   const router = useRouter();
   const { toast } = useToast();
+  const continue_uri = query.get("continue");
   const [ submitting, setSubmit ] = useState(false);
 
   type SchemaType = z.infer<typeof EmailSignupSchema>;
@@ -55,7 +58,7 @@ export const SignupEmailForm = ({ setSignupState }: { setSignupState: Function }
         title: "予期しないエラーが発生しました",
         description: e.message
       });
-      return router.push("/signup");
+      return router.push(withContinue("/signup", continue_uri));
     }
     setSubmit(false);
     return;
@@ -99,7 +102,7 @@ export const SignupEmailForm = ({ setSignupState }: { setSignupState: Function }
         </form>
       </Form>
       <Button variant="secondary" className={`w-full mt-2 ${submitting?"pointer-events-none":""}`} asChild>
-        <Link href="/signup">戻る</Link>
+        <Link href={{ pathname: "/signup", query: withContinueQuery(query) }}>戻る</Link>
       </Button>
     </>
   );
@@ -107,7 +110,9 @@ export const SignupEmailForm = ({ setSignupState }: { setSignupState: Function }
 
 export const SignupEmailVerifyForm = ({ setSignupState }: { setSignupState: Function }) =>{
   const router = useRouter();
+  const query = useSearchParams();
   const { toast } = useToast();
+  const continue_uri = query.get("continue");
   const [ submitting, setSubmit ] = useState(false);
 
   type SchemaType = z.infer<typeof EmailSignupVerifySchema>;
@@ -123,7 +128,7 @@ export const SignupEmailVerifyForm = ({ setSignupState }: { setSignupState: Func
       const result = await onVerifyAction(data.pin);
 
       if(result === "badrequest"){
-        router.push("/signup");
+        router.push(withContinue("/signup", continue_uri));
         return toast({
           title: "リクエストに失敗しました",
           description: "有効期限切れの可能性があります。最初からやり直してください。"
@@ -146,7 +151,7 @@ export const SignupEmailVerifyForm = ({ setSignupState }: { setSignupState: Func
         title: "予期しないエラーが発生しました",
         description: e.message
       });
-      return router.push("/signup");
+      return router.push(withContinue("/signup", continue_uri));
     }
     setSubmit(false);
     return;

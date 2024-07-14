@@ -1,5 +1,3 @@
-import type { ReactNode } from "react";
-
 export const SignTitle = ({ title }: { title: string }) =>{
   return (
     <div className="mb-5">

@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { SessionMiddleware } from "./middlewares/session";
-import { cookies } from "next/headers";
 import environment from "./environment";
 
 export const middleware = async (request: NextRequest) =>{
@@ -11,8 +9,10 @@ export const middleware = async (request: NextRequest) =>{
   console.log("@", request.nextUrl.pathname);
   if(request.nextUrl.pathname.startsWith("/_next")) return;
   if(request.nextUrl.pathname.startsWith("/api")) return;
-
-
+  if(request.nextUrl.pathname.startsWith("/.well-known")) return;
+  if(request.nextUrl.pathname.endsWith(".png")) return;
+  if(request.nextUrl.pathname.endsWith(".jpg")) return;
+  if(request.nextUrl.pathname.endsWith(".svg")) return;
 
   await (async () =>{
     // ToDo: ログ削除
@@ -32,7 +32,10 @@ export const middleware = async (request: NextRequest) =>{
     console.log("# RESTORE FOUND [PASS]");
 
     const resp = await fetch(`http://localhost:3000/api/restore?token=${restoretoken}`);
-    if(!resp.ok) return console.log("# RESTORE SESSION FEILD [SKIP]");
+    if(!resp.ok){
+      response.cookies.delete(environment.COOKIE_RESTORE_NAME);
+      return console.log("# RESTORE SESSION FEILD [SKIP]");
+    }
 
     const keys = await resp.json();
 
@@ -52,8 +55,6 @@ export const middleware = async (request: NextRequest) =>{
 
     console.log("# !!!!! RESTORE DONE !!!!!");
   })();
-
-  //await SessionMiddleware(request, response);
 
   return response;
 };

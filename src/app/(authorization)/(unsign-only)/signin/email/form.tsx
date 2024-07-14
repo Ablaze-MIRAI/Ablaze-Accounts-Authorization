@@ -2,7 +2,7 @@
 
 // React/Next
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 // Library
@@ -19,11 +19,14 @@ import { Loader } from "@/components/props/Loader";
 
 import { onSubmitAction } from "./actions";
 import { EmailSigninSchema } from "./schema";
+import { withContinue, withContinueQuery } from "@/library/utils";
 
 export const SigninEmailForm = () =>{
   const router = useRouter();
+  const query = useSearchParams();
   const { toast } = useToast();
-  const [ submitting, setSubmit ] = useState(false);
+  const continue_uri = query.get("continue");
+  const [submitting, setSubmit] = useState(false);
 
   type SchemaType = z.infer<typeof EmailSigninSchema>;
   const form = useForm<SchemaType>({
@@ -44,7 +47,7 @@ export const SigninEmailForm = () =>{
         });
       }
 
-      if(result === "ok") return router.push("/dashboard");
+      if(result === "ok") return router.push(continue_uri?continue_uri:"/dashboard");
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch(e: any){
@@ -53,7 +56,7 @@ export const SigninEmailForm = () =>{
         title: "予期しないエラーが発生しました",
         description: e.message
       });
-      return router.push("/signin");
+      return router.push(withContinue("/signin", continue_uri));
     }
   };
 
@@ -83,7 +86,7 @@ export const SigninEmailForm = () =>{
         </form>
       </Form>
       <Button variant="secondary" className={`w-full mt-2 ${submitting?"pointer-events-none":""}`} asChild>
-        <Link href="/signup">戻る</Link>
+        <Link href={{ pathname: "/signin", query: withContinueQuery(query)}}>戻る</Link>
       </Button>
     </>
   );

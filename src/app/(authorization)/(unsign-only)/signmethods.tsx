@@ -1,11 +1,15 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { withContinueQuery } from "@/library/utils";
 
 const Linkto = ({ href, children }: { href: string, children: ReactNode }) =>{
+  const query = useSearchParams();
+
   return (
     <Button variant="outline" className="w-full" asChild>
-      <Link href={href} scroll={false}>{children}</Link>
+      <Link href={{ pathname: href, query: withContinueQuery(query) }} scroll={false}>{children}</Link>
     </Button>
   );
 };

@@ -1,13 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { randomBytes } from "crypto";
-import { getRestoreToken, updateRestoreToken } from "@/data/session";
-import { createHashWithExpire } from "@/library/kv";
 import environment from "@/environment";
-import { UserSession } from "@/typings/session";
-
-const generateSessionId = () => randomBytes(32).toString("hex");
-const generateRestoreToken = () => randomBytes(64).toString("hex");
-const DefaultResWithCode = (status: number) =>({ status: status, headers: { "Content-Type": "application/json" } });
+import { generateRestoreToken, generateSessionId } from "@/library/keygenerator";
+import { createHashWithExpire } from "@/library/kv";
+import { getRestoreToken, updateRestoreToken } from "@/data/session";
+import type { UserSession } from "@/typings/session";
 
 export const GET = async (request: NextRequest) =>{
   const restore_token = request.nextUrl.searchParams.get("token");
