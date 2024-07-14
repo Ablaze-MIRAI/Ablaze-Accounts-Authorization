@@ -44,7 +44,7 @@ export const createAcceptApp = async (uid: string, client_id: string) =>{
       }
     });
 
-    if(!isfound) return;
+    if(isfound) return;
 
     await p.acceptApp.create({
       data: {
