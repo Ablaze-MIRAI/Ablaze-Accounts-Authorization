@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -f .environments/.env.development next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "env-cmd -f .environments/.env.development next build",
+    "start": "env-cmd -f .environments/.env.development next start",
     "lint": "next lint",
     "mg:dev": "prisma db push",
     "mg:apply": "prisma migrate dev --name init",

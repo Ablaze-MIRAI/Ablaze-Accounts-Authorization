@@ -21,7 +21,7 @@ const applications: ApplicationsType = {
     type: "ablaze",
     client: "PUBLIC",
     scope: "user",
-    callback: ["https://myaccount.ablaze.one/oauth2/callback", "http://localhost:6000/"]
+    callback: ["https://myaccount.ablaze.one/oauth2/callback", "http://localhost:3000/"]
   }
 };
 

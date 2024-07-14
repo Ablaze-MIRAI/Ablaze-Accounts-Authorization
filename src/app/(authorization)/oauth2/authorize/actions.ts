@@ -12,5 +12,5 @@ export const doAcceptApp = async (uid: string, cid: string, scope: string, clien
 
 export const SignoutAction = async () =>{
   await deleteSession();
-  redirect("");
+  redirect("/");
 };

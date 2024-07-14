@@ -33,7 +33,9 @@ export default async function ContentLayout({ children }: Readonly<{ children: R
           )}
         </div>
       </header>
-      {children}
+      <main className="min-h-screen">
+        {children}
+      </main>
       <footer className="flex flex-col bg-slate-50 py-10">
         <div className="flex flex-col lg:flex-row justify-center">
           <div className="h-1/2 max-lg:mx-auto lg:mx-10 mb-5 lg:mb-0">
