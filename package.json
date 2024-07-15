@@ -10,7 +10,7 @@
     "lint": "next lint",
     "mg:dev": "env-cmd -f .env.development prisma db push",
     "mg:apply": "env-cmd -f .env.development prisma migrate dev --name init",
-    "mg:deploy": "prisma migrate deploy",
+    "mg:deploy": "env-cmd -f .env.production prisma migrate deploy",
     "generate": "prisma generate",
     "studio": "prisma studio --browser none",
     "debug:sso": "http-server ./debug/SsoDebugger -p 7000"
