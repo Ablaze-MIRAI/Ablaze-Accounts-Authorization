@@ -1,5 +1,10 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["*.mirairo.dev", "*.ablaze.one"]
+    }
+  },
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [
