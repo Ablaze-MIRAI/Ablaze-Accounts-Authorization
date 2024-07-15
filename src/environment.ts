@@ -3,6 +3,7 @@ import "server-only";
 /* eslint import/no-anonymous-default-export: off */
 export default {
   NODE_ENV: process.env.NODE_ENV,
+  ACCOUNT_DASHBOARD: "https://myaccount.mirairo.dev/",
 
   // Cookie
   COOKIE_SESSION_NAME: "_next_session_id",
