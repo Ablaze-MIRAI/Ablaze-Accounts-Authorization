@@ -1568,9 +1568,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ablaze-accounts-next@workspace:.":
+"ablaze-accounts-authorization@workspace:.":
   version: 0.0.0-use.local
-  resolution: "ablaze-accounts-next@workspace:."
+  resolution: "ablaze-accounts-authorization@workspace:."
   dependencies:
     "@hookform/resolvers": "npm:^3.9.0"
     "@prisma/client": "npm:^5.16.2"

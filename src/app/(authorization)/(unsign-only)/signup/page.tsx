@@ -7,6 +7,7 @@ import { SignTitle } from "@/components/props/SignTitle";
 import { Separate } from "@/components/props/Separate";
 import { withContinueQuery } from "@/library/utils";
 import { SignMethods } from "../signmethods";
+import { CanaryAlert } from "../canary-alert";
 
 export default function SignupPage(){
   const query = useSearchParams();
@@ -14,6 +15,7 @@ export default function SignupPage(){
   return (
     <>
       <SignTitle title="アカウントを作成"/>
+      <CanaryAlert/>
       <SignMethods type="signup">
         <Separate text="または"/>
         <Button variant="secondary" asChild>
