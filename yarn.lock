@@ -1330,7 +1330,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20":
+"@types/node@npm:*, @types/node@npm:^20.14.10":
   version: 20.14.10
   resolution: "@types/node@npm:20.14.10"
   dependencies:
@@ -1580,7 +1580,7 @@ __metadata:
     "@radix-ui/react-toast": "npm:^1.2.1"
     "@types/bcrypt": "npm:^5"
     "@types/jsonwebtoken": "npm:^9"
-    "@types/node": "npm:^20"
+    "@types/node": "npm:^20.14.10"
     "@types/nodemailer": "npm:^6"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"

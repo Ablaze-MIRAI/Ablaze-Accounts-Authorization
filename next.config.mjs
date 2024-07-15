@@ -13,8 +13,7 @@ const nextConfig = {
   },
   env: {
     TZ: "UTC"
-  },
-  //output: "standalone"
+  }
 };
 
 export default nextConfig;

@@ -6,6 +6,6 @@ const globalForRedis = globalThis as unknown as {
   redis: RedisClient | undefined;
 };
 
-export const redis = globalForRedis.redis ?? new RedisClient("rediss://default:AbWKAAIncDE3MmQxMzVmODY5Zjk0ZGZmOGY1YzZkMjA2NTgwNWZiMnAxNDY0NzQ@intent-joey-46474.upstash.io:6379");
+export const redis = globalForRedis.redis ?? new RedisClient(environment.REDIS_CONNECTION);
 
 if(environment.NODE_ENV) globalForRedis.redis = redis;

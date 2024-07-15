@@ -7,13 +7,13 @@ const globalForMailer = globalThis as unknown as {
 };
 
 export const mailer = globalForMailer.mailer ?? nodemailer.createTransport({
-  host: "m33.coreserver.jp",
-  port: 465,
+  host: environment.SMTP_HOST,
+  port: environment.SMTP_PORT,
   secure: true,
-  from: "noreply@mirairo.dev",
+  from: environment.SMTP_FROM,
   auth: {
-    user: "noreply@mirairo.dev",
-    pass: "iy7IUju6zTAN"
+    user: environment.SMTP_USER,
+    pass: environment.SMTP_PASS
   },
   tls: {
     maxVersion: "TLSv1.3",

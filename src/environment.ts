@@ -1,3 +1,5 @@
+import "server-only";
+
 /* eslint import/no-anonymous-default-export: off */
 export default {
   NODE_ENV: process.env.NODE_ENV,
@@ -8,7 +10,16 @@ export default {
   COOKIE_RESTORE_NAME: "_next_restore_token",
   COOKIE_RESTORE_EXPIRES: 60*60*24*60, // 60 days
 
+  // SMTP
+  SMTP_HOST: process.env.SMTP_HOST ?? "localhost",
+  SMTP_PORT: Number(process.env.SMTP_PORT ?? 465),
+  SMTP_SECURE: true,
+  SMTP_FROM: process.env.SMTP_FROM ?? "noreply@localhost",
+  SMTP_USER: process.env.SMTP_USER ?? "root",
+  SMTP_PASS: process.env.SMTP_PASS ?? "root",
+
   // Redis
+  REDIS_CONNECTION: process.env.REDIS_CONNECTION ?? "",
   REDIS_SESSION_PREFIX: "_session",
   REDIS_SESSION_EXPIRES: 60*60*2, // 2 hours
 
