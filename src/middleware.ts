@@ -12,7 +12,7 @@ export const middleware = async (request: NextRequest) =>{
   if(request.nextUrl.pathname.endsWith(".svg")) return;
 
   const response = NextResponse.next();
-  response.headers.set("x-next-request-uri", request.nextUrl.href);
+  response.headers.set("x-next-request-uri", request.nextUrl.pathname);
 
   await (async () =>{
     // ToDo: ログ削除
