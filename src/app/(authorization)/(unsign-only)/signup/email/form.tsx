@@ -17,6 +17,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Loader } from "@/components/props/Loader";
+import { ContinueCreateAccounts } from "@/components/modules/continue-create-accounts";
 
 import { withContinue, withContinueQuery } from "@/library/utils";
 import { onSubmitAction, onVerifyAction } from "./actions";
@@ -98,6 +99,7 @@ export const SignupEmailForm = ({ setSignupState }: { setSignupState: Function }
               <FormMessage/>
             </FormItem>
           )}/>
+          <ContinueCreateAccounts/>
           <Button type="submit" className="w-full" disabled={submitting}><Loader loading={submitting}/> 作成する</Button>
         </form>
       </Form>
