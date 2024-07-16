@@ -1,8 +1,6 @@
-import { FormDescription } from "@/components/ui/form";
-
 export const ContinueCreateAccounts = () =>{
   return (
-    <FormDescription>
+    <div className="text-sm text-muted-foreground">
       作成を続行すると
       <a href="https://docs.ablaze.one/terms_of_use" className="underline" target="_blank" rel="noreferrer noopener">
         <i className="ri-external-link-line"></i>
@@ -14,6 +12,6 @@ export const ContinueCreateAccounts = () =>{
         プライバシーポリシー
       </a>
       に同意したとみなされます
-    </FormDescription>
+    </div>
   );
 };

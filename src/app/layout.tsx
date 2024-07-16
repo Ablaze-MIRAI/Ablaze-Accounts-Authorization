@@ -15,7 +15,7 @@ const mplus2 = M_PLUS_2({
 
 export const metadata: Metadata = {
   title: "Ablaze Accounts - すべてのAblazeサービスをこれひとつで",
-  description: "これひとつでAblazeサービスを利用できるアカウントサービスです",
+  description: "これひとつですべてのAblazeサービスが利用できるアカウントサービスです",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>){

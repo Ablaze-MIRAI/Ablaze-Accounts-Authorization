@@ -13,6 +13,12 @@ const nextConfig = {
         hostname: "source.boringavatars.com",
         port: "",
         pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+        pathname: "**"
       }
     ]
   },

@@ -5,11 +5,17 @@ export default {
   NODE_ENV: process.env.NODE_ENV,
   ACCOUNT_DASHBOARD: "https://myaccount.mirairo.dev/",
 
+  // IdP
+  GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID ?? "",
+  GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET ?? "",
+  GITHUB_REDIRECT_URI: process.env.GITHUB_REDIRECT_URI ?? "",
+
   // Cookie
   COOKIE_SESSION_NAME: "_next_session_id",
   COOKIE_SESSION_EXPIRES: 60*60*2, // 2 hours
   COOKIE_RESTORE_NAME: "_next_restore_token",
   COOKIE_RESTORE_EXPIRES: 60*60*24*60, // 60 days
+  COOKIE_GITHUB_STATE: "_next_github_state",
 
   // SMTP
   SMTP_HOST: process.env.SMTP_HOST ?? "localhost",

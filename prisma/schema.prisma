@@ -17,6 +17,7 @@ model User {
   // Relationships
   restore_token RestoreToken[]
   idp_email   IdpEmail?
+  idp_github IdpGitHub?
   //idp_discord   IdpDiscord?
   accept_app AcceptApp[]
   //oauth2_code OAuth2AuthorizationCode[]
@@ -44,15 +45,23 @@ model IdpEmail {
   id       String @id @default(cuid())
   email    String @unique
   password String
+  nopassword Boolean @default(false)
 
   // Relationships
   user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
   uid  String @unique
 }
 
-//model IdpGitHub {
-//  id String @id @default(cuid())
-//}
+model IdpGitHub {
+  id String @id @default(cuid())
+  githubid String @unique
+  username String
+  userlogin String
+
+  // Relationships
+  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid  String @unique
+}
 
 //model IdpDiscord {
 //  id          String @id @default(cuid())

@@ -14,6 +14,11 @@ export const withContinueQuery = (query: ReadonlyURLSearchParams): { continue: s
   return undefined;
 };
 
+export const withContinuePage = (continueuri: string) =>{
+  if(!continueuri) return undefined;
+  return { continue: continueuri };
+};
+
 export const validateOAuth2Query = (q: Partial<OAuth2Query>): false | OAuth2Query =>{
   if(!(q.client_id && q.redirect_uri && q.response_type && q.scope && q.state)) return false;
   if(!(q.response_type === "code" && q.scope === "user")) return false;
