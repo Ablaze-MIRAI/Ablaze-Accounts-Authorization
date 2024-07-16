@@ -12,7 +12,7 @@
     "mg:apply": "env-cmd -f .env.development prisma migrate dev --name init",
     "mg:deploy": "env-cmd -f .env.production prisma migrate deploy",
     "generate": "prisma generate",
-    "studio": "prisma studio --browser none",
+    "studio": "env-cmd -f .env.development prisma studio --browser none",
     "debug:sso": "http-server ./debug/SsoDebugger -p 7000"
   },
   "dependencies": {
