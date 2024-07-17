@@ -18,8 +18,10 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.16.2",
+    "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "bcrypt": "^5.1.1",
