@@ -24,10 +24,6 @@ type Session = {
 const generateSessionId = () => randomBytes(32).toString("hex");
 const generateRestoreToken = () => randomBytes(64).toString("hex");
 
-/*const withContinue = (uri: string, continue_uri: string | undefined) =>
-  continue_uri?`${uri}?continue=${encodeURIComponent(continue_uri)}`:uri;
-*/
-
 /* ServerComponents = Readonly cookie */
 export const getSession = async (autoredirect: boolean = true): Promise<Session | undefined> =>{
   const continue_uri = headers().get("x-next-request-uri");

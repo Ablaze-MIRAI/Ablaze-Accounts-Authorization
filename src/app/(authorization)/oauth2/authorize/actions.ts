@@ -1,13 +1,17 @@
 "use server";
 
 import { createAcceptApp, createOAuth2Code } from "@/data/oauth2";
-import { deleteSession } from "@/library/session";
+import { deleteSession, getSession } from "@/library/session";
 import type { $Enums } from "@prisma/client";
 import { redirect } from "next/navigation";
 
-export const doAcceptApp = async (uid: string, cid: string, scope: string, client_type: $Enums.ClientType) =>{
-  await createAcceptApp(uid, cid);
-  return await createOAuth2Code(uid, cid, scope, client_type);
+// ToDo: 余分な引数の削除
+export const doAcceptApp = async (_uid: string, cid: string, scope: string, client_type: $Enums.ClientType) =>{
+  const session = await getSession();
+  if(!session) throw new Error("Not signed");
+
+  await createAcceptApp(session.uid, cid);
+  return await createOAuth2Code(session.uid, cid, scope, client_type);
 };
 
 export const SignoutAction = async () =>{
