@@ -11,7 +11,7 @@ export const Sidebar = ({ avatar, username }: { avatar: string, username: string
   const initial = username.charAt(0).toUpperCase();
 
   return (
-    <aside className="max-md:hidden fixed top-0 left-0 z-20 pt-20 h-[100svh] w-72 bg-white flex flex-col">
+    <aside className="max-md:hidden fixed top-0 left-0 z-20 pt-20 h-[100svh] lg:w-72 w-60 bg-white flex flex-col">
       <div className="h-full flex flex-col justify-between p-3">
         <div className="px-3">
           <Navigation tabs={NavigationTabs}/>
