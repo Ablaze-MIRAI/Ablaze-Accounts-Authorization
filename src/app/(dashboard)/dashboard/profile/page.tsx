@@ -9,10 +9,10 @@ export default async function DashboardProfile(){
 
   return (
     <DashboardContainer title="プロフィール">
-      <Card>
+      <Card id="editpublic">
         <CardHeader>
-          <CardTitle>基本情報</CardTitle>
-          <CardDescription>基本的なプロフィールを設定します</CardDescription>
+          <CardTitle>公開プロフィール</CardTitle>
+          <CardDescription>公開されるプロフィール情報を設定します</CardDescription>
         </CardHeader>
         <CardContent>
           <EditProfile username={session.name}/>
