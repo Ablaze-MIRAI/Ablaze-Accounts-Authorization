@@ -31,10 +31,13 @@ enum AccountType {
 }
 
 model RestoreToken {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
   token String @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
+  ip String?
+  device String?
+  browser String?
 
   // Relationships
   user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)

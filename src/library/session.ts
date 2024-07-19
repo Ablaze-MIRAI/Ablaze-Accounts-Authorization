@@ -1,12 +1,13 @@
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { randomBytes } from "crypto";
-import { prisma } from "@/library/prisma";
-import type { $Enums } from "@prisma/client";
-import { createHashWithExpire, deleteKey } from "./kv";
-import { getUserSession } from "@/data/session";
+import UAParserJS from "ua-parser-js";
 import environment from "@/environment";
+import { prisma } from "@/library/prisma";
+import { createHashWithExpire, deleteKey } from "@/library/kv";
+import { getUserSession } from "@/data/session";
 import { withContinue } from "./utils";
+import type { $Enums } from "@prisma/client";
 
 const session_cookie_key = "_next_session_id";
 const restore_cookie_key = "_next_restore_token";
@@ -53,11 +54,20 @@ export const createSession = async (uid: string) =>{
   const user = await prisma.user.findUnique({ select: { screen_name: true, avatar: true, account_type: true }, where: { uid: uid } });
   if(!user) throw new Error("Not found user");
 
+  const ip = headers().get("x-forwarded-for");
+  const ua = headers().get("User-Agent");
+  const parsedua = new UAParserJS(ua ?? "");
+  const os = parsedua.getOS();
+  const browser = parsedua.getBrowser();
+
   const restore_token = generateRestoreToken();
   await prisma.restoreToken.create({
     data: {
       token: restore_token,
-      uid: uid
+      uid: uid,
+      ip: ip,
+      device: (os.name && os.version) ? `${os.name} ${os.version}` : undefined,
+      browser: (browser.name && browser.version) ? `${browser.name}/${browser.version}` : undefined
     }
   });
 
