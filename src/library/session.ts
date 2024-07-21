@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { randomBytes } from "crypto";
@@ -26,7 +27,7 @@ const generateSessionId = () => randomBytes(32).toString("hex");
 const generateRestoreToken = () => randomBytes(64).toString("hex");
 
 /* ServerComponents = Readonly cookie */
-export const getSession = async (autoredirect: boolean = true): Promise<Session | undefined> =>{
+export const getSession = cache(async (autoredirect: boolean = true): Promise<Session | undefined> =>{
   const continue_uri = headers().get("x-next-request-uri");
   const session_restore = headers().get("x-session-restore");
   // ToDo: コメントアウト削除
@@ -47,7 +48,7 @@ export const getSession = async (autoredirect: boolean = true): Promise<Session 
   }
 
   return session;
-};
+});
 
 /* ServerAction = Writable cookies */
 export const createSession = async (uid: string) =>{

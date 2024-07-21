@@ -25,3 +25,15 @@ export const getActiveSession = async (uid: string, limit: number) =>{
   });
 };
 
+export const getSessionInfoById = async (uid: string, sessionid: string) =>{
+  return await prisma.restoreToken.findUnique({
+    where: { uid: uid, id: sessionid },
+    select: {
+      createdAt: true,
+      updatedAt: true,
+      ip: true,
+      device: true,
+      browser: true
+    }
+  });
+};

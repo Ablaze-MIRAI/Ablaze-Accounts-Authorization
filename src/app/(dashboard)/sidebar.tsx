@@ -46,7 +46,7 @@ const Navigation = ({ tabs }: { tabs: NavigationTabsType }) =>{
 /* eslint no-unused-vars: off */
 const NavigationItem = ({ id, name, icon, path }: { id: number, name: string, icon: string, path: string }) =>{
   const pathname = usePathname();
-  const isActive = pathname === path;
+  const isActive = pathname.startsWith(path);
 
   return (
     <Button variant={isActive ? "default" : "ghost"} className="w-full select-none" id={`sb${id}`} asChild>

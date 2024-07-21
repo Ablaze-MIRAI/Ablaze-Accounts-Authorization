@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-export const SettingContainer = ({ children, title, description }: { children: ReactNode, title: string | ReactNode, description: string | ReactNode }) =>{
+export const SettingContainer = ({ children, title, description, id }: { children: ReactNode, title: string | ReactNode, description: string | ReactNode, id?: string }) =>{
   return (
-    <Card>
+    <Card id={id}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>

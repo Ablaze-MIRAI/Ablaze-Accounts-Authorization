@@ -13,6 +13,7 @@ const findIcon = (name: string) =>{
 export const TopSessions = async () =>{
   const session = await getSession();
   if(!session) return;
+
   const topsessions = await getActiveSession(session.uid, 3);
 
   return (
@@ -24,7 +25,7 @@ export const TopSessions = async () =>{
         return (
           <SessionItem
             key={k}
-            path={`/dashboard/security/session/${v.id}`}
+            path={`/dashboard/security/sessions/${v.id}`}
             name={`${device} - ${browser}`}
             time={v.updatedAt}
             icon={icon}/>
