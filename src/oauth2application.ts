@@ -22,6 +22,20 @@ const applications: ApplicationsType = {
     client: "PUBLIC",
     scope: "user",
     callback: ["https://myaccount.ablaze.one/oauth2/callback", "http://localhost:3000/"]
+  },
+  "app.floorp.native": {
+    name: "Floorp Web Browser",
+    type: "native",
+    client: "PUBLIC",
+    scope: "user",
+    callback: ["https://floorp-native-oauth2.mirairo.dev/callback"]
+  },
+  "one.ablaze.forum": {
+    name: "Ablaze 仮設フォーラム",
+    type: "ablaze",
+    client: "PUBLIC",
+    scope: "user",
+    callback: ["https://forum.mirairo.dev/oauth2/callback", "https://forum.ablaze.one/oauth2/callback", "http://localhost:5173/oauth2/callback"]
   }
 };
 
