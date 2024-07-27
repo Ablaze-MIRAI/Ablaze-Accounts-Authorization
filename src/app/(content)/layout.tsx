@@ -11,11 +11,11 @@ export default async function ContentLayout({ children }: Readonly<{ children: R
   return (
     <>
       <header className="fixed top-0 left-0 z-30 w-full h-16 px-4 sm:px-16 flex justify-between items-center bg-white drop-shadow-md">
-        <a href="/">
+        <Link href="/">
           <div className="h-1/2">
             <Image className="h-full" alt="Ablaze Logo" src={AblazeLogoBlack}/>
           </div>
-        </a>
+        </Link>
         <div>
           {user?(
             <Button variant="outline" asChild>

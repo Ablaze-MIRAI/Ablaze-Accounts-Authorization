@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import TailwindcssAnimate from "tailwindcss-animate";
+import TailwindcssContainerQueries from "@tailwindcss/container-queries";
 
 const config = {
   darkMode: ["class"],
@@ -80,7 +81,10 @@ const config = {
       },
     },
   },
-  plugins: [TailwindcssAnimate],
+  plugins: [
+    TailwindcssAnimate,
+    TailwindcssContainerQueries
+  ],
 } satisfies Config;
 
 export default config;

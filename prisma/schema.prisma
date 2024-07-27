@@ -17,6 +17,7 @@ model User {
   // Relationships
   restore_token RestoreToken[]
   idp_email   IdpEmail?
+  idp_github IdpGitHub?
   //idp_discord   IdpDiscord?
   accept_app AcceptApp[]
   //oauth2_code OAuth2AuthorizationCode[]
@@ -30,10 +31,13 @@ enum AccountType {
 }
 
 model RestoreToken {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
   token String @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
+  ip String?
+  device String?
+  browser String?
 
   // Relationships
   user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
@@ -44,15 +48,23 @@ model IdpEmail {
   id       String @id @default(cuid())
   email    String @unique
   password String
+  nopassword Boolean @default(false)
 
   // Relationships
   user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
   uid  String @unique
 }
 
-//model IdpGitHub {
-//  id String @id @default(cuid())
-//}
+model IdpGitHub {
+  id String @id @default(cuid())
+  githubid String @unique
+  username String
+  userlogin String
+
+  // Relationships
+  user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid  String @unique
+}
 
 //model IdpDiscord {
 //  id          String @id @default(cuid())

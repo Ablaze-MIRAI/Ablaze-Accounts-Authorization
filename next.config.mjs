@@ -1,5 +1,10 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["*.mirairo.dev", "*.ablaze.one"]
+    }
+  },
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [
@@ -8,6 +13,12 @@ const nextConfig = {
         hostname: "source.boringavatars.com",
         port: "",
         pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+        pathname: "**"
       }
     ]
   },

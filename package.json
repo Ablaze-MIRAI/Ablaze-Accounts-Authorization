@@ -1,5 +1,5 @@
 {
-  "name": "ablaze-accounts-next",
+  "name": "ablaze-accounts-authorization",
   "version": "0.1.0",
   "license": "UNLICENSED",
   "private": true,
@@ -12,16 +12,19 @@
     "mg:apply": "env-cmd -f .env.development prisma migrate dev --name init",
     "mg:deploy": "env-cmd -f .env.production prisma migrate deploy",
     "generate": "prisma generate",
-    "studio": "prisma studio --browser none",
+    "studio": "env-cmd -f .env.development prisma studio --browser none",
     "debug:sso": "http-server ./debug/SsoDebugger -p 7000"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.16.2",
+    "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
+    "@tailwindcss/container-queries": "^0.1.1",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -43,6 +46,7 @@
     "sharp": "^0.33.4",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "ua-parser-js": "^1.0.38",
     "vaul": "^0.9.1",
     "zod": "^3.23.8"
   },
@@ -54,6 +58,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/set-cookie-parser": "^2",
+    "@types/ua-parser-js": "^0.7.39",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
