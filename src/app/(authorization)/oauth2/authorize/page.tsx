@@ -26,7 +26,7 @@ export default async function OAuth2AuthorizePage({ searchParams }: { searchPara
 
   if(application.type === "ablaze") return await doAcceptImplicit(user, query, application.client);
 
-  if(query.prompt !== "require"){
+  if(query.prompt !== "require" && application.type !== "native"){
     const appaccept = await getUserAcceptStatus(user.uid, query.client_id);
     if(!!appaccept) return await doAcceptImplicit(user, query, application.client);
   }
