@@ -6,7 +6,7 @@ import UAParserJS from "ua-parser-js";
 import environment from "@/environment";
 import { prisma } from "@/library/prisma";
 import { createHashWithExpire, deleteKey } from "@/library/kv";
-import { getUserSession } from "@/data/session";
+import { getUserByUid, getUserSession } from "@/data/session";
 import { withContinue } from "./utils";
 import type { $Enums } from "@prisma/client";
 
@@ -17,6 +17,7 @@ const session_expires = 60*60*3;
 const restore_expires = 60*60*24*60;
 
 type Session = {
+  id: string
   uid: string,
   name: string,
   avatar: string,
@@ -33,7 +34,7 @@ export const getSession = cache(async (autoredirect: boolean = true): Promise<Se
   // ToDo: コメントアウト削除
   //console.log(session_restore ? "[CP] RESTORED": "[CP] NOT FOUND RESTORE");
   //console.log(session_restore);
-  if(session_restore) return JSON.parse(session_restore);
+  if(session_restore && session_restore !== "none") return JSON.parse(session_restore);
 
   const sessionid = cookies().get(environment.COOKIE_SESSION_NAME)?.value;
   if(!sessionid){
@@ -62,7 +63,7 @@ export const createSession = async (uid: string) =>{
   const browser = parsedua.getBrowser();
 
   const restore_token = generateRestoreToken();
-  await prisma.restoreToken.create({
+  const restore_result = await prisma.restoreToken.create({
     data: {
       token: restore_token,
       uid: uid,
@@ -73,6 +74,7 @@ export const createSession = async (uid: string) =>{
   });
 
   const session: Session = {
+    id: restore_result.id,
     uid: uid,
     name: user.screen_name,
     avatar: user.avatar,
@@ -95,6 +97,40 @@ export const createSession = async (uid: string) =>{
   });
 
   return session;
+};
+
+export const reloadSession = async (uid: string): Promise<undefined | Session> =>{
+  const sessionid = cookies().get(environment.COOKIE_SESSION_NAME)?.value;
+  if(!sessionid) return undefined;
+
+  const session = await getUserSession(sessionid);
+  if(!session) return undefined;
+
+  const user = await getUserByUid(uid);
+  if(!user) return undefined;
+
+  const newsession: Session = {
+    id: session.id,
+    uid: user.uid,
+    name: user.screen_name,
+    avatar: user.avatar,
+    role: user.account_type
+  };
+
+  await createHashWithExpire(
+    environment.REDIS_SESSION_PREFIX,
+    sessionid,
+    environment.REDIS_SESSION_EXPIRES,
+    newsession
+  );
+
+  cookies().set(session_cookie_key, sessionid, {
+    path: "/",
+    httpOnly: true,
+    maxAge: environment.COOKIE_SESSION_EXPIRES
+  });
+
+  return newsession;
 };
 
 /* ServerAction = Writable cookies */

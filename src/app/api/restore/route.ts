@@ -15,15 +15,17 @@ export const GET = async (request: NextRequest) =>{
   const newrestore_token = generateRestoreToken();
   const newsession_id = generateSessionId();
 
+  const updateresult = await updateRestoreToken(restore_token, newrestore_token);
+  if(!updateresult) return;
+
   const newsession: UserSession = {
+    id: updateresult.id,
     uid: user.uid,
     name: user.user.screen_name,
     avatar: user.user.avatar,
     role: user.user.account_type
   };
 
-  const updateresult = await updateRestoreToken(restore_token, newrestore_token);
-  if(!updateresult) return;
   await createHashWithExpire(
     environment.REDIS_SESSION_PREFIX,
     newsession_id,

@@ -3,7 +3,10 @@ import type { NextRequest } from "next/server";
 import environment from "./environment";
 
 export const middleware = async (request: NextRequest) =>{
-  console.log("@", request.nextUrl.pathname);
+  const response = NextResponse.next();
+  response.headers.set("x-session-restore", "none");
+
+  //console.log("@", request.nextUrl.pathname);
   if(request.nextUrl.pathname.startsWith("/_next")) return;
   if(request.nextUrl.pathname.startsWith("/api")) return;
   if(request.nextUrl.pathname.startsWith("/.well-known")) return;
@@ -11,7 +14,6 @@ export const middleware = async (request: NextRequest) =>{
   if(request.nextUrl.pathname.endsWith(".jpg")) return;
   if(request.nextUrl.pathname.endsWith(".svg")) return;
 
-  const response = NextResponse.next();
   response.headers.set("x-next-request-uri", request.nextUrl.pathname);
 
   await (async () =>{
@@ -31,7 +33,7 @@ export const middleware = async (request: NextRequest) =>{
     if(!restoretoken) return console.log("# RESTORE NOT FOUND [SKIP]");
     console.log("# RESTORE FOUND [PASS]");
 
-    const resp = await fetch(`http://localhost:3000/api/restore?token=${restoretoken}`);
+    const resp = await fetch(`http://localhost:3001/api/restore?token=${restoretoken}`);
     if(!resp.ok){
       response.cookies.delete(environment.COOKIE_RESTORE_NAME);
       return console.log("# RESTORE SESSION FEILD [SKIP]");

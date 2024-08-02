@@ -2,11 +2,14 @@
 
 import { ReactNode } from "react";
 import { Provider } from "jotai";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <Provider>
-      {children}
+      <TooltipProvider>
+        {children}
+      </TooltipProvider>
     </Provider>
   );
 };

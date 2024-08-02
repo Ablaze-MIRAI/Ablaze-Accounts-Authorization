@@ -17,6 +17,7 @@ export const getRestoreToken = async (restore_token: string) =>{
   return await prisma.restoreToken.findUnique({
     where: { token: restore_token },
     select: {
+      id: true,
       updatedAt: true,
       uid: true,
       user: {
@@ -39,4 +40,10 @@ export const updateRestoreToken = async (token: string, newtoken: string) =>{
   }catch(e){
     return undefined;
   }
+};
+
+export const getUserByUid = async (uid: string) =>{
+  return await prisma.user.findUnique({
+    where: { uid: uid }
+  });
 };

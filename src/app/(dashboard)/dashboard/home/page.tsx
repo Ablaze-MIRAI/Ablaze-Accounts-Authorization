@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { DashboardContainer } from "@/components/containers/DashboardContainer";
-import { ServiceItem } from "./service";
+import { ProjectItem } from "./projects";
 import { QuicklinkItem } from "./quicklink";
 import type { Metadata } from "next";
 import FloorpLogoDark from "@/assets/logo/floorp-black.png";
@@ -31,17 +31,17 @@ export default async function DashboardPage(){
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>サービス</CardTitle>
-            <CardDescription>Ablazeが提供しているサービスやアプリケーションです</CardDescription>
+            <CardTitle>プロジェクト</CardTitle>
+            <CardDescription>Ablazeが開発・提供しているプロジェクトです</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-col-1 @xl:grid-cols-2 gap-2">
-              <ServiceItem href="https://floorp.app" src={FloorpLogoDark}>
+              <ProjectItem href="https://floorp.app" src={FloorpLogoDark}>
                 <span>Floorp ウェブブラウザー</span>
-              </ServiceItem>
-              <ServiceItem href="https://ablaze.one/projects/tuic" src={TUICBBlue}>
+              </ProjectItem>
+              <ProjectItem href="https://ablaze.one/projects/tuic" src={TUICBBlue}>
                 <span>Twitter UI Customizer</span>
-              </ServiceItem>
+              </ProjectItem>
             </div>
           </CardContent>
           <CardFooter>
