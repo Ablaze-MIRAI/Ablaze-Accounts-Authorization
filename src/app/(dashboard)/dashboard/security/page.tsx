@@ -27,6 +27,14 @@ export default async function DashboardSecurity(){
             </div>
           </SettingFooter>
         </SettingContainer>
+        <SettingContainer id="sign-method" title="ログインメソッド" description="ログインメソッドの管理を行えます">
+          <SettingContent>
+            <p className="flex items-center">
+              <span className="text-xl mx-1"><i className="ri-tools-fill"></i></span>
+              現在は提供されていません
+            </p>
+          </SettingContent>
+        </SettingContainer>
       </div>
     </DashboardContainer>
   );

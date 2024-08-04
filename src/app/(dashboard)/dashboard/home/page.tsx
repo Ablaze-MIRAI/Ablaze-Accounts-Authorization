@@ -1,9 +1,10 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { DashboardContainer } from "@/components/containers/DashboardContainer";
+import { ShowAllProjects } from "@/components/props/ShowAllProjects";
 import { ProjectItem } from "./projects";
 import { QuicklinkItem } from "./quicklink";
-import type { Metadata } from "next";
+
 import FloorpLogoDark from "@/assets/logo/floorp-black.png";
 import TUICBBlue from "@/assets/logo/TUIC_B_Blue.svg";
 
@@ -25,7 +26,7 @@ export default async function DashboardPage(){
               <QuicklinkItem path="/dashboard/profile#editpublic">公開プロフィールの編集</QuicklinkItem>
               <QuicklinkItem path="/dashboard/security/sessions">ログインセッションの管理</QuicklinkItem>
               <QuicklinkItem path="/dashboard/security/sessions">すべてのセッションからログアウト</QuicklinkItem>
-              <QuicklinkItem path="/dashboard/security">ログインメソッドの管理</QuicklinkItem>
+              <QuicklinkItem path="/dashboard/security#sign-method">ログインメソッドの管理</QuicklinkItem>
             </div>
           </CardContent>
         </Card>
@@ -45,9 +46,7 @@ export default async function DashboardPage(){
             </div>
           </CardContent>
           <CardFooter>
-            <small className="text-gray-500 w-full flex justify-end hover:underline underline-offset-2">
-              <Link href="https://ablaze.one/projects">すべてのサービス<i className="ri-external-link-line"></i></Link>
-            </small>
+            <ShowAllProjects/>
           </CardFooter>
         </Card>
       </div>

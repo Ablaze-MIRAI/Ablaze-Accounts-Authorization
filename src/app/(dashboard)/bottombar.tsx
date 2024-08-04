@@ -19,7 +19,7 @@ export const Bottombar = () =>{
 /* eslint no-unused-vars: off */
 const BottombarItem = ({ id, name, icon, path }: { id: number, icon: string, name: string, path: string }) =>{
   const pathname = usePathname();
-  const isActive = pathname === path;
+  const isActive =  pathname.startsWith(path);
 
   return (
     <Link href={path} className="flex-1" id={`bb${id}`}>

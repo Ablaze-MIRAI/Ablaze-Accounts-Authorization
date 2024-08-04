@@ -1,10 +1,13 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ShowAllProjects } from "@/components/props/ShowAllProjects";
 
 import AblazeLogoBlack from "@/assets/logo/black.svg";
+import FloorpIcon from "@/assets/logo/floorp-icon.ico";
+import TUICIconBlue from "@/assets/logo/TUIC_ICON_Blue.svg";
 
 export const Header = ({ avatar, username }: { avatar: string, username: string}) =>{
   const initial = username.charAt(0).toUpperCase();
@@ -23,12 +26,13 @@ export const Header = ({ avatar, username }: { avatar: string, username: string}
               </div>
             </PopoverTrigger>
             <PopoverContent>
-              <h2 className="text-lg">アプリケーション</h2>
-              <div>
-                <div>
-                  <div></div>
-                  <p>Floorp</p>
+              <div className="space-y-2">
+                <h2 className="text-lg font-semibold">プロジェクト</h2>
+                <div className="grid gap-2 grid-cols-3">
+                  <ProjectShortcutItems image={FloorpIcon} shortname="Floorp" link="https://floorp.app/"/>
+                  <ProjectShortcutItems image={TUICIconBlue} shortname="TUIC" link="https://ablaze.one/projects/tuic"/>
                 </div>
+                <ShowAllProjects/>
               </div>
             </PopoverContent>
           </Popover>
@@ -53,3 +57,15 @@ export const Header = ({ avatar, username }: { avatar: string, username: string}
     </header>
   );
 };
+
+const ProjectShortcutItems = ({ image, shortname, link }: { image: StaticImageData, shortname: string, link: string }) =>{
+  return (
+    <Link href={link}>
+      <div className="mx-auto text-center w-14">
+        <Image src={image} alt={`${shortname} icon`} className="w-full"/>
+        <small>{shortname}</small>
+      </div>
+    </Link>
+  );
+};
+

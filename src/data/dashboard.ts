@@ -51,3 +51,12 @@ export const deleteAllSessionDto = async (uid: string, nowsession: string) =>{
     }
   });
 };
+
+export const deleteSessionDto = async (uid: string, sessionid: string) =>{
+  return await prisma.restoreToken.delete({
+    where: {
+      uid: uid,
+      id: sessionid
+    }
+  });
+};

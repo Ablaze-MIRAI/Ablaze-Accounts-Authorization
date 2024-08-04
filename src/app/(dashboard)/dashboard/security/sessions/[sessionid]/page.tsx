@@ -3,8 +3,8 @@ import { getSession } from "@/library/session";
 import { getSessionInfoById } from "@/data/dashboard";
 import { BCItem, DashboardContainer } from "@/components/containers/DashboardContainer";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { DeleteSession } from "./controll";
 
 const findIcon = (name: string) =>{
   const lcname = name.toLowerCase();
@@ -48,7 +48,9 @@ export default async function SecuritySessionsDetails({ params }: { params: { se
       </>
     )}>
       <div className="space-y-6">
-        <Button variant="destructive">このセッションを削除</Button>
+        {session.id !== sessioninfo.id && (
+          <DeleteSession sessionid={sessioninfo.id}/>
+        )}
         <div className="space-y-2 flex flex-col items-start">
           <Tooltip>
             <TooltipTrigger>
@@ -64,7 +66,7 @@ export default async function SecuritySessionsDetails({ params }: { params: { se
           <Tooltip>
             <TooltipTrigger>
               <p className="text-xl">
-                <span className="mr-1"><i className="ri-global-line"></i></span>
+                <span className="mr-1"><i className="ri-window-2-line"></i></span>
                 {sessioninfo.browser}
               </p>
             </TooltipTrigger>

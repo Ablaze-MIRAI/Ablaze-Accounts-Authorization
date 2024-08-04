@@ -33,7 +33,7 @@ export const middleware = async (request: NextRequest) =>{
     if(!restoretoken) return console.log("# RESTORE NOT FOUND [SKIP]");
     console.log("# RESTORE FOUND [PASS]");
 
-    const resp = await fetch(`http://localhost:3001/api/restore?token=${restoretoken}`);
+    const resp = await fetch(`${request.nextUrl.origin}/api/restore?token=${restoretoken}`);
     if(!resp.ok){
       response.cookies.delete(environment.COOKIE_RESTORE_NAME);
       return console.log("# RESTORE SESSION FEILD [SKIP]");
