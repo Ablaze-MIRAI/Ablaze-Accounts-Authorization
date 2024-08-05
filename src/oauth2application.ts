@@ -35,7 +35,7 @@ const applications: ApplicationsType = {
     type: "ablaze",
     client: "PUBLIC",
     scope: "user",
-    callback: ["https://forum.mirairo.dev/oauth2/callback", "https://forum.ablaze.one/oauth2/callback", "http://localhost:5173/oauth2/callback"]
+    callback: ["https://forum.mirairo.dev/oauth2/callback", "https://forum.ablaze.one/oauth2/callback", "http://localhost:3000/oauth2/callback"]
   }
 };
 
