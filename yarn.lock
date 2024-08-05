@@ -1827,6 +1827,7 @@ __metadata:
     jsonwebtoken: "npm:^9.0.2"
     lucide-react: "npm:^0.400.0"
     next: "npm:14.2.4"
+    next-nprogress-bar: "npm:^2.3.13"
     nodemailer: "npm:^6.9.14"
     postcss: "npm:^8"
     prisma: "npm:^5.16.2"
@@ -5144,6 +5145,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"next-nprogress-bar@npm:^2.3.13":
+  version: 2.3.13
+  resolution: "next-nprogress-bar@npm:2.3.13"
+  dependencies:
+    nprogress: "npm:^0.2.0"
+  checksum: 10c0/c72362a28afd25d418dd55a4be4e5c0567a819d38d08fb1acd423ed48882c3bf5c3f6d3f53ba6dabf37f6ffd7852cd7f3f6761ddd0d14bef8dca7425ec92fe6e
+  languageName: node
+  linkType: hard
+
 "next@npm:14.2.4":
   version: 14.2.4
   resolution: "next@npm:14.2.4"
@@ -5324,6 +5334,13 @@ __metadata:
     gauge: "npm:^3.0.0"
     set-blocking: "npm:^2.0.0"
   checksum: 10c0/489ba519031013001135c463406f55491a17fc7da295c18a04937fe3a4d523fd65e88dd418a28b967ab743d913fdeba1e29838ce0ad8c75557057c481f7d49fa
+  languageName: node
+  linkType: hard
+
+"nprogress@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "nprogress@npm:0.2.0"
+  checksum: 10c0/eab9a923a1ad1eed71a455ecfbc358442dd9bcd71b9fa3fa1c67eddf5159360b182c218f76fca320c97541a1b45e19ced04e6dcb044a662244c5419f8ae9e821
   languageName: node
   linkType: hard
 
