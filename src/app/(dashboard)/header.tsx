@@ -30,7 +30,7 @@ export const Header = ({ avatar, username }: { avatar: string, username: string}
                 <h2 className="text-lg font-semibold">プロジェクト</h2>
                 <div className="grid gap-2 grid-cols-3">
                   <ProjectShortcutItems image={FloorpIcon} shortname="Floorp" link="https://floorp.app/"/>
-                  <ProjectShortcutItems image={TUICIconBlue} shortname="TUIC" link="https://ablaze.one/projects/tuic"/>
+                  <ProjectShortcutItems image={TUICIconBlue} shortname="TUIC" fullname="Twitter UI Customizer" link="https://ablaze.one/projects/tuic"/>
                 </div>
                 <ShowAllProjects/>
               </div>
@@ -58,12 +58,16 @@ export const Header = ({ avatar, username }: { avatar: string, username: string}
   );
 };
 
-const ProjectShortcutItems = ({ image, shortname, link }: { image: StaticImageData, shortname: string, link: string }) =>{
+const ProjectShortcutItems = ({ image, shortname, fullname, link }: { image: StaticImageData, shortname: string, fullname?: string, link: string }) =>{
   return (
     <Link href={link}>
       <div className="mx-auto text-center w-14">
         <Image src={image} alt={`${shortname} icon`} className="w-full"/>
-        <small>{shortname}</small>
+        <small>
+          {!fullname?shortname:(
+            <dfn title={fullname}>{shortname}</dfn>
+          )}
+        </small>
       </div>
     </Link>
   );
