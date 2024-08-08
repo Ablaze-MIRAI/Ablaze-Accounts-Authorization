@@ -7,6 +7,7 @@
     "christian-kohler.npm-intellisense",
     "prisma.prisma",
     "mhutchie.git-graph",
-    "gruntfuggly.todo-tree"
+    "gruntfuggly.todo-tree",
+    "humao.rest-client"
   ]
 }
