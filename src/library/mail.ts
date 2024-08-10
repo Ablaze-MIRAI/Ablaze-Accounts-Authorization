@@ -1,5 +1,5 @@
 import { mailer } from "./nodemailer";
-import environment form "@/environment"
+import environment from "@/environment"
 
 type EmailContent = {
   to: string,
