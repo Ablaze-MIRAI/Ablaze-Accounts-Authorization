@@ -5,6 +5,7 @@ import environment from "./environment";
 export const middleware = async (request: NextRequest) =>{
   const response = NextResponse.next();
   response.headers.set("x-session-restore", "none");
+  response.headers.set("x-next-request-uri", request.nextUrl.pathname);
 
   //console.log("@", request.nextUrl.pathname);
   if(request.nextUrl.pathname.startsWith("/_next")) return;
@@ -13,8 +14,6 @@ export const middleware = async (request: NextRequest) =>{
   if(request.nextUrl.pathname.endsWith(".png")) return;
   if(request.nextUrl.pathname.endsWith(".jpg")) return;
   if(request.nextUrl.pathname.endsWith(".svg")) return;
-
-  response.headers.set("x-next-request-uri", request.nextUrl.pathname);
 
   await (async () =>{
     // ToDo: ログ削除

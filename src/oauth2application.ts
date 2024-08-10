@@ -16,13 +16,6 @@ const applications: ApplicationsType = {
     scope: "user",
     callback: ["http://localhost:7000/"]
   },
-  "one.ablaze.myaccount": {
-    name: "Ablaze Accounts Dashboard",
-    type: "ablaze",
-    client: "PUBLIC",
-    scope: "user",
-    callback: ["https://myaccount.ablaze.one/oauth2/callback", "http://localhost:3000/"]
-  },
   "app.floorp.native": {
     name: "Floorp Web Browser",
     type: "native",
@@ -32,7 +25,7 @@ const applications: ApplicationsType = {
   },
   "one.ablaze.forum": {
     name: "Ablaze 仮設フォーラム",
-    type: "ablaze",
+    type: "1stparty",
     client: "PUBLIC",
     scope: "user",
     callback: ["https://forum.mirairo.dev/oauth2/callback", "https://forum.ablaze.one/oauth2/callback", "http://localhost:3000/oauth2/callback"]
