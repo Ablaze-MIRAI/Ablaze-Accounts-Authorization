@@ -44,48 +44,45 @@ export default async function ContentLayout({ children }: Readonly<{ children: R
           <div className="ml-10 lg:mr-10 max-lg:mt-5 flex flex-col">
             <h3 className="text-slate-600 font-bold">About</h3>
             <Button variant="link" className="justify-start">
-              <Link href="">Ablaze Website</Link>
+              <Link href="https://ablaze.one">Ablaze Website</Link>
             </Button>
             <Button variant="link" className="justify-start">
-              <Link href="">Ablaze Support</Link>
+              <Link href="https://support.ablaze.one">Ablaze Support</Link>
             </Button>
             <Button variant="link" className="justify-start">
-              <Link href="">Ablaze Docs</Link>
+              <Link href="https://docs.ablaze.one">Ablaze Docs</Link>
             </Button>
             <Button variant="link" className="justify-start">
-              <Link href="">Ablaze Status</Link>
+              <Link href="https://status.ablaze.one">Ablaze Status</Link>
             </Button>
           </div>
           <div className="ml-10 lg:mr-10 max-lg:mt-5 flex flex-col">
             <h3 className="text-slate-600 font-bold">Services</h3>
             <Button variant="link" className="justify-start">
-              <Link href="">Floorp Web Browser</Link>
+              <Link href="https://floorp.app">Floorp Web Browser</Link>
             </Button>
             <Button variant="link" className="justify-start">
-              <Link href="">Twitter UI Customizer</Link>
-            </Button>
-            <Button variant="link" className="justify-start">
-              <Link href="">Mikanski (Misskey hosted by Ablaze)</Link>
+              <Link href="https://ablaze.one/projects/tuic">Twitter UI Customizer</Link>
             </Button>
           </div>
           <div className="ml-10 lg:mr-10 max-lg:mt-5 flex flex-col">
             <h3 className="text-slate-600 font-bold">Media</h3>
             <Button variant="link" className="justify-start">
-              <Link href="">GitHub</Link>
+              <Link href="https://github.com/Ablaze-MIRAI">GitHub</Link>
             </Button>
             <Button variant="link" className="justify-start">
-              <Link href="">X (Twitter)</Link>
+              <Link href="https://x.com/Ablaze_MIRAI">X (Twitter)</Link>
             </Button>
             <Button variant="link" className="justify-start">
-              <Link href="">Misskey</Link>
+              <Link href="https://misskey.io/@ablaze">Misskey (ActivityPub)</Link>
             </Button>
             <Button variant="link" className="justify-start">
-              <Link href="">Discord Public Server</Link>
+              <Link href="https://aka.ablaze.one/discord">Discord Public Server</Link>
             </Button>
           </div>
         </div>
         <div className="text-center pt-10">
-          <small className="text-slate-600 font-semibold">&copy; 2024 Ablaze, Created by <a href="https://github.com/code-raisan">Raisan</a>.</small>
+          <small className="text-slate-600 font-semibold">&copy; 2024 Ablaze, Created by <a href="https://github.com/code-raisan" className="underline">Raisan</a>.</small>
         </div>
       </footer>
     </>

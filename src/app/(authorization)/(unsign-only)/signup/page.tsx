@@ -7,7 +7,7 @@ import { SignTitle } from "@/components/props/SignTitle";
 import { Separate } from "@/components/props/Separate";
 import { withContinueQuery } from "@/library/utils";
 import { SignMethods } from "../signmethods";
-import { CanaryAlert } from "../canary-alert";
+import { CanaryAlert } from "../beta-alert";
 
 export default function SignupPage(){
   const query = useSearchParams();
