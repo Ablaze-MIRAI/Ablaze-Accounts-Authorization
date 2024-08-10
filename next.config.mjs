@@ -10,7 +10,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "source.boringavatars.com",
+        hostname: "prettyavatars.com",
         port: "",
         pathname: "**",
       },

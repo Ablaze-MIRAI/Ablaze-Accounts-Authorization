@@ -9,10 +9,9 @@ export const checkExistsUser = async (email: string): Promise<boolean> =>{
   return isExist;
 };
 
-// TODO: 新しい配信先へ変更
 export const createUserWithEmail = async (email: string, hashed_password: string) =>{
   const name = email.split("@")[0];
-  const avatar = `https://source.boringavatars.com/beam/128/${name}?square`;
+  const avatar = `https://prettyavatars.com/api/beam/128/${name}?square`;
 
   return await prisma.user.create({
     data: {
