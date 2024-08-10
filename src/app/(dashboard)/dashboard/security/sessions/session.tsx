@@ -28,6 +28,7 @@ export const ActiveSessions = async () =>{
           const icon = findIcon(v.device ?? "none");
           const device = v.device ?? "Unknown";
           const browser = v.browser ?? "Unknown";
+
           return (
             <SessionItem
               key={k}

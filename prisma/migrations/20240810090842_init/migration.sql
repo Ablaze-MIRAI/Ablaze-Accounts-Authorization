@@ -21,6 +21,9 @@ CREATE TABLE "RestoreToken" (
     "token" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "ip" TEXT,
+    "device" TEXT,
+    "browser" TEXT,
     "uid" TEXT NOT NULL,
 
     CONSTRAINT "RestoreToken_pkey" PRIMARY KEY ("id")
@@ -31,9 +34,21 @@ CREATE TABLE "IdpEmail" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "nopassword" BOOLEAN NOT NULL DEFAULT false,
     "uid" TEXT NOT NULL,
 
     CONSTRAINT "IdpEmail_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "IdpGitHub" (
+    "id" TEXT NOT NULL,
+    "githubid" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
+    "userlogin" TEXT NOT NULL,
+    "uid" TEXT NOT NULL,
+
+    CONSTRAINT "IdpGitHub_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -71,6 +86,12 @@ CREATE UNIQUE INDEX "IdpEmail_email_key" ON "IdpEmail"("email");
 CREATE UNIQUE INDEX "IdpEmail_uid_key" ON "IdpEmail"("uid");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "IdpGitHub_githubid_key" ON "IdpGitHub"("githubid");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "IdpGitHub_uid_key" ON "IdpGitHub"("uid");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "RefreshToken_token_key" ON "RefreshToken"("token");
 
 -- AddForeignKey
@@ -78,6 +99,9 @@ ALTER TABLE "RestoreToken" ADD CONSTRAINT "RestoreToken_uid_fkey" FOREIGN KEY ("
 
 -- AddForeignKey
 ALTER TABLE "IdpEmail" ADD CONSTRAINT "IdpEmail_uid_fkey" FOREIGN KEY ("uid") REFERENCES "User"("uid") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "IdpGitHub" ADD CONSTRAINT "IdpGitHub_uid_fkey" FOREIGN KEY ("uid") REFERENCES "User"("uid") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "AcceptApp" ADD CONSTRAINT "AcceptApp_uid_fkey" FOREIGN KEY ("uid") REFERENCES "User"("uid") ON DELETE CASCADE ON UPDATE CASCADE;

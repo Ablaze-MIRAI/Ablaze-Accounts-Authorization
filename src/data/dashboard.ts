@@ -29,11 +29,34 @@ export const getSessionInfoById = async (uid: string, sessionid: string) =>{
   return await prisma.restoreToken.findUnique({
     where: { uid: uid, id: sessionid },
     select: {
+      id: true,
       createdAt: true,
       updatedAt: true,
       ip: true,
       device: true,
       browser: true
+    }
+  });
+};
+
+export const deleteAllSessionDto = async (uid: string, nowsession: string) =>{
+  return await prisma.restoreToken.deleteMany({
+    where: {
+      AND: {
+        uid: uid,
+        id: {
+          not: nowsession
+        }
+      }
+    }
+  });
+};
+
+export const deleteSessionDto = async (uid: string, sessionid: string) =>{
+  return await prisma.restoreToken.delete({
+    where: {
+      uid: uid,
+      id: sessionid
     }
   });
 };

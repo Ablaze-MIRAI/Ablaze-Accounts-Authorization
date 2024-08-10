@@ -3,16 +3,17 @@ import type { NextRequest } from "next/server";
 import environment from "./environment";
 
 export const middleware = async (request: NextRequest) =>{
-  console.log("@", request.nextUrl.pathname);
+  const response = NextResponse.next();
+  response.headers.set("x-session-restore", "none");
+  response.headers.set("x-next-request-uri", request.nextUrl.pathname);
+
+  //console.log("@", request.nextUrl.pathname);
   if(request.nextUrl.pathname.startsWith("/_next")) return;
   if(request.nextUrl.pathname.startsWith("/api")) return;
   if(request.nextUrl.pathname.startsWith("/.well-known")) return;
   if(request.nextUrl.pathname.endsWith(".png")) return;
   if(request.nextUrl.pathname.endsWith(".jpg")) return;
   if(request.nextUrl.pathname.endsWith(".svg")) return;
-
-  const response = NextResponse.next();
-  response.headers.set("x-next-request-uri", request.nextUrl.pathname);
 
   await (async () =>{
     // ToDo: ログ削除

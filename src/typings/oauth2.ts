@@ -2,7 +2,7 @@ import { $Enums } from "@prisma/client";
 
 export type ApplicationType = {
   name: string,
-  type: "ablaze" | "normal" | "native",
+  type: "ablaze" | "normal" | "native" | "1stparty",
   client: "PUBLIC",
   scope: string,
   callback: string[]
@@ -10,7 +10,7 @@ export type ApplicationType = {
 
 export type ApplicationConfidentialType = {
   name: string,
-  type: "ablaze" | "normal" | "native",
+  type: "ablaze" | "normal" | "native" | "1stparty",
   client: "CONFIDENTIAL",
   client_secret: string,
   scope: string,

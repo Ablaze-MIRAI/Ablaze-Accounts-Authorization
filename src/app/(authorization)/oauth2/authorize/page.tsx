@@ -16,22 +16,22 @@ import type { OAuth2Query } from "@/typings/oauth2";
 
 export default async function OAuth2AuthorizePage({ searchParams }: { searchParams: Partial<OAuth2Query> }){
   const query = validateOAuth2Query(searchParams);
-  if(!query) return (<BadRequest/>);
+  if(!query) return (<BadRequest msg="valid"/>);
 
   const application = validateOAuth2Application(query.client_id, query.redirect_uri);
-  if(!application) return (<BadRequest/>);
+  if(!application) return (<BadRequest msg="app"/>);
 
   const user = await getSession();
-  if(!user) return (<BadRequest/>);
+  if(!user) return (<BadRequest msg="session"/>);
 
   if(application.type === "ablaze") return await doAcceptImplicit(user, query, application.client);
 
-  if(query.prompt !== "require" || application.type === "native"){
+  if(query.prompt !== "require" && application.type !== "native"){
     const appaccept = await getUserAcceptStatus(user.uid, query.client_id);
     if(!!appaccept) return await doAcceptImplicit(user, query, application.client);
   }
 
-  if(query.response_mode === "web_message") return (<BadRequest/>);
+  if(query.response_mode === "web_message") return (<BadRequest msg="web_message"/>);
 
   // ToDo: ログアウトにローディングをつける
   return (

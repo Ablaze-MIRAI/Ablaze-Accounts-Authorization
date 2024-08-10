@@ -1,9 +1,10 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { DashboardContainer } from "@/components/containers/DashboardContainer";
-import { ServiceItem } from "./service";
+import { ShowAllProjects } from "@/components/props/ShowAllProjects";
+import { ProjectItem } from "./projects";
 import { QuicklinkItem } from "./quicklink";
-import type { Metadata } from "next";
+
 import FloorpLogoDark from "@/assets/logo/floorp-black.png";
 import TUICBBlue from "@/assets/logo/TUIC_B_Blue.svg";
 
@@ -25,29 +26,27 @@ export default async function DashboardPage(){
               <QuicklinkItem path="/dashboard/profile#editpublic">公開プロフィールの編集</QuicklinkItem>
               <QuicklinkItem path="/dashboard/security/sessions">ログインセッションの管理</QuicklinkItem>
               <QuicklinkItem path="/dashboard/security/sessions">すべてのセッションからログアウト</QuicklinkItem>
-              <QuicklinkItem path="/dashboard/security">ログインメソッドの管理</QuicklinkItem>
+              <QuicklinkItem path="/dashboard/security#sign-method">ログインメソッドの管理</QuicklinkItem>
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>サービス</CardTitle>
-            <CardDescription>Ablazeが提供しているサービスやアプリケーションです</CardDescription>
+            <CardTitle>プロジェクト</CardTitle>
+            <CardDescription>Ablazeが開発・提供しているプロジェクトです</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-col-1 @xl:grid-cols-2 gap-2">
-              <ServiceItem href="https://floorp.app" src={FloorpLogoDark}>
+              <ProjectItem href="https://floorp.app" src={FloorpLogoDark}>
                 <span>Floorp ウェブブラウザー</span>
-              </ServiceItem>
-              <ServiceItem href="https://ablaze.one/projects/tuic" src={TUICBBlue}>
+              </ProjectItem>
+              <ProjectItem href="https://ablaze.one/projects/tuic" src={TUICBBlue}>
                 <span>Twitter UI Customizer</span>
-              </ServiceItem>
+              </ProjectItem>
             </div>
           </CardContent>
           <CardFooter>
-            <small className="text-gray-500 w-full flex justify-end hover:underline underline-offset-2">
-              <Link href="https://ablaze.one/projects">すべてのサービス<i className="ri-external-link-line"></i></Link>
-            </small>
+            <ShowAllProjects/>
           </CardFooter>
         </Card>
       </div>
