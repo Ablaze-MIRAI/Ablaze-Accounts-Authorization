@@ -1,4 +1,5 @@
 import { mailer } from "./nodemailer";
+import environment form "@/environment"
 
 type EmailContent = {
   to: string,
@@ -9,7 +10,7 @@ type EmailContent = {
 export const SendEmail = async ({ to, subject, html, priority }: EmailContent): Promise<void> =>{
   mailer.sendMail({
     to: to,
-    from: "Ablaze Accounts <noreply@mirairo.dev>",
+    from: `Ablaze Accounts <${environment.SMTP_FROM}>`,
     subject: subject,
     html: html,
     priority: priority
