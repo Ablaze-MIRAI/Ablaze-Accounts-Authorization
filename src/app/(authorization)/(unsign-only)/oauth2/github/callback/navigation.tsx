@@ -3,14 +3,24 @@
 import { Button } from "@/components/ui/button";
 import { GitHubUser } from "./schema";
 import { connectAccount, createAccount, createSessionBySilentAction } from "./actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Loader } from "@/components/props/Loader";
 
 export const CreateNavigation = ({ github }: { github: GitHubUser }) =>{
+  const [loading, setLoad] = useState(false);
+
   const onClickCreate = async () =>{
+    setLoad(true);
     await createAccount(github);
+    setLoad(false);
   };
 
-  return (<Button variant="default" className="w-full" onClick={onClickCreate}>作成する</Button>);
+  return (
+    <Button variant="default" className="w-full" onClick={onClickCreate} disabled={loading}>
+      <Loader loading={loading}/>
+      作成する
+    </Button>
+  );
 };
 
 export const ConnectNavigation = ({ github }: { github: GitHubUser }) =>{
