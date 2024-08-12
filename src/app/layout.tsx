@@ -15,7 +15,21 @@ const mplus2 = M_PLUS_2({
 
 export const metadata: Metadata = {
   title: "Ablaze Accounts - すべてのAblazeサービスをこれひとつで",
-  description: "これひとつですべてのAblazeサービスが利用できるアカウントサービスです",
+  description: "すべてのAblazeサービスが利用できるアカウントサービスです",
+  openGraph: {
+    title: "Ablaze Accounts",
+    description: "すべてのAblazeアプリをこれひとつで",
+    type: "website",
+    url: "https://accounts.ablaze.one",
+    images: "https://cdn.ablaze.one/ogp/ablazeaccounts.png",
+    siteName: "Ablaze Accounts"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ablaze Accounts",
+    description: "すべてのAblazeアプリをこれひとつで",
+    images: "https://cdn.ablaze.one/ogp/ablazeaccounts.png"
+  }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>){
