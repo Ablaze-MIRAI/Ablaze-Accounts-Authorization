@@ -6,7 +6,7 @@ import { generatePasswordPlaceFolder } from "@/library/keygenerator";
 import { createSession } from "@/library/session";
 import { redirect } from "next/navigation";
 
-export const createAccount = async (github: { id: string, name: string, login: string, email: string, avatar_url: string }) =>{
+export const createAccount = async (github: { id: string, name: string, login: string, email: string, notification_email: string, avatar_url: string }) =>{
   const hashed_password = hashSync(generatePasswordPlaceFolder(), 15);
 
   const _user = await prisma.user.create({
@@ -16,7 +16,7 @@ export const createAccount = async (github: { id: string, name: string, login: s
       avatar: github.avatar_url,
       idp_email: {
         create: {
-          email: github.email,
+          email: github.notification_email,
           password: hashed_password,
           nopassword: true
         }

@@ -13,5 +13,5 @@ export const startAuthorize = () =>{
     maxAge: 60*10,
     path: "/"
   });
-  redirect(`${GITHUB_AUTHORIZE_URI}?client_id=${environment.GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(environment.GITHUB_REDIRECT_URI)}&state=${state}`);
+  redirect(`${GITHUB_AUTHORIZE_URI}?client_id=${environment.GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(environment.GITHUB_REDIRECT_URI)}&state=${state}&scope=${encodeURIComponent("user user:email")}`);
 };

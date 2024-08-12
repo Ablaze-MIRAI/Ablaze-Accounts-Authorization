@@ -88,7 +88,7 @@ export default async function GitHubOAuth2Callback({ searchParams }: GitHubOAuth
     return (<CreateSessionBySilent uid={githubuser.user.uid}/>);
   }
 
-  const emailuser = await getUserByEmail(user.email);
+  const emailuser = await getUserByEmail(user.notification_email);
   if(emailuser){
     return (<ConnectAccount email={emailuser.user} github={user}/>);
   }
