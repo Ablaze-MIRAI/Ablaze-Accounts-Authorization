@@ -1,4 +1,5 @@
 import { prisma } from "@/library/prisma";
+import { randomBytes } from "crypto";
 
 export const checkExistsUser = async (email: string): Promise<boolean> =>{
   const isExist = !!await prisma.idpEmail.findUnique({
@@ -10,12 +11,12 @@ export const checkExistsUser = async (email: string): Promise<boolean> =>{
 };
 
 export const createUserWithEmail = async (email: string, hashed_password: string) =>{
-  const name = email.split("@")[0];
-  const avatar = `https://prettyavatars.com/api/beam/128/${name}?square`;
+  const iconname = randomBytes(16).toString("hex");
+  const avatar = `https://prettyavatars.com/api/beam/128/${iconname}?square`;
 
   return await prisma.user.create({
     data: {
-      screen_name: name,
+      screen_name: "ユーザー",
       avatar: avatar,
       idp_email: {
         create: {
