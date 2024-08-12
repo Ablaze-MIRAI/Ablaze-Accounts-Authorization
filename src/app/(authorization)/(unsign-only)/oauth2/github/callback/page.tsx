@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import environment from "@/environment";
 import { SignTitle } from "@/components/props/SignTitle";
 import { BadRequest } from "@/components/modules/badrequest";
-import { getGitHubUser, getToken, getUserByEmail, getUserByGitHub } from "@/data/githuboauth2";
+import { getGitHubEmail, getGitHubUser, getToken, getUserByEmail, getUserByGitHub } from "@/data/githuboauth2";
 import { ConnectNavigation, CreateNavigation, CreateSessionBySilent } from "./navigation";
 import { GitHubUser } from "./schema";
 
@@ -83,12 +83,18 @@ export default async function GitHubOAuth2Callback({ searchParams }: GitHubOAuth
   const user = await getGitHubUser(token.access_token);
   if(!user) return (<ErrorResponse/>);
 
+  const useremail = await getGitHubEmail(token.access_token);
+  if(!useremail) return (<ErrorResponse/>);
+
+  user.email = useremail.email;
+  user.notification_email = useremail.email;
+
   const githubuser = await getUserByGitHub(String(user.id));
   if(githubuser){
     return (<CreateSessionBySilent uid={githubuser.user.uid}/>);
   }
 
-  const emailuser = await getUserByEmail(user.email);
+  const emailuser = await getUserByEmail(user.notification_email);
   if(emailuser){
     return (<ConnectAccount email={emailuser.user} github={user}/>);
   }

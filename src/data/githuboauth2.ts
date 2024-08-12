@@ -3,6 +3,7 @@ import { prisma } from "@/library/prisma";
 
 const GITHUB_TOKEN_ENDPOINT = "https://github.com/login/oauth/access_token";
 const GITHUB_API_USER = "https://api.github.com/user";
+const GITHUB_API_EMAIL = "https://api.github.com/user/emails";
 
 type OAuth2TokenResponse = {
   access_token: string,
@@ -47,6 +48,23 @@ export const getGitHubUser = async (token: string) =>{
   const user = await response.json();
 
   return user;
+};
+
+export const getGitHubEmail = async (token: string) =>{
+  const response = await fetch(GITHUB_API_EMAIL, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
+
+  if(!response.ok) return undefined;
+
+  const email: Array<{ primary: boolean, email: string }> = await response.json();
+
+  const pemail = email.filter(v => v.primary);
+
+  return pemail[0];
 };
 
 export const getUserByGitHub = async (github_uid: string) =>{

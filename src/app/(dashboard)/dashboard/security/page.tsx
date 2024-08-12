@@ -31,7 +31,7 @@ export default async function DashboardSecurity(){
           <SettingContent>
             <p className="flex items-center">
               <span className="text-xl mx-1"><i className="ri-tools-fill"></i></span>
-              現在は提供されていません
+              現在は提供されていません (パスワード変更を含む)
             </p>
           </SettingContent>
         </SettingContainer>
