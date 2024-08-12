@@ -39,4 +39,7 @@ export default {
   OIDC_JWS_PUBLIC_KEY_PATH: process.env.OIDC_JWS_PUBLIC_KEY_PATH ?? "",
   OIDC_JWT_SUBJECT_PREFIX: "uid.v1",
   OIDC_JWT_ISSUER: "one.ablaze.accounts.v1",
+
+  // NextJS
+  HEADER_NEXT_REQUEST_URI: "x-next-request-uri"
 };

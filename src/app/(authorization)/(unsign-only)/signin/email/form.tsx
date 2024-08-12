@@ -20,6 +20,7 @@ import { Loader } from "@/components/props/Loader";
 import { onSubmitAction } from "./actions";
 import { EmailSigninSchema } from "./schema";
 import { withContinue, withContinueQuery } from "@/library/utils";
+import { SafetyURI } from "@/library/safety";
 
 export const SigninEmailForm = () =>{
   const router = useRouter();
@@ -47,7 +48,7 @@ export const SigninEmailForm = () =>{
         });
       }
 
-      return router.push(continue_uri?continue_uri:"/dashboard");
+      return router.push(continue_uri?SafetyURI(continue_uri):"/dashboard");
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch(e: any){
