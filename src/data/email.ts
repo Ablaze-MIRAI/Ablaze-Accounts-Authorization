@@ -15,7 +15,7 @@ export const createUserWithEmail = async (email: string, hashed_password: string
 
   return await prisma.user.create({
     data: {
-      screen_name: name,
+      screen_name: "ユーザー",
       avatar: avatar,
       idp_email: {
         create: {
