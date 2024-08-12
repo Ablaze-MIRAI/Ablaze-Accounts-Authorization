@@ -81,6 +81,8 @@ export default async function GitHubOAuth2Callback({ searchParams }: GitHubOAuth
   if(token.error) return (<ErrorResponse/>);
 
   const user = await getGitHubUser(token.access_token);
+  console.log(user);
+  user.email = user.notification_email;
   if(!user) return (<ErrorResponse/>);
 
   const githubuser = await getUserByGitHub(String(user.id));
