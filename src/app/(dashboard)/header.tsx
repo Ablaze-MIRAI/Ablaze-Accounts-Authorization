@@ -14,8 +14,9 @@ export const Header = ({ avatar, username }: { avatar: string, username: string}
 
   return (
     <header className="fixed top-0 left-0 z-30 w-full h-16 px-4 flex justify-between items-center bg-white drop-shadow-md">
-      <Link href="/dashboard" className="h-1/2 md:px-5">
+      <Link href="/dashboard" className="h-1/2 md:px-5 flex items-center">
         <Image width={165} height={38} src={AblazeLogoBlack} alt="Ablaze Logo" className="h-full mx-auto" priority/>
+        <span className="text-xl font-semibold bg-fuchsia-400 text-slate-700 rounded-sm p-1 px-2">Beta</span>
       </Link>
       <div className="flex space-x-6">
         <div className="flex-1 flex items-center">
