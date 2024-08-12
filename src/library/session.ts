@@ -28,11 +28,9 @@ const generateRestoreToken = () => randomBytes(64).toString("hex");
 
 /* ServerComponents = Readonly cookie */
 export const getSession = async (autoredirect: boolean = true): Promise<Session | undefined> =>{
-  const continue_uri = headers().get("x-next-request-uri");
+  const continue_uri = headers().get(environment.HEADER_NEXT_REQUEST_URI);
   const session_restore = headers().get("x-session-restore");
-  // ToDo: コメントアウト削除
-  //console.log(session_restore ? "[CP] RESTORED": "[CP] NOT FOUND RESTORE");
-  //console.log(session_restore);
+  console.log(continue_uri);
   if(session_restore && session_restore !== "none") return JSON.parse(session_restore);
 
   const sessionid = cookies().get(environment.COOKIE_SESSION_NAME)?.value;
