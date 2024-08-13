@@ -30,6 +30,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "env-cmd": "^10.1.0",
+    "googleapis": "^140.0.1",
     "input-otp": "^1.2.4",
     "ioredis": "^5.4.1",
     "jotai": "^2.9.0",

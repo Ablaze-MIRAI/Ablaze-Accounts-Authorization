@@ -3,12 +3,17 @@ import "server-only";
 /* eslint import/no-anonymous-default-export: off */
 export default {
   NODE_ENV: process.env.NODE_ENV,
-  ACCOUNT_DASHBOARD: "https://myaccount.mirairo.dev/",
 
-  // IdP
+  // IdP / GitHub
   GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID ?? "",
   GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET ?? "",
   GITHUB_REDIRECT_URI: process.env.GITHUB_REDIRECT_URI ?? "",
+
+  // IdP / Google
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  GOOGLE_REDIRECT_URI: process.env.GOOGLE_REDIRECT_URI,
+  GOOGLE_OAUTH2_SCOPE: "",
 
   // Cookie
   COOKIE_SESSION_NAME: "_next_session_id",
@@ -16,6 +21,7 @@ export default {
   COOKIE_RESTORE_NAME: "_next_restore_token",
   COOKIE_RESTORE_EXPIRES: 60*60*24*60, // 60 days
   COOKIE_GITHUB_STATE: "_next_github_state",
+  COOKIE_OAUTH2_STATE: "_oauth2_state",
 
   // SMTP
   SMTP_HOST: process.env.SMTP_HOST ?? "localhost",
