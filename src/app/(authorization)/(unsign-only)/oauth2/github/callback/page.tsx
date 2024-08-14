@@ -88,6 +88,7 @@ export default async function GitHubOAuth2Callback({ searchParams }: GitHubOAuth
 
   user.email = useremail.email;
   user.notification_email = useremail.email;
+  user.name = user.name ?? user.login;
 
   const githubuser = await getUserByGitHub(String(user.id));
   if(githubuser){
