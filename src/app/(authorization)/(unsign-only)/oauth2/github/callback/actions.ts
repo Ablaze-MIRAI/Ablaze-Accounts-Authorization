@@ -53,7 +53,6 @@ export const connectAccount = async (github: { id: string, name: string, login: 
 };
 
 export const createSessionBySilentAction = async (uid: string) =>{
-  console.log("###############Hello Action########################");
   await createSession(uid);
   redirect("/dashboard");
 };
