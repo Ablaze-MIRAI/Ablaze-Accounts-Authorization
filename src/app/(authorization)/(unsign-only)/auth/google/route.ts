@@ -1,9 +1,7 @@
-import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import environment from "@/environment";
-import { redirect } from "next/navigation";
 import { randomBytes } from "crypto";
 import { createGoogleOAuth2Client } from "@/library/connection/googleapis";
+import { o2google_state_cookie } from "@/store/cookie/oauth2_google";
+import { NextResponse } from "next/server";
 
 export async function GET(){
   const state = randomBytes(32).toString("hex");
@@ -14,9 +12,7 @@ export async function GET(){
     state: state
   });
 
-  cookies().set(environment.COOKIE_OAUTH2_STATE, state, {
-    maxAge: 60*10
-  });
+  o2google_state_cookie.set(state);
 
-  redirect(url);
+  return NextResponse.redirect(url);
 }

@@ -18,9 +18,9 @@ model User {
   restore_token RestoreToken[]
   idp_email   IdpEmail?
   idp_github IdpGitHub?
+  idp_google IdpGoogle?
   //idp_discord   IdpDiscord?
   accept_app AcceptApp[]
-  //oauth2_code OAuth2AuthorizationCode[]
   refresh_token RefreshToken[]
 }
 
@@ -64,6 +64,16 @@ model IdpGitHub {
   // Relationships
   user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
   uid  String @unique
+}
+
+model IdpGoogle {
+  id String @id @default(cuid())
+  googleid String @unique
+  email String @unique
+
+  // Relationships
+  user User @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  uid String @unique
 }
 
 //model IdpDiscord {
