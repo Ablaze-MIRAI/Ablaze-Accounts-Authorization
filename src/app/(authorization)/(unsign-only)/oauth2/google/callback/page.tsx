@@ -28,7 +28,7 @@ export default function OAuth2GoogleCallback(){
     })
     .then(r => r.json())
     .then(() =>{
-      router.push("/oauth2/google/init");
+      router.push("/oauth2/google/create");
     })
     .catch((error) =>{
       console.error(error);
