@@ -33,5 +33,5 @@ export const POST = async (request: NextRequest) =>{
 
   await createSession(googleuser.user.uid);
 
-  return NextResponse.redirect("/dashboard");
+  return NextResponse.json({ msg: "ok_signed" });
 };

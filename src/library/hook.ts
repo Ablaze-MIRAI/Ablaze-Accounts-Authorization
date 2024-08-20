@@ -22,3 +22,13 @@ export const useMountWS = (effect: () => Promise<void>) =>{
     setProcess(false);
   });
 };
+
+export const useProcess = (callback: () => Promise<void>) =>{
+  const setProcess = useSetAtom(ProcessingState);
+  return async () =>{
+    setProcess(true);
+    const result = await callback();
+    setProcess(false);
+    return result;
+  };
+};
