@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start --hostname 0.0.0.0",
     "lint": "next lint",
+    "check": "tsc --noEmit",
     "mg:dev": "env-cmd -f .env.development prisma db push",
     "mg:apply": "env-cmd -f .env.development prisma migrate dev --name init",
     "mg:deploy": "env-cmd -f .env.production prisma migrate deploy",

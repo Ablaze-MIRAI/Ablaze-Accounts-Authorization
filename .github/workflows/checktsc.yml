@@ -1,0 +1,26 @@
+name: TypeCheck
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  tsc:
+    runs-on: ubuntu-latest
+    steps:
+    - name: ✅ Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: 🛠 Setup NodeJS
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+
+    - name: 📚 Install dependencies
+      run: yarn install
+
+    - name: ✒ TypeCheck
+      run: yarn check
+

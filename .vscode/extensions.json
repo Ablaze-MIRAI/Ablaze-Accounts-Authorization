@@ -8,6 +8,7 @@
     "prisma.prisma",
     "mhutchie.git-graph",
     "gruntfuggly.todo-tree",
-    "humao.rest-client"
+    "humao.rest-client",
+    "github.vscode-github-actions"
   ]
 }
