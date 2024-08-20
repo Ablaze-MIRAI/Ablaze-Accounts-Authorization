@@ -3,6 +3,8 @@ import type { NextRequest } from "next/server";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import type { ApplicationConfidentialType, ApplicationType, OAuth2Query } from "@/typings/oauth2";
 
+export const Sleep = async (ms: number) => await new Promise((r) => setTimeout(r, ms));
+
 export const secondsAgo = (seconds: number) => new Date((new Date()).getTime()+seconds*1000);
 
 export const withContinue = (default_uri: string, continue_uri: string | undefined | null = undefined) =>
