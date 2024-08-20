@@ -1,5 +1,5 @@
-import "./globals.css";
 import "remixicon/fonts/remixicon.css";
+import "./globals.css";
 
 import { M_PLUS_2 } from "next/font/google";
 import type { ReactNode } from "react";
