@@ -3,7 +3,7 @@ name: TypeCheck
 on:
   pull_request:
     branches:
-      - main
+      - production
       - develop
 
 jobs:
