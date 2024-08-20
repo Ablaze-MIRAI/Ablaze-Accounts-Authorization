@@ -5,7 +5,7 @@ import { M_PLUS_2 } from "next/font/google";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner";
 import { Providers } from "@/app/providers";
 
 const mplus2 = M_PLUS_2({
