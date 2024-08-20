@@ -7,7 +7,7 @@ on:
       - develop
 
 jobs:
-  tsc:
+  typecheck:
     runs-on: ubuntu-latest
     steps:
     - name: ✅ Checkout Repository
@@ -25,5 +25,5 @@ jobs:
       run: yarn install
 
     - name: ✒ TypeCheck
-      run: yarn check
+      run: yarn build
 
