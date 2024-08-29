@@ -8,15 +8,21 @@ import { QuicklinkItem } from "./quicklink";
 import FloorpLogoDark from "@/assets/logo/floorp-black.png";
 import TUICBBlue from "@/assets/logo/TUIC_B_Blue.svg";
 import AblazeBlack from "@/assets/logo/black.svg";
+import { getSession } from "@/library/session";
+import SayHelloUser from "@/components/modules/say-hello-user";
 
 export const metadata: Metadata = {
   title: "ホーム"
 };
 
 export default async function DashboardPage(){
+  const session = await getSession();
+  if(!session) return;
+
   return (
     <DashboardContainer title="ホーム">
       <div className="space-y-8">
+        <SayHelloUser username={session.name}/>
         <Card>
           <CardHeader>
             <CardTitle>クイックリンク</CardTitle>
