@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { DashboardContainer } from "@/components/containers/DashboardContainer";
 import { ShowAllProjects } from "@/components/props/ShowAllProjects";
+import SayHelloUser from "@/components/modules/say-hello-user";
 import { ProjectItem } from "./projects";
 import { QuicklinkItem } from "./quicklink";
 
@@ -9,7 +10,6 @@ import FloorpLogoDark from "@/assets/logo/floorp-black.png";
 import TUICBBlue from "@/assets/logo/TUIC_B_Blue.svg";
 import AblazeBlack from "@/assets/logo/black.svg";
 import { getSession } from "@/library/session";
-import SayHelloUser from "@/components/modules/say-hello-user";
 
 export const metadata: Metadata = {
   title: "ホーム"
