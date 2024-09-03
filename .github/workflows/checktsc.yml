@@ -22,8 +22,8 @@ jobs:
       run: "corepack enable"
 
     - name: 📚 Install dependencies
-      run: yarn install
+      run: pnpm install
 
     - name: ✒ TypeCheck
-      run: yarn build
+      run: pnpm build
 
