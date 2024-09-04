@@ -2,7 +2,7 @@ import "remixicon/fonts/remixicon.css";
 import "./globals.css";
 
 import { M_PLUS_2 } from "next/font/google";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import type { Metadata } from "next";
 
 import { Toaster } from "@/components/ui/sonner";
