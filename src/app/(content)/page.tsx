@@ -44,7 +44,7 @@ export default async function ContentRootPage(){
         <div>{/* Introduce content */}</div>
       </section>
       <section className="min-h-[50svh] mt-24">
-        <div className="w-2/3 mx-auto">
+        <div className="w-3/4 mx-auto">
           <h1 className="text-2xl font-bold text-center mb-5">Ablaze Accountsとは</h1>
           <p className="text-center">
             Ablaze AccountsはAblazeアプリで共通使用できるアカウントサービスです。<br/>

@@ -1,15 +1,15 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AblazeLogoBlack from "@/assets/logo/black.svg";
+import AblazeAccountsShortBlack from "@/assets/logo/black-new.svg";
 
 export const AuthorizationContainer = ({ children }: Readonly<{ children: ReactNode }>) =>{
   return (
     <>
       <header className="fixed top-0 left-0 z-30 w-full h-[10svh] px-4 sm:px-16 flex justify-between items-center">
-        <div className="h-1/2">
+        <div className="h-3/4">
           <Link href="/">
-            <Image src={AblazeLogoBlack} width={100} height={200} alt="Ablaze Logo" className="h-full w-auto" priority={true}/>
+            <Image src={AblazeAccountsShortBlack} width={100} height={200} alt="Ablaze Logo" className="h-full w-auto" priority={true}/>
           </Link>
         </div>
       </header>

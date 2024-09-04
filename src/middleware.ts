@@ -16,7 +16,7 @@ export const middleware = async (request: NextRequest) =>{
   if(request.nextUrl.pathname.endsWith(".svg")) return;
 
   await (async () =>{
-    // ToDo: ログ削除
+    // TODO: ログ削除
     const sessionid = request.cookies.get(environment.COOKIE_SESSION_NAME)?.value;
     if(!!sessionid){
       response.cookies.set(environment.COOKIE_SESSION_NAME, sessionid, {
@@ -24,13 +24,13 @@ export const middleware = async (request: NextRequest) =>{
         httpOnly: true,
         maxAge: environment.COOKIE_SESSION_EXPIRES
       });
-      return console.log("# SESSION REFRESH [SKIP]");
+      return; //console.log("# SESSION REFRESH [SKIP]");
     }
-    console.log("# SESSION NOTFOUND [START]");
+    //console.log("# SESSION NOTFOUND [START]");
 
     const restoretoken = request.cookies.get(environment.COOKIE_RESTORE_NAME)?.value;
     if(!restoretoken) return console.log("# RESTORE NOT FOUND [SKIP]");
-    console.log("# RESTORE FOUND [PASS]");
+    //console.log("# RESTORE FOUND [PASS]");
 
     const resp = await fetch(`http://localhost:3000/api/restore?token=${restoretoken}`);
     if(!resp.ok){
@@ -54,7 +54,7 @@ export const middleware = async (request: NextRequest) =>{
 
     response.headers.set("x-session-restore", JSON.stringify(keys.user));
 
-    console.log("# !!!!! RESTORE DONE !!!!!");
+    //console.log("# !!!!! RESTORE DONE !!!!!");
   })();
 
   return response;
