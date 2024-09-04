@@ -3,17 +3,19 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { getSession } from "@/library/session";
-import AblazeLogoBlack from "@/assets/logo/black.svg";
+import AblazeAccountsFullBlack from "@/assets/logo/black-new-full.svg";
+import AblazeAccountsShortBlack from "@/assets/logo/black-new.svg";
+import AblazeBlack from "@/assets/logo/black.svg";
 
 export default async function ContentLayout({ children }: Readonly<{ children: ReactNode }>){
   const user = await getSession(false);
 
   return (
     <>
-      <header className="fixed top-0 left-0 z-30 w-full h-16 px-4 sm:px-16 flex justify-between items-center bg-white drop-shadow-md">
-        <Link href="/">
-          <div className="h-1/2">
-            <Image className="h-full" alt="Ablaze Logo" src={AblazeLogoBlack}/>
+      <header className="fixed top-0 left-0 z-30 w-full h-16 px-4 sm:px-12 flex justify-between items-center bg-white drop-shadow-md">
+        <Link href="/" className="h-full flex items-center">
+          <div className="h-3/4">
+            <Image className="h-full w-full" alt="Ablaze Logo" src={AblazeAccountsShortBlack}/>
           </div>
         </Link>
         <div>
@@ -38,8 +40,11 @@ export default async function ContentLayout({ children }: Readonly<{ children: R
       </main>
       <footer className="flex flex-col bg-slate-50 py-10">
         <div className="flex flex-col lg:flex-row justify-center">
-          <div className="h-1/2 max-lg:mx-auto lg:mx-10 mb-5 lg:mb-0">
-            <Image className="" alt="Ablaze Logo" src={AblazeLogoBlack}/>
+          <div className="max-lg:mx-auto lg:mx-10 mb-5 lg:mb-0">
+            <Image className="h-full w-full" alt="Ablaze Logo" src={AblazeAccountsFullBlack}/>
+          </div>
+          <div className="max-lg:mx-auto lg:mx-10 mb-5 lg:mb-0">
+            <Image className="h-full w-full" alt="Ablaze Logo" src={AblazeBlack}/>
           </div>
           <div className="ml-10 lg:mr-10 max-lg:mt-5 flex flex-col">
             <h3 className="text-slate-600 font-bold">About</h3>

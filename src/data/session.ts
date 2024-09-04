@@ -1,16 +1,22 @@
 import { prisma } from "@/library/prisma";
 import { redis } from "@/library/redis";
+import { TokenHash } from "@/library/safety";
 import type { UserSession } from "@/typings/session";
 
 const session_store_prefix = "_session";
 const session_expires = 60*60*2;
 
 export const getUserSession = async (key: string): Promise<UserSession | undefined> =>{
-  const user = await redis.hgetall(`${session_store_prefix}_${key}`);
+  const hashed_key = TokenHash(key);
+  const user = await redis.hgetall(`${session_store_prefix}_${hashed_key}`);
   if(Object.keys(user).length === 0) return undefined;
-  await redis.expire(`${session_store_prefix}_${key}`, session_expires);
+  await redis.expire(`${session_store_prefix}_${hashed_key}`, session_expires);
 
   return user as UserSession;
+};
+
+export const createSessionDTO = async () =>{
+
 };
 
 export const getRestoreToken = async (restore_token: string) =>{

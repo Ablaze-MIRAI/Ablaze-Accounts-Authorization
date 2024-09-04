@@ -4,6 +4,7 @@ import { generateRestoreToken, generateSessionId } from "@/library/keygenerator"
 import { createHashWithExpire } from "@/library/kv";
 import { getRestoreToken, updateRestoreToken } from "@/data/session";
 import type { UserSession } from "@/typings/session";
+import { TokenHash } from "@/library/safety";
 
 export const GET = async (request: NextRequest) =>{
   const restore_token = request.nextUrl.searchParams.get("token");
@@ -14,6 +15,7 @@ export const GET = async (request: NextRequest) =>{
 
   const newrestore_token = generateRestoreToken();
   const newsession_id = generateSessionId();
+  const hashed_nsid = TokenHash(newsession_id);
 
   const updateresult = await updateRestoreToken(restore_token, newrestore_token);
   if(!updateresult) return;
@@ -28,7 +30,7 @@ export const GET = async (request: NextRequest) =>{
 
   await createHashWithExpire(
     environment.REDIS_SESSION_PREFIX,
-    newsession_id,
+    hashed_nsid,
     environment.REDIS_SESSION_EXPIRES,
     newsession
   );
@@ -38,7 +40,7 @@ export const GET = async (request: NextRequest) =>{
   return response;
 
 
-
+  // TODO:消す
   /*const sessionid = request.cookies.get(environment.COOKIE_SESSION_NAME)?.value;
   if(sessionid) return NextResponse.json({ code: "R0" }, { status: 480 });
 

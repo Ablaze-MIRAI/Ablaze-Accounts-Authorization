@@ -8,6 +8,7 @@ import { createHashWithExpire, deleteKey } from "@/library/kv";
 import { getUserByUid, getUserSession } from "@/data/session";
 import { withContinue } from "./utils";
 import type { $Enums } from "@prisma/client";
+import { TokenHash } from "./safety";
 
 const session_cookie_key = "_next_session_id";
 const restore_cookie_key = "_next_restore_token";
@@ -79,7 +80,8 @@ export const createSession = async (uid: string) =>{
   };
 
   const sessionid = generateSessionId();
-  await createHashWithExpire(session_store_prefix, sessionid, session_expires, session);
+  const hashed_sid = TokenHash(sessionid);
+  await createHashWithExpire(session_store_prefix, hashed_sid, session_expires, session);
 
   cookies().set(restore_cookie_key, restore_token, {
     path: "/",
@@ -114,9 +116,11 @@ export const reloadSession = async (uid: string): Promise<undefined | Session> =
     role: user.account_type
   };
 
+  // TODO: UpdateSessionに分離
+  const hashed_sid = TokenHash(sessionid);
   await createHashWithExpire(
     environment.REDIS_SESSION_PREFIX,
-    sessionid,
+    hashed_sid,
     environment.REDIS_SESSION_EXPIRES,
     newsession
   );

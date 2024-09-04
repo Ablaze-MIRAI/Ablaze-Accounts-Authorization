@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { IssueToken } from "./issue";
 import { RefreshToken } from "./refresh";
+import { TokenState } from "./state";
 
 export const POST = async (request: NextRequest) =>{
   const form = await request.formData();
@@ -12,6 +13,8 @@ export const POST = async (request: NextRequest) =>{
     return await IssueToken(form);
   }else if(grant_type === "refresh_token"){
     return await RefreshToken(form);
+  }else if(grant_type === "token_state"){
+    return await TokenState(form);
   }else{
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
