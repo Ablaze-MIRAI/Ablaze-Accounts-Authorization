@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 
 import { Toaster } from "@/components/ui/sonner";
 import { Providers } from "@/app/providers";
+import { general } from "@/constants";
 
 const mplus2 = M_PLUS_2({
   weight: ["100", "200", "400", "500", "600", "700", "800", "900"],
@@ -14,21 +15,21 @@ const mplus2 = M_PLUS_2({
 });
 
 export const metadata: Metadata = {
-  title: "Ablaze Accounts - すべてのAblazeサービスをこれひとつで",
-  description: "すべてのAblazeサービスが利用できるアカウントサービスです",
+  title: general.APP_COMMON_TITLE,
+  description: general.APP_SHORT_DESCRIPTION,
   openGraph: {
-    title: "Ablaze Accounts",
-    description: "すべてのAblazeアプリをこれひとつで",
+    title: general.APP_NAME,
+    description: general.APP_SUBTITLE,
     type: "website",
-    url: "https://accounts.ablaze.one",
-    images: "https://cdn.ablaze.one/ogp/ablazeaccounts.png",
-    siteName: "Ablaze Accounts"
+    url: general.APP_URL,
+    images: general.OGP_IMAGE_URI,
+    siteName: general.APP_NAME
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ablaze Accounts",
-    description: "すべてのAblazeアプリをこれひとつで",
-    images: "https://cdn.ablaze.one/ogp/ablazeaccounts.png"
+    title: general.APP_NAME,
+    description: general.APP_SUBTITLE,
+    images: general.OGP_IMAGE_URI
   }
 };
 
