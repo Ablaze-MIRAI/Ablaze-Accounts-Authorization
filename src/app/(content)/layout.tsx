@@ -40,11 +40,13 @@ export default async function ContentLayout({ children }: Readonly<{ children: R
       </main>
       <footer className="flex flex-col bg-slate-50 py-10">
         <div className="flex flex-col lg:flex-row justify-center">
-          <div className="max-lg:mx-auto lg:mx-10 mb-5 lg:mb-0">
-            <Image className="h-full w-full" alt="Ablaze Logo" src={AblazeAccountsFullBlack}/>
-          </div>
-          <div className="max-lg:mx-auto lg:mx-10 mb-5 lg:mb-0">
-            <Image className="h-full w-full" alt="Ablaze Logo" src={AblazeBlack}/>
+          <div className="space-y-4 lg:w-1/2 w-full flex flex-col justify-center">
+            <div className="max-lg:mx-auto max-w-64 lg:mx-10 mb-5 lg:mb-0">
+              <Image className="h-full w-full" alt="Ablaze Logo" src={AblazeAccountsFullBlack}/>
+            </div>
+            <div className="max-lg:mx-auto max-w-44 lg:mx-10 mb-5 lg:mb-0">
+              <Image className="h-full" alt="Ablaze Logo" src={AblazeBlack}/>
+            </div>
           </div>
           <div className="ml-10 lg:mr-10 max-lg:mt-5 flex flex-col">
             <h3 className="text-slate-600 font-bold">About</h3>
