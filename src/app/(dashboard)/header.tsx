@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ShowAllProjects } from "@/components/props/ShowAllProjects";
 
 import AblazeLogoBlack from "@/assets/logo/black.svg";
-import FloorpIcon from "@/assets/logo/floorp-icon.ico";
+import FloorpIcon from "@/assets/logo/floorp-icon.svg";
 import TUICIconBlue from "@/assets/logo/TUIC_ICON_Blue.svg";
 
 export const Header = ({ avatar, username }: { avatar: string, username: string}) =>{
