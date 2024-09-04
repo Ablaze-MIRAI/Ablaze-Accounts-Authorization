@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { randomBytes } from "crypto";
+import { generateSessionId } from "@/library/keygenerator";
 import { hash } from "bcrypt";
 import { generatePinSync } from "secure-pin";
 import z from "zod";
@@ -9,12 +9,12 @@ import { EmailSignupSchema } from "./schema";
 import { SendEmail } from "@/library/mail";
 import { createHashWithExpire, deleteKey, getHash } from "@/library/kv";
 import { checkExistsUser, createUserWithEmail } from "@/data/email";
+import { TokenHash } from "@/library/safety";
 
 const hash_salt = 10;
 const email_session_expires = 60*10;
 const email_session_store_prefix = "_email";
 const email_session_cookie = "_next_email_session";
-const generateSessionId = () => randomBytes(32).toString("hex");
 
 type SchemaType = z.infer<typeof EmailSignupSchema>;
 type SubmitActionResultType = "exist" | "ok";
@@ -24,6 +24,7 @@ export const onSubmitAction = async (data: SchemaType, lang: string): Promise<Su
 
   const hashed_password = await hash(data.password, hash_salt);
   const sessionid = generateSessionId();
+  const hashed_sid = TokenHash(sessionid);
   const verifypin = generatePinSync(6);
 
   try{
@@ -37,7 +38,7 @@ export const onSubmitAction = async (data: SchemaType, lang: string): Promise<Su
     console.error(e);
   }
 
-  await createHashWithExpire(email_session_store_prefix, sessionid, email_session_expires, {
+  await createHashWithExpire(email_session_store_prefix, hashed_sid, email_session_expires, {
     email: data.email,
     hashed_password: hashed_password,
     pin: verifypin,
