@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // UI
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Loader } from "@/components/props/Loader";
 
@@ -25,7 +25,6 @@ import { SafetyURI } from "@/library/safety";
 export const SigninEmailForm = () =>{
   const router = useRouter();
   const query = useSearchParams();
-  const { toast } = useToast();
   const continue_uri = query.get("continue");
   const [submitting, setSubmit] = useState(false);
 
@@ -43,9 +42,9 @@ export const SigninEmailForm = () =>{
 
       if(result === "notexist"){
         setSubmit(false);
-        return toast({
-          title: "メールアドレスまたはパスワードが異なります"
-        });
+        toast("メールアドレスまたはパスワードが異なります");
+
+        return;
       }
 
       return router.push(continue_uri?SafetyURI(continue_uri):"/dashboard");
@@ -53,10 +52,7 @@ export const SigninEmailForm = () =>{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch(e: any){
       console.error(e);
-      toast({
-        title: "予期しないエラーが発生しました",
-        description: e.message
-      });
+      toast("予期しないエラーが発生しました", { description: e.message });
       return router.push(withContinue("/signin", continue_uri));
     }
   };

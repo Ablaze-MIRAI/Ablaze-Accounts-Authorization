@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // UI
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import { useToast } from "@/components/ui/use-toast";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
@@ -26,7 +27,6 @@ import { EmailSignupSchema, EmailSignupVerifySchema } from "./schema";
 export const SignupEmailForm = ({ setSignupState }: { setSignupState: Function }) =>{
   const query = useSearchParams();
   const router = useRouter();
-  const { toast } = useToast();
   const continue_uri = query.get("continue");
   const [ submitting, setSubmit ] = useState(false);
 
@@ -45,9 +45,7 @@ export const SignupEmailForm = ({ setSignupState }: { setSignupState: Function }
 
       if(result === "exist"){
         setSubmit(false);
-        return toast({
-          title: "このメールアドレスは既に使用されています"
-        });
+        return toast("このメールアドレスは既に使用されています");
       }
 
       if(result === "ok") return setSignupState("pin");
@@ -55,10 +53,7 @@ export const SignupEmailForm = ({ setSignupState }: { setSignupState: Function }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch(e: any){
       console.error(e);
-      toast({
-        title: "予期しないエラーが発生しました",
-        description: e.message
-      });
+      toast("予期しないエラーが発生しました", { description: e.message });
       return router.push(withContinue("/signup", continue_uri));
     }
     setSubmit(false);
@@ -113,7 +108,6 @@ export const SignupEmailForm = ({ setSignupState }: { setSignupState: Function }
 export const SignupEmailVerifyForm = ({ setSignupState }: { setSignupState: Function }) =>{
   const router = useRouter();
   const query = useSearchParams();
-  const { toast } = useToast();
   const continue_uri = query.get("continue");
   const [ submitting, setSubmit ] = useState(false);
 
@@ -131,17 +125,12 @@ export const SignupEmailVerifyForm = ({ setSignupState }: { setSignupState: Func
 
       if(result === "badrequest"){
         router.push(withContinue("/signup", continue_uri));
-        return toast({
-          title: "リクエストに失敗しました",
-          description: "有効期限切れの可能性があります。最初からやり直してください。"
-        });
+        return toast("リクエストに失敗しました", { description: "有効期限切れの可能性があります。最初からやり直してください。" });
       }
 
       if(result === "notmatch"){
         setSubmit(false);
-        return toast({
-          title: "認証コードが間違っています"
-        });
+        return toast("認証コードが間違っています");
       }
 
       if(result === "ok") return setSignupState("done");
@@ -149,10 +138,7 @@ export const SignupEmailVerifyForm = ({ setSignupState }: { setSignupState: Func
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch(e: any){
       console.error(e);
-      toast({
-        title: "予期しないエラーが発生しました",
-        description: e.message
-      });
+      toast("予期しないエラーが発生しました", { description: e.message });
       return router.push(withContinue("/signup", continue_uri));
     }
     setSubmit(false);

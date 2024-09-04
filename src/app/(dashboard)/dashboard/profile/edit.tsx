@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Loader } from "@/components/props/Loader";
 import { EditProfileSchema } from "./schema";
@@ -29,17 +29,12 @@ export const EditProfile = ({ username }: { username: string }) =>{
       const result = await saveProfileAction(data.username);
 
       setLoad(false);
-      if(result === "success") return toast({
-        title: "更新しました"
-      });
+      if(result === "success") return toast("更新しました");
 
       /* eslint @typescript-eslint/no-explicit-any: off */
     }catch(e: any){
       setLoad(false);
-      toast({
-        title: "予期しないエラーが発生しました",
-        description: e.message
-      });
+      toast("予期しないエラーが発生しました", { description: e.message });
     }
   };
 
