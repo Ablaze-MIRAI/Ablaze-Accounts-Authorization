@@ -35,5 +35,6 @@ pnpm-error.log*
 next-env.d.ts
 
 # Secret
+.env
 .env.*
 !.env.sample
