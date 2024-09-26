@@ -31,7 +31,7 @@ export const onSubmitAction = async (data: SchemaType, lang: string): Promise<Su
     SendEmail({
       to: data.email,
       subject: "Ablaze Accounts 認証コード",
-      html: `<h1>認証コード: ${verifypin}</h1>`,
+      html: `<h1>認証コード: ${verifypin}</h1><p>Ablaze Accounts 認証コードです。他人には決して教えないでください。10分で有効期限が切れます</p>`,
       priority: "high"
     });
   }catch(e){
@@ -59,11 +59,9 @@ export const onVerifyAction = async (pin: string): Promise<VerifyActionResultTyp
   const sessionid = cookies().get(email_session_cookie)?.value;
   if(!sessionid) return "badrequest";
 
-  const session = await getHash(email_session_store_prefix, sessionid);
+  const hashed_sid = TokenHash(sessionid);
+  const session = await getHash(email_session_store_prefix, hashed_sid);
   if(!session) return "badrequest";
-
-  console.log(session.pin);
-  console.log(pin);
 
   if(session.pin !== pin) return "notmatch";
   await deleteKey(email_session_store_prefix, sessionid);
