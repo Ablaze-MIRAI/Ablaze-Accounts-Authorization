@@ -7,7 +7,7 @@ on:
       - "develop"
 
 jobs:
-  typecheck:
+  buildcheck:
     runs-on: "ubuntu-latest"
     steps:
     - name: "✅ Checkout Repository"
@@ -17,32 +17,16 @@ jobs:
       uses: "actions/setup-node@v4"
       with:
         node-version: "20"
+        cache: "pnpm"
 
-    - name: "Enable Corepack"
-      run: "corepack enable"
+    - name: Enable Corepack
+      run: corepack enable
 
-    - name: "Install pnpm"
-      uses: "pnpm/action-setup@v3"
-      with:
-        version: 9.11.0
-        run_install: false
-
-    - name: "Get pnpm store directory"
-      shell: bash
-      run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-    - name: Setup pnpm cache
-      uses: actions/cache@v4
-      with:
-        path: ${{ env.STORE_PATH }}
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: ${{ runner.os }}-pnpm-store-
-
-    - name: Get dependences
-      run: "pnpm install"
+    - name: Install dependences
+      run: pnpm install --frozen-lockfile
 
     - name: "Generate prisma typings"
-      run: "pnpm run prisma genenrate"
+      run: "pnpm genenrate"
 
     - name: "✒ TypeCheck"
       run: "pnpm run build"
