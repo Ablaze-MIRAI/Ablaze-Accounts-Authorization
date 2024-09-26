@@ -1,2 +1,4 @@
-// ToDo: write security.txt
-hello
+Contact: mailto:support@ablaze.one
+Expires: 2026-01-01T00:00:00.000Z
+Preferred-Languages: ja
+Policy: https://docs.ablaze.one/privacy_policy/
