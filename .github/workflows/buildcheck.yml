@@ -1,4 +1,4 @@
-name: TypeCheck
+name: BuildCheck
 
 on:
   pull_request:
@@ -24,6 +24,8 @@ jobs:
     - name: 📚 Install dependencies
       run: pnpm install
 
+    - name: Generate prisma typings
+      run: pnpm genenrate
+
     - name: ✒ TypeCheck
       run: pnpm build
-
