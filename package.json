@@ -1,6 +1,6 @@
 {
   "name": "ablaze-accounts-authorization",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
@@ -74,8 +74,14 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@9.9.0",
+  "packageManager": "pnpm@9.11.0",
+  "engines": {
+    "node": "20.x.x",
+    "pnpm": "9.11.0",
+    "yarn": "Moved to pnpm.",
+    "npm": "Moved to pnpm."
+  },
   "volta": {
-    "node": "20.16.0"
+    "node": "20.17.0"
   }
 }
