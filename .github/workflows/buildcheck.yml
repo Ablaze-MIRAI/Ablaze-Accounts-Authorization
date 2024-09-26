@@ -21,6 +21,9 @@ jobs:
     - name: "Enable Corepack"
       run: "corepack enable"
 
+    - name: "Update pnpm"
+      run: "pnpm add -g pnpm"
+
     - name: "📚 Install dependencies"
       run: "pnpm install"
 
