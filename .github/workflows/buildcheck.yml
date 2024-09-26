@@ -1,31 +1,31 @@
-name: BuildCheck
+name: "BuildCheck"
 
 on:
   pull_request:
     branches:
-      - production
-      - develop
+      - "production"
+      - "develop"
 
 jobs:
   typecheck:
-    runs-on: ubuntu-latest
+    runs-on: "ubuntu-latest"
     steps:
-    - name: ✅ Checkout Repository
-      uses: actions/checkout@v4
+    - name: "✅ Checkout Repository"
+      uses: "actions/checkout@v4"
 
-    - name: 🛠 Setup NodeJS
-      uses: actions/setup-node@v4
+    - name: "🛠 Setup NodeJS"
+      uses: "actions/setup-node@v4"
       with:
         node-version: "20"
 
-    - name: Enable Corepack
+    - name: "Enable Corepack"
       run: "corepack enable"
 
-    - name: 📚 Install dependencies
-      run: pnpm install
+    - name: "📚 Install dependencies"
+      run: "pnpm install"
 
-    - name: Generate prisma typings
-      run: pnpm genenrate
+    - name: "Generate prisma typings"
+      run: "pnpm genenrate"
 
-    - name: ✒ TypeCheck
-      run: pnpm build
+    - name: "✒ TypeCheck"
+      run: "pnpm build"
