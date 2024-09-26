@@ -25,6 +25,9 @@ jobs:
     - name: Install dependences
       run: pnpm install --frozen-lockfile
 
+    - name: Copy envfile
+      run: cp .env.sample .env.production
+
     - name: "Generate prisma typings"
       run: "pnpm generate"
 
