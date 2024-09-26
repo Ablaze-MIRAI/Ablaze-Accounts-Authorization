@@ -13,6 +13,10 @@ jobs:
     - name: "✅ Checkout Repository"
       uses: "actions/checkout@v4"
 
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 9
+
     - name: "🛠 Setup NodeJS"
       uses: "actions/setup-node@v4"
       with:
