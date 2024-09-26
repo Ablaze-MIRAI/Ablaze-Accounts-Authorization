@@ -40,7 +40,7 @@ jobs:
 
 
     - name: "Generate prisma typings"
-      run: "pnpm genenrate"
+      run: "pnpm run prisma genenrate"
 
     - name: "✒ TypeCheck"
-      run: "pnpm build"
+      run: "pnpm run build"
