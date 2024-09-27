@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ShowAllProjects } from "@/components/props/ShowAllProjects";
+import { ShowAllProjects } from "@/components/elements/ShowAllProjects";
 
 import AblazeAccountsShortBlack from "@/assets/logo/black-new.svg";
 import FloorpIcon from "@/assets/logo/floorp-icon.svg";

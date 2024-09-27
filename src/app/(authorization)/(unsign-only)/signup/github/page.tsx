@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { SignTitle } from "@/components/props/SignTitle";
+import { SignTitle } from "@/components/elements/SignTitle";
 import { ContinueCreateAccounts } from "@/components/modules/continue-create-accounts";
 import { withContinuePage } from "@/library/utils";
 import { startAuthorize } from "./actions";

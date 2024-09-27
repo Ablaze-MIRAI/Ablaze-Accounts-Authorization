@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { SignTitle } from "@/components/props/SignTitle";
+import { SignTitle } from "@/components/elements/SignTitle";
 
 export default function GitHubDone(){
   return (

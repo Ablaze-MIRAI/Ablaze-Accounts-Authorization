@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { SignTitle } from "@/components/props/SignTitle";
-import { Separate } from "@/components/props/Separate";
+import { SignTitle } from "@/components/elements/SignTitle";
+import { Separate } from "@/components/elements/Separate";
 import { withContinueQuery } from "@/library/utils";
 import { SignMethods } from "../signmethods";
 import { CanaryAlert } from "../beta-alert";

@@ -1,6 +1,6 @@
 import { useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/navigation";
 

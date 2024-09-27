@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import { useToast } from "@/components/ui/use-toast";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 import { ContinueCreateAccounts } from "@/components/modules/continue-create-accounts";
 
 import { withContinue, withContinueQuery } from "@/library/utils";

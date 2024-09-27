@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 
 import { onSubmitAction } from "./actions";
 import { EmailSigninSchema } from "./schema";
