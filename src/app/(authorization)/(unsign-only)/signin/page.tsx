@@ -7,7 +7,7 @@ import { SignTitle } from "@/components/elements/SignTitle";
 import { Separate } from "@/components/elements/Separate";
 import { withContinueQuery } from "@/library/utils";
 import { SignMethods } from "../signmethods";
-import { CanaryAlert } from "../beta-alert";
+import { CanaryAlert } from "../../../../components/modules/beta-alert";
 
 export default function SigninPage(){
   const query = useSearchParams();
