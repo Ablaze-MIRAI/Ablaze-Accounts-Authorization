@@ -51,8 +51,8 @@ OIDC_JWS_PUBLIC_KEY_PATH=./.environments/keys/development.public.rsa.pem
 ### 実行
 
 ```
-yarn mg:push # データベースにマイグレーション (開発中の変更もこれ)
-yarn dev # 開発サーバー起動
+pnpm mg:push # データベースにマイグレーション (開発中の変更もこれ)
+pnpm dev # 開発サーバー起動
 ```
 
 ### データベースついて
@@ -63,7 +63,7 @@ yarn dev # 開発サーバー起動
 > `mg:push`を使った状態で`mg:apply`すると状態が違うから全データ消すって言われるけど、`mg:push`で変更した分ずれただけだから大丈夫です。開発データベースの内容は全部消えるけどね。
 
 ```
-yarn mg:apply
+pnpm mg:apply
 ```
 
 ## Branch Rules
