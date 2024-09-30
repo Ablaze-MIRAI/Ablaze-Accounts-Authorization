@@ -1,5 +1,5 @@
-import { UnknownError } from "@/components/props/Error";
-import { SignTitle } from "@/components/props/SignTitle";
+import { UnknownError } from "@/components/elements/Error";
+import { SignTitle } from "@/components/elements/SignTitle";
 import { o2google_setup_cookie } from "@/store/cookie/oauth2_google";
 import { Cancel, CreateAccount } from "./controll";
 import { ContinueCreateAccounts } from "@/components/modules/continue-create-accounts";

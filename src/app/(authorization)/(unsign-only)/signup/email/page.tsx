@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SignTitle } from "@/components/props/SignTitle";
+import { SignTitle } from "@/components/elements/SignTitle";
 import { SignupEmailForm, SignupEmailVerifyForm } from "./form";
 import { Done } from "../done";
 

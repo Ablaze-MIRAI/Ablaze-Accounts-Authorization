@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMountWS } from "@/library/hook";
-import { TitleLoader } from "@/components/props/Loader";
-import { ToTopage } from "@/components/props/ToToppage";
+import { TitleLoader } from "@/components/elements/Loader";
+import { ToTopage } from "@/components/elements/ToToppage";
 
 export default function OAuth2GoogleCallback(){
   const router = useRouter();

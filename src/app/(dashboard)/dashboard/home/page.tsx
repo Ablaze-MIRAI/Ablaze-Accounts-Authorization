@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { DashboardContainer } from "@/components/containers/DashboardContainer";
-import { ShowAllProjects } from "@/components/props/ShowAllProjects";
+import { ShowAllProjects } from "@/components/elements/ShowAllProjects";
 import SayHelloUser from "@/components/modules/say-hello-user";
 import { ProjectItem } from "./projects";
 import { QuicklinkItem } from "./quicklink";

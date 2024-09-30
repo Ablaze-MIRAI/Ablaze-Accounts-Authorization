@@ -1,6 +1,6 @@
 "use client";
 
-import { SignTitle } from "@/components/props/SignTitle";
+import { SignTitle } from "@/components/elements/SignTitle";
 import { SigninEmailForm } from "./form";
 
 export default function SignupEmail(){

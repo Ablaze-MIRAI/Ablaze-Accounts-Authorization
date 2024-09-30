@@ -1,6 +1,6 @@
 "use client";
 
-import { SubmitButton } from "@/components/props/SubmitButton";
+import { SubmitButton } from "@/components/elements/SubmitButton";
 import { deleteAllSession } from "./actions";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";

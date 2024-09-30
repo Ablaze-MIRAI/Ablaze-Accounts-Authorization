@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { DashboardContainer } from "@/components/containers/DashboardContainer";
 import { SettingContainer, SettingContent, SettingFooter } from "@/components/containers/SettingItem";
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 import { TopSessions } from "./session";
 
 export default async function DashboardSecurity(){

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { GitHubUser } from "./schema";
 import { connectAccount, createAccount, createSessionBySilentAction } from "./actions";
 import { useEffect, useState } from "react";
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 
 export const CreateNavigation = ({ github }: { github: GitHubUser }) =>{
   const [loading, setLoad] = useState(false);

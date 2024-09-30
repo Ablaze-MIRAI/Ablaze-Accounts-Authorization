@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 import { builderOAuth2ErrorUri, builderOAuth2RedirectUri } from "@/library/utils";
 import { doAcceptApp } from "./actions";
 import type { $Enums } from "@prisma/client";
