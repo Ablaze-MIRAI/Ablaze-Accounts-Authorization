@@ -82,6 +82,9 @@ export const SigninEmailForm = () =>{
           <Button type="submit" className="w-full" disabled={submitting}><Loader loading={submitting}/>ログインする</Button>
         </form>
       </Form>
+      {/*<Button variant="secondary" className={`w-full mt-2 ${submitting?"pointer-events-none":""}`} asChild>
+        <Link href={{ pathname: "/signin/email/reset", query: withContinueQuery(query)}}>パスワードのリセット</Link>
+      </Button>*/}
       <Button variant="secondary" className={`w-full mt-2 ${submitting?"pointer-events-none":""}`} asChild>
         <Link href={{ pathname: "/signin", query: withContinueQuery(query)}}>戻る</Link>
       </Button>

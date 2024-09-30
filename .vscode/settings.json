@@ -1,5 +1,6 @@
 {
   "files.insertFinalNewline": true,
+  "files.eol": "\n",
   "todo-tree.general.tagGroups": {
     "TODO": ["ToDo"]
   },
