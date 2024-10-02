@@ -32,7 +32,9 @@ export const middleware = async (request: NextRequest) =>{
     if(!restoretoken) return console.log("# RESTORE NOT FOUND [SKIP]");
     //console.log("# RESTORE FOUND [PASS]");
 
-    const resp = await fetch(`http://localhost:3000/api/restore?token=${restoretoken}`);
+    const url = `http://localhost:3000/api/restore?token=${restoretoken}`;
+    console.log(url);
+    const resp = await fetch(url);
     if(!resp.ok){
       response.cookies.delete(environment.COOKIE_RESTORE_NAME);
       return console.log("# RESTORE SESSION FEILD [SKIP]");
@@ -52,9 +54,8 @@ export const middleware = async (request: NextRequest) =>{
       maxAge: environment.COOKIE_RESTORE_EXPIRES
     });
 
-    response.headers.set("x-session-restore", JSON.stringify(keys.user));
-
-    //console.log("# !!!!! RESTORE DONE !!!!!");
+    const encoded = Buffer.from(JSON.stringify(keys.user)).toString("base64");
+    response.headers.set("x-session-restore", encoded);
   })();
 
   return response;
