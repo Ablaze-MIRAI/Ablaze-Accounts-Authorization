@@ -17,7 +17,7 @@ const session_expires = 60*60*3;
 const restore_expires = 60*60*24*60;
 
 type Session = {
-  id: string
+  id: string // Restore ID
   uid: string,
   name: string,
   avatar: string,
@@ -31,10 +31,9 @@ const generateRestoreToken = () => randomBytes(64).toString("hex");
 export const getSession = async (autoredirect: boolean = true): Promise<Session | undefined> =>{
   const continue_uri = headers().get(environment.HEADER_NEXT_REQUEST_URI);
   const session_restore = headers().get("x-session-restore");
-  console.log(continue_uri);
-  if(session_restore && session_restore !== "none") return JSON.parse(session_restore);
+  if(session_restore && session_restore !== "none") return JSON.parse(Buffer.from(session_restore, "base64").toString());
 
-  const sessionid = cookies().get(environment.COOKIE_SESSION_NAME)?.value;
+  const sessionid = cookies().get(environment.COOKIE_SESSION_NAME)?.value; // Secret Key
   if(!sessionid){
     if(!autoredirect) return undefined;
     return redirect(withContinue("/signin", continue_uri));
