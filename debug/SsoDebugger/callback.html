@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSO Debugger</title>
+</head>
+<body>
+  <h1>SSO Debugger / Callback</h1>
+  <a href="/index.html">Start over</a>
+  <a href="http://localhost:3000/account">Logout</a>
+  <p id="result"></p>
+  <script>
+    const base64DecodeAsBlob = (text, type = "text/plain;charset=UTF-8") => fetch(`data:${type};base64,` + text).then(response => response.blob());
+
+    const result = document.getElementById("result");
+
+    const main = () =>{
+      const url = new URL(location.href)
+      const code = url.searchParams.get("code");
+
+      if(!code) return result.innerText = "Code not found";
+
+      const formData = new FormData();
+      formData.append("grant_type", "authorization_code")
+      formData.append("client_id", "localhost.p7000")
+      formData.append("redirect_uri", "http://localhost:7000/callback.html")
+      formData.append("code", code);
+
+      fetch("http://localhost:3000/api/token", {
+        method: "POST",
+        body: formData
+      })
+      .then(r => r.json())
+      .then(response =>{
+        console.log(response);
+        result.innerText = JSON.stringify(response);
+        document.cookie = `debugger_p7000_token=${response["access_token"]};max-age=${60*30}`;
+        document.cookie = `debugger_p7000_refresh=${response["refresh_token"]};max-age=${60*120}`;
+      })
+      .catch(e =>{
+        console.error(e);
+        alert(e);
+      });
+    }
+
+    main();
+  </script>
+</body>
+</html>

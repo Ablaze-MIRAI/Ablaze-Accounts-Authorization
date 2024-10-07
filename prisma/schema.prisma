@@ -42,6 +42,8 @@ model RestoreToken {
   // Relationships
   user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
   uid  String
+
+  refresh_token RefreshToken[]
 }
 
 model IdpEmail {
@@ -110,6 +112,9 @@ model RefreshToken {
   // Relationships
   user User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
   uid  String
+
+  restore_token RestoreToken? @relation(fields: [rid], references: [id], onDelete: Cascade)
+  rid String?
 }
 
 enum ClientType {

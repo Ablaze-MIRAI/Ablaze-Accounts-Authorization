@@ -11,7 +11,7 @@ export const doAcceptApp = async (_uid: string, cid: string, scope: string, clie
   if(!session) throw new Error("Not signed");
 
   await createAcceptApp(session.uid, cid);
-  return await createOAuth2Code(session.uid, cid, scope, client_type);
+  return await createOAuth2Code(session.uid, session.id, cid, scope, client_type);
 };
 
 export const SignoutAction = async () =>{

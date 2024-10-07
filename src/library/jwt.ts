@@ -12,7 +12,7 @@ export type UserJWTPayload = {
   role: string
 };
 
-export const signToken = (payload: UserJWTPayload, uid: string, audience: string | string[]): string =>{
+export const signToken = (payload: UserJWTPayload | object, uid: string, audience: string | string[]): string =>{
   return jwt.sign(payload, PrivateKey, {
     algorithm: "RS256",
     issuer: environment.OIDC_JWT_ISSUER,

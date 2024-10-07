@@ -80,7 +80,7 @@ export default async function OAuth2AuthorizePage({ searchParams }: { searchPara
 };
 
 const doAcceptImplicit = async (user: UserSession, q: Pick<OAuth2Query, "client_id" | "scope" | "redirect_uri" | "response_mode" | "state">, ctype: $Enums.ClientType) =>{
-  const code = await createOAuth2Code(user.uid, q.client_id, q.scope, ctype);
+  const code = await createOAuth2Code(user.uid, user.id, q.client_id, q.scope, ctype);
   if(q.response_mode === "web_message") return (<WebMessageResponse code={code} redirecturi={q.redirect_uri}/>);
   return redirect(`${q.redirect_uri}?code=${code}&state=${q.state}`);
 };
