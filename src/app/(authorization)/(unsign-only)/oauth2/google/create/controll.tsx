@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useProcess } from "@/library/hook";
 import { Button } from "@/components/ui/button";
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 import { useAtomValue, useSetAtom } from "jotai";
 import { ProcessingState } from "@/store/state/processing";
 import { ErrorState } from "@/store/state/error";

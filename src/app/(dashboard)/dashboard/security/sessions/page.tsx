@@ -1,7 +1,7 @@
 import { Suspense, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { BCItem, DashboardContainer } from "@/components/containers/DashboardContainer";
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 import { ActiveSessions } from "./session";
 import { deleteAllSession } from "../actions";
 import { DeleteAllSession } from "./controll";

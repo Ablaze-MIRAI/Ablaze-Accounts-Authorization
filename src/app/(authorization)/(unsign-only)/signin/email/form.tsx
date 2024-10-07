@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 
 import { onSubmitAction } from "./actions";
 import { EmailSigninSchema } from "./schema";
@@ -82,6 +82,9 @@ export const SigninEmailForm = () =>{
           <Button type="submit" className="w-full" disabled={submitting}><Loader loading={submitting}/>ログインする</Button>
         </form>
       </Form>
+      {/*<Button variant="secondary" className={`w-full mt-2 ${submitting?"pointer-events-none":""}`} asChild>
+        <Link href={{ pathname: "/signin/email/reset", query: withContinueQuery(query)}}>パスワードのリセット</Link>
+      </Button>*/}
       <Button variant="secondary" className={`w-full mt-2 ${submitting?"pointer-events-none":""}`} asChild>
         <Link href={{ pathname: "/signin", query: withContinueQuery(query)}}>戻る</Link>
       </Button>

@@ -1,0 +1,35 @@
+name: "BuildCheck"
+
+on:
+  pull_request:
+    branches:
+      - "production"
+      - "develop"
+
+jobs:
+  buildcheck:
+    runs-on: "ubuntu-latest"
+    steps:
+    - name: "✅ Checkout Repository"
+      uses: "actions/checkout@v4"
+
+    - name: Enable Corepack
+      run: corepack enable
+
+    - name: "🛠 Setup NodeJS"
+      uses: "actions/setup-node@v4"
+      with:
+        node-version: "20"
+        cache: "pnpm"
+
+    - name: Install dependences
+      run: pnpm install --frozen-lockfile
+
+    - name: Copy envfile
+      run: cp .env.sample .env.production
+
+    - name: "Generate prisma typings"
+      run: "pnpm generate"
+
+    - name: "✒ TypeCheck"
+      run: "pnpm run build"

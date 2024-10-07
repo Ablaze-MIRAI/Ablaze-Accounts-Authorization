@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 
 let first = false;
 export const WebMessageResponse = ({ code, redirecturi }: { code: string, redirecturi: string }) =>{

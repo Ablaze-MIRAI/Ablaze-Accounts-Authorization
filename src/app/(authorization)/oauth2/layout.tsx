@@ -1,4 +1,4 @@
-import { Loader } from "@/components/props/Loader";
+import { Loader } from "@/components/elements/Loader";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
 

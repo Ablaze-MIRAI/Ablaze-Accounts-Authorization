@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import environment from "@/environment";
-import { SignTitle } from "@/components/props/SignTitle";
+import { SignTitle } from "@/components/elements/SignTitle";
 import { BadRequest } from "@/components/modules/badrequest";
 import { getGitHubEmail, getGitHubUser, getToken, getUserByEmail, getUserByGitHub } from "@/data/githuboauth2";
 import { ConnectNavigation, CreateNavigation, CreateSessionBySilent } from "./navigation";

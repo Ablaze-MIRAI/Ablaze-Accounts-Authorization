@@ -1,6 +1,6 @@
 "use client";
 
-import { SubmitButton } from "@/components/props/SubmitButton";
+import { SubmitButton } from "@/components/elements/SubmitButton";
 import { deleteSession } from "./action";
 import { toast } from "sonner";
 import { useEffect } from "react";
