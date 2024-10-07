@@ -17,7 +17,7 @@ export const SignoutAction = async () =>{
   const activesessions = await getUserConnectedApplicationByRestoreID(user.id);
   if(!activesessions || activesessions.length < 1){
     await deleteSession();
-    redirect("/singout");
+    redirect("/signout");
   }
 
   // ToDo: Fix oauth2apllications type (logout nullable)
