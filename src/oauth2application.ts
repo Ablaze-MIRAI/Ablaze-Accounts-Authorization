@@ -9,12 +9,13 @@ const applications: ApplicationsType = {
     scope: "user",
     callback: ["https://oauthdebugger.com/debug"]
   },
-  "arpa.localhost.p7000": {
+  "localhost.p7000": {
     name: "Local SSO Debugger",
     type: "ablaze",
     client: "PUBLIC",
     scope: "user",
-    callback: ["http://localhost:7000/"]
+    callback: ["http://localhost:7000/callback.html"],
+    //logout: "http://localhost:7000/logout.html"
   },
   "app.floorp.native": {
     name: "Floorp Web Browser",
@@ -28,7 +29,8 @@ const applications: ApplicationsType = {
     type: "ablaze",
     client: "PUBLIC",
     scope: "user",
-    callback: ["https://forum.mirairo.dev/oauth2/callback", "https://forum.ablaze.one/oauth2/callback", "http://localhost:3000/oauth2/callback"]
+    callback: ["https://forum.mirairo.dev/oauth2/callback", "https://forum.ablaze.one/oauth2/callback", "http://localhost:3000/oauth2/callback", "http://localhost:3001/oauth2/callback"],
+    logout: "https://forum.ablaze.one/oidc/logout"
   }
 };
 

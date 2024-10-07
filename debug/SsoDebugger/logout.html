@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSO Debugger</title>
+</head>
+<body>
+  <h1>SSO Debugger / Logout</h1>
+  <a href="/index.html">Start over</a>
+  <script type="module">
+    import { jwtDecode } from "https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/+esm";
+
+    const main = () =>{
+      const url = new URL(location.href)
+      const urls_token = url.searchParams.get("urls");
+
+      const result = jwtDecode(urls_token);
+      const logout = result.logout;
+
+      document.cookie = "debugger_p7000_token=;max-age=0";
+      document.cookie = "debugger_p7000_refresh=;max-age=0";
+
+      logout.map((v, k) =>{
+        if(v === location.href.replace(location.search, "")){
+          if(logout.lenght >= k+2){
+            location.href = logout[k+1]+location.search;
+          }else{
+            location.href = "http://localhost:3000/signout/";
+          }
+        }
+      });
+    }
+    main();
+  </script>
+</body>
+</html>

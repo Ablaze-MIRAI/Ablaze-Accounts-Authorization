@@ -16,9 +16,10 @@ export const getUserAcceptStatus = async (uid: string, client_id: string) =>{
   return status;
 };
 
-export const createOAuth2Code = async (uid: string, cid: string, scope: string, client_type: $Enums.ClientType) =>{
+export const createOAuth2Code = async (uid: string, rid: string, cid: string, scope: string, client_type: $Enums.ClientType) =>{
   const codestore: OAuth2CodeStore = {
     uid: uid,
+    rid: rid,
     client_id: cid,
     scope: scope,
     client_type: client_type
@@ -61,7 +62,7 @@ export const getOAuth2Code = async (code: string): Promise<OAuth2CodeStore | und
   return data;
 };
 
-export const createOAuth2Refresh = async (token: string, code: OAuth2CodeStore) =>{
+export const createOAuth2Refresh = async (token: string, code: OAuth2CodeStore, rid: string | null) =>{
   return await prisma.refreshToken.create({
     data: {
       token: token,
@@ -69,7 +70,8 @@ export const createOAuth2Refresh = async (token: string, code: OAuth2CodeStore) 
       client_id: code.client_id,
       client_type: code.client_type,
       uid: code.uid,
-      scope: code.scope
+      scope: code.scope,
+      rid: rid
     }
   });
 };

@@ -25,11 +25,12 @@ export const IssueToken = async (form: FormData) =>{
     if(application.client_secret !== client_secret) return NextResponse.json({ error: "invalid_grant" }, { status: 400, headers: { "Access-Control-Allow-Origin": origin } });
   }
 
-  const refresh_token = generateOAuth2Refresh();
-  await createOAuth2Refresh(refresh_token, codeinfo);
-
   const user = await getUserUid(codeinfo.uid);
   if(!user) return NextResponse.json({ error: "invalid_request" }, { status: 400, headers: { "Access-Control-Allow-Origin": origin } });
+
+  const refresh_token = generateOAuth2Refresh();
+  const rid = application.type === "1stparty" || application.type === "ablaze"?codeinfo.rid:null;
+  await createOAuth2Refresh(refresh_token, codeinfo, rid);
 
   const jws_token = signToken({
     name: user.screen_name,

@@ -6,6 +6,7 @@ export type ApplicationType = {
   client: "PUBLIC",
   scope: string,
   callback: string[]
+  logout?: string
 }
 
 export type ApplicationConfidentialType = {
@@ -15,6 +16,7 @@ export type ApplicationConfidentialType = {
   client_secret: string,
   scope: string,
   callback: string[]
+  logout?: string
 }
 
 export type ApplicationsType = {
@@ -33,6 +35,7 @@ export type OAuth2Query = {
 
 export type OAuth2CodeStore = {
   uid: string
+  rid: string,
   client_id: string,
   scope: string,
   client_type: $Enums.ClientType

@@ -2,6 +2,7 @@ import { prisma } from "@/library/prisma";
 import { redis } from "@/library/redis";
 import { TokenHash } from "@/library/safety";
 import type { UserSession } from "@/typings/session";
+import oauth2application from "@/oauth2application";
 
 const session_store_prefix = "_session";
 const session_expires = 60*60*2;
@@ -52,4 +53,22 @@ export const getUserByUid = async (uid: string) =>{
   return await prisma.user.findUnique({
     where: { uid: uid }
   });
+};
+
+export const getUserConnectedApplicationByRestoreID = async (rid: string) =>{
+  try{
+    return await prisma.refreshToken.findMany({
+      where: {
+        rid: rid,
+        client_id: {
+          in: Object.keys(oauth2application).filter((p) => oauth2application[p].type === "ablaze" || oauth2application[p].type === "1stparty")
+        }
+      },
+      select: {
+        client_id: true
+      }
+    });
+  }catch{
+    return undefined;
+  }
 };
