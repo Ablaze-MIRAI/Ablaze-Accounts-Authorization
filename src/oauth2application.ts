@@ -15,7 +15,7 @@ const applications: ApplicationsType = {
     client: "PUBLIC",
     scope: "user",
     callback: ["http://localhost:7000/callback.html"],
-    //logout: "http://localhost:7000/logout.html"
+    logout: "http://localhost:7000/logout.html"
   },
   "app.floorp.native": {
     name: "Floorp Web Browser",
@@ -30,7 +30,7 @@ const applications: ApplicationsType = {
     client: "PUBLIC",
     scope: "user",
     callback: ["https://forum.mirairo.dev/oauth2/callback", "https://forum.ablaze.one/oauth2/callback", "http://localhost:3000/oauth2/callback", "http://localhost:3001/oauth2/callback"],
-    logout: "https://forum.ablaze.one/oidc/logout"
+    //logout: "https://forum.ablaze.one/oidc/logout"
   }
 };
 
